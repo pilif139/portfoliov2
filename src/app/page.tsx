@@ -1,8 +1,10 @@
+import FadeDiv from "@/components/ui/FadeDiv";
 import Heading from "@/components/ui/Heading";
 
 export default function Home() {
   return (
-    <div className="w-[40vw] text-justify flex flex-col gap-4">
+    <FadeDiv
+        className="w-[40vw] text-justify flex flex-col gap-4">
       <div>
         <Heading>Welcome to my portfolio!</Heading>
         {/* About me section */}
@@ -10,9 +12,9 @@ export default function Home() {
       </div>
 
       <div>
-        <Heading variant="3">What you will find on this site?</Heading>
-        <p>On this site you&apos;ll find a showcase of my programming projects, developed both in my free time and as part of my schoolwork. In addition, you can explore my blog, where I share insights into my programming journey, current learning progress, future plans, and more. I intend to make this site available in both English and Polish.</p>
+        <Heading variant="2xl">What you will find on this site?</Heading>
+        <p>On this site you&apos;ll find a showcase of my programming projects, developed both in my free time and as part of my schoolwork. In addition, you can explore my blog, where I share insights into my programming journey, current learning progress, what i&apos;m doing in life, future plans, and more. I intend to make this site available in both English and Polish.</p>
       </div>
-    </div>
+    </FadeDiv>
   );
 }

@@ -22,7 +22,7 @@ export default function RootLayout({
   return (
     <html lang="pl">
       <body
-        className={`${font.className} tracking-wide bg-nord-0 text-nord-0 text-lg flex flex-col min-h-screen font-medium`}
+        className={`${font.className} tracking-wide bg-nord-1 text-nord-5 text-lg flex flex-col min-h-screen font-medium`}
       >
         <Header/>
         <div className="my-10 mx-40 h-full flex flex-grow justify-center">
