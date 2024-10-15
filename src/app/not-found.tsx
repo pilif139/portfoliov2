@@ -11,7 +11,7 @@ export default function NotFound(){
             transition={{duration: 0.5}}
             className="m-auto text-center"
         >
-            <Heading variant="5xl" className="text-nord-7">404 Error</Heading>
+            <Heading variant="5xl" className="text-nord-11">404 Error</Heading>
             <p className="text-3xl">Page not found</p>
         </motion.div>
     )

@@ -11,10 +11,10 @@ export default function Header(){
 
     return (
         <header className=" flex items-center justify-between lg:mx-16 p-4 py-5 font-bold text-2xl sticky top-0">
-            <Link href="/" className="hover:text-nord-5 transition duration-300 text-3xl">My Portfolio</Link>
+            <Link href="/" className="hover:text-nord-10 transition duration-300 text-3xl">My Portfolio</Link>
             <div className="flex gap-4">
                 {navigation.map(({name, href}) => (
-                    <Link key={name} href={href} className="hover:text-nord-5 transition duration-300">
+                    <Link key={name} href={href} className="hover:text-nord-10 transition duration-300">
                         {name}
                     </Link>
                 ))}
