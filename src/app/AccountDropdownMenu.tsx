@@ -5,7 +5,7 @@ import { MdOutlineAccountCircle } from "react-icons/md";
 import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 
-export default function AcccountDropdownMenu(){
+export default function AcccountDropdownMenu() {
     const [isOpen, setIsOpen] = useState(false);
     const node = useRef<HTMLDivElement>(null);
 
@@ -30,6 +30,20 @@ export default function AcccountDropdownMenu(){
         };
     }, [isOpen]);
 
+    const unloggedMenu = [
+        {name: 'Login', href: '/login'},
+        {name: 'Register', href: '/register'}
+    ]
+
+    const loggedMenu = [
+        {name: 'Profile', href: '/profile'},
+        {name: 'Settings', href: '/settings'},
+        {name: 'Logout', href: '/logout'}
+    ]
+    // get user from a context (react context, zustand or redux)
+    const user = {username: 'John Doe'};
+    const menu = user ? loggedMenu : unloggedMenu;
+    
     return (
         <div ref={node}>
             <button 
@@ -44,15 +58,14 @@ export default function AcccountDropdownMenu(){
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -10 }}
                     className='absolute top-16 bg-nord-3 text-nord-5 right-0 mt-2 py-2 w-48 rounded shadow-xl shadow-gray-950'>
-                    <Link href='/profile' className='block px-4 py-2 hover:bg-nord-2'>
-                        Profile
-                    </Link>
-                    <Link href='/settings' className='block px-4 py-2 hover:bg-nord-2'>
-                        Settings
-                    </Link>
-                    <Link href='/logout'  className='block px-4 py-2 hover:bg-nord-2'>
-                        Logout
-                    </Link>
+                    {user && <><p className='px-4 py-2 text-center font-bold'>{user.username}</p> <hr className="bg-nord-6 h-1 mt-1"></hr></>}
+                    {
+                        menu.map((item, index) => (
+                            <Link key={index} href={item.href} className='block px-4 py-2 hover:bg-nord-4 hover:text-nord-10 transition duration-300 font-medium'>
+                                {item.name}
+                            </Link>
+                        ))
+                    }
                 </motion.div>
             )}
             </AnimatePresence>

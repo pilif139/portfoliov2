@@ -1,13 +1,15 @@
-import { getAuth } from "firebase/auth";
 import { NextRequest, NextResponse } from "next/server";
-import firebase_app from "./firebase/config";
+import {cookies} from "next/headers";
+import {verifySession} from "@/lib/auth/session";
+import {adminAuth} from "@/firebase/serverApp";
 
-export function middleware(req: NextRequest){
-    const auth = getAuth(firebase_app);
-    const user = auth.currentUser;
-    if(!user){
+export async function middleware(req: NextRequest) {
+    const sessionCookie = cookies().get('session')?.value;
+    if (!sessionCookie) {
         return NextResponse.redirect(new URL("/login", req.url));
     }
+    await verifySession(sessionCookie); // if it throws error, it will redirect to /login
+
     return NextResponse.next();
 }
 
