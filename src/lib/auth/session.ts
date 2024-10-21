@@ -1,35 +1,73 @@
 import 'server-only';
-import {adminAuth} from "@/firebase/serverApp";
+
+import {encodeBase32LowerCaseNoPadding, encodeHexLowerCase} from "@oslojs/encoding";
+import { sha256 } from '@oslojs/crypto/sha2';
+import {Session, sessionTable} from "@/db/schema/session";
+import db from "@/db/db";
+import {User, userTable} from "@/db/schema/users";
+import {eq} from "drizzle-orm";
+import { cache } from 'react';
 import {cookies} from "next/headers";
-import {redirect} from "next/navigation";
 
-export async function createSession(tokenId: string) {
-  const crsfToken = cookies().get('csrfToken');
-  if(!crsfToken){
-        throw new Error('CSRF token not found');
-  }
-  const decodedToken = await adminAuth.verifyIdToken(tokenId);
-  if(new Date().getTime() / 1000 - decodedToken.auth_time > 5 * 60){
-    throw new Error('Recent sign-in required. You are trying to create a session with an old token');
-  }
-  // create a session
-  const expiresIn = + 60 * 60 * 24 * 5;
-  const options = {maxAge: expiresIn, httpOnly: true, secure: true };
-  try {
-    const sessionCookie = await adminAuth.createSessionCookie(tokenId, {expiresIn: expiresIn})
-
-    cookies().set('session', sessionCookie, options);
-
-    redirect('/');
-  } catch(error : Error | any){
-    throw new Error('Failed to create session - ' + error.message);
-  }
-}
-
-export async function verifySession(tokenId : string) {
-    try {
-        return await adminAuth.verifySessionCookie(tokenId, true);
-    } catch(error : Error | any) {
-        redirect('/login');
+export const getCurrentSession = cache(async ()=>{
+    const token = cookies().get("session")?.value ?? null;
+    if(token === null){
+        return {session: null, user: null};
     }
+    const result = await validateSessionToken(token);
+    return result;
+})
+
+export function generateSessionToken() : string{
+    const bytes = new Uint8Array(20);
+    crypto.getRandomValues(bytes);
+    return encodeBase32LowerCaseNoPadding(bytes);
 }
+
+export async function createSession(token: string, userId: number) : Promise<Session>{
+    const sessionId = encodeHexLowerCase(sha256(new TextEncoder().encode(token)));
+    const session: Session = {
+        id: sessionId,
+        userId,
+        expiresAt: new Date(Date.now() + 1000 * 60 * 60 * 24 * 30) // 30 days
+    }
+    await db.insert(sessionTable).values(session).execute();
+    return session;
+}
+
+export async function validateSessionToken(token: string) : Promise<SessionValidationResult>{
+    const sessionId = encodeHexLowerCase(sha256(new TextEncoder().encode(token)));
+    const result = await db
+                        .select({user: userTable, session: sessionTable})
+                        .from(sessionTable)
+                        .innerJoin(userTable, eq(sessionTable.userId, userTable.id))
+                        .where(eq(sessionTable.id, sessionId))
+                        .execute();
+    if(result.length < 1){
+        return {session: null, user: null};
+    }
+    const { user, session } = result[0];
+    if(Date.now() >= session.expiresAt.getTime()){
+        await db.delete(sessionTable).where(eq(sessionTable.id, sessionId)).execute();
+        return {session: null, user: null};
+    }
+    if(Date.now()>= session.expiresAt.getTime() - 1000 * 60 * 60 * 24 * 15){
+        session.expiresAt = new Date(Date.now() + 1000 * 60 * 60 * 24 * 30);
+    }
+    await db
+        .update(sessionTable)
+        .set({
+            expiresAt: session.expiresAt
+        })
+        .where(eq(sessionTable.id, sessionId))
+        .execute();
+    return {session, user};
+}
+
+export async function invalidateSession(sessionId: string){
+    await db.delete(sessionTable).where(eq(sessionTable.id, sessionId));
+}
+
+export type SessionValidationResult =
+    | {session: Session; user: User}
+    | {session: null; user: null}

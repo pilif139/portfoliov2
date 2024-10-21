@@ -6,7 +6,7 @@ export default function NotFound(){
         <FadeDiv
             className="m-auto text-center"
         >
-            <Heading variant="5xl" className="text-nord-11">404 Error</Heading>
+            <Heading variant="1" className="text-nord-11">404 Error</Heading>
             <p className="text-3xl">Page not found</p>
         </FadeDiv>
     )

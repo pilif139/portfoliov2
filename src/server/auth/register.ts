@@ -1,12 +1,14 @@
 "use server";
 
-import { Users } from "@/db/schema/users";
+import { userTable} from "@/db/schema/users";
 import bcrypt from 'bcrypt';
 import db from "@/db/db";
 import {FormState, RegisterSchema} from "./registerTypes";
 import { eq } from "drizzle-orm";
-import {adminAuth} from "@/firebase/serverApp";
-import {createSession} from "@/lib/auth/session";
+import {redirect} from "next/navigation";
+import {createSession, generateSessionToken} from "@/lib/auth/session";
+import {setSessionTokenCookie} from "@/lib/auth/cookies";
+import {revalidatePath} from "next/cache";
 
 export default async function register(state: FormState, formData: FormData) : Promise<FormState> {
   const validateFields = RegisterSchema.safeParse({
@@ -21,30 +23,33 @@ export default async function register(state: FormState, formData: FormData) : P
 
   const { username, email, password } = validateFields.data;
 
-  const existingUser = await db.select().from(Users).where(eq(Users.email,email)).execute();
+  const existingUser = await db.select().from(userTable).where(eq(userTable.email,email)).execute();
   if (existingUser.length > 0) {
     return {errors: {email: ["Email already exists"]}};
   }
-
-  const uid = formData.get('uid') as string;
-  const tokenId = formData.get('tokenId') as string;
 
   try {
     const hashedPassword = await bcrypt.hash(password, 10);
 
     // inserting into database
-    await db
-        .insert(Users)
+    const [{id}] = await db
+        .insert(userTable)
         .values({
-          uid,
           username,
           email,
           password: hashedPassword,
-        }).execute();
+        })
+        .returning({id: userTable.id})
+        .execute();
 
     // cookie handling
-    await createSession(tokenId);
+    const token = generateSessionToken();
+    const session = await createSession(token, id);
+    setSessionTokenCookie(token, session.expiresAt);
   } catch (error : Error | any) {
-    throw new Error("Failed to create user - "+error.message);
+    throw new Error("Failed to insert user into databse - " + error.message);
   }
+
+  revalidatePath("/", "layout");
+  redirect("/");
 }

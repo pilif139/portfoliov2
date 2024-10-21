@@ -1,13 +1,15 @@
 import { text, integer, pgTable, varchar} from "drizzle-orm/pg-core"
+import {InferSelectModel} from "drizzle-orm";
 
-export const project = pgTable("projects", {
+export const projectTable = pgTable("projects", {
     id: integer().primaryKey().generatedAlwaysAsIdentity(),
     title: varchar({ length: 255 }).notNull(),
     description: text().notNull(),
-
 });
 
-export const projectLinks = pgTable("project_links", {
-    projectId: integer().references(()=> project.id),
+export const projectLinksTable = pgTable("project_links", {
+    projectId: integer().references(()=> projectTable.id),
     url: varchar({ length: 600 }).notNull(),
 });
+
+export type Project = InferSelectModel<typeof projectTable>;

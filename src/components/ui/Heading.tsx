@@ -1,19 +1,19 @@
 type HeadingProps = {
     children: React.ReactNode;
     className?: string;
-    variant?: "5xl" | "4xl" | "3xl" | "2xl" | "xl" | "lg" | "base";
+    variant?: "1" | "2" | "3" | "4" | "5" | "6" | "7";
 };
 
-export default function Heading({ children, className, variant = "4xl"} : HeadingProps) {
+export default function Heading({ children, className, variant = "2"} : HeadingProps) {
     const CustomTag = `h${variant}` as keyof JSX.IntrinsicElements;
     const textSize : Record<string, string> = {
-        "5xl": "text-5xl",
-        "4xl": "text-4xl",
-        "3xl": "text-3xl",
-        "2xl": "text-2xl",
-        "xl": "text-xl",
-        "lg": "text-lg",
-        "base": "text-base",
+        "1": "text-5xl",
+        "2": "text-4xl",
+        "3": "text-3xl",
+        "4": "text-2xl",
+        "5": "text-xl",
+        "6": "text-lg",
+        "7": "text-base",
     }
     
     return (

@@ -14,7 +14,7 @@ export default function Home() {
       </div>
 
       <div>
-        <Heading variant="2xl">What you will find on this site?</Heading>
+        <Heading variant="4">What you will find on this site?</Heading>
         <p>On this site you&apos;ll find a showcase of my programming projects, developed both in my free time and as part of my schoolwork. In addition, you can explore my blog, where I share insights into my programming journey, current learning progress, what i&apos;m doing in life, future plans, and more. I intend to make this site available in both English and Polish.</p>
       </div>
       <Button className="text-2xl px-6 py-4" variant="primary">

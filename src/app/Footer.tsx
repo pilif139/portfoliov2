@@ -5,17 +5,17 @@ import { motion } from "framer-motion";
 
 export default function Footer(){
     return (
-        <footer className="relative bottom-0 flex items-center justify-center p-4 font-bold text-2xl gap-3">
+        <footer className="relative bottom-0 flex items-center justify-center p-4 font-bold text-xl gap-3">
             <h1>Created by Filip Kasperski</h1>
             <motion.a 
-                whileHover={{ scale: 1.15 }}
+                whileHover={{ scale: 1.2 }}
                 href="https://www.github.com/pilif139" target="blank">
-                <FaGithub size={45}/>
+                <FaGithub size={40}/>
             </motion.a>
             <motion.a
-                whileHover={{ scale: 1.15 }}
+                whileHover={{ scale: 1.2 }}
                 href="https://www.linkedin.com/in/filip-kasperski-b80a8b310/" target="blank">
-                <FaLinkedin size={45} />
+                <FaLinkedin size={40} />
             </motion.a>
         </footer>
     );

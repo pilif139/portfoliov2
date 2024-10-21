@@ -1,18 +1,30 @@
 import { NextRequest, NextResponse } from "next/server";
-import {cookies} from "next/headers";
-import {verifySession} from "@/lib/auth/session";
-import {adminAuth} from "@/firebase/serverApp";
 
-export async function middleware(req: NextRequest) {
-    const sessionCookie = cookies().get('session')?.value;
-    if (!sessionCookie) {
-        return NextResponse.redirect(new URL("/login", req.url));
+// CSRF protection middleware
+export async function middleware(request: NextRequest): Promise<NextResponse> {
+    if (request.method === "GET") {
+        return NextResponse.next();
     }
-    await verifySession(sessionCookie); // if it throws error, it will redirect to /login
-
+    const originHeader = request.headers.get("Origin");
+    // NOTE: You may need to use `X-Forwarded-Host` instead
+    const hostHeader = request.headers.get("Host");
+    if (originHeader === null || hostHeader === null) {
+        return new NextResponse(null, {
+            status: 403
+        });
+    }
+    let origin: URL;
+    try {
+        origin = new URL(originHeader);
+    } catch {
+        return new NextResponse(null, {
+            status: 403
+        });
+    }
+    if (origin.host !== hostHeader) {
+        return new NextResponse(null, {
+            status: 403
+        });
+    }
     return NextResponse.next();
-}
-
-export const config = {
-    matcher: "/admin",
 }

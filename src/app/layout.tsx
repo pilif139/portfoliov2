@@ -3,12 +3,13 @@ import { Rubik as Font } from "next/font/google"
 import "./globals.css";
 import Header from "./Header";
 import Footer from "./Footer";
-
+import ReactQueryProvider from "@/app/ReactQueryProvider";
 
 const font = Font({
   subsets: ["latin"],
   weight: "500"
 });
+
 
 export const metadata: Metadata = {
   title: "Portfolio",
@@ -26,11 +27,13 @@ export default function RootLayout({
       <body
         className={`${font.className} tracking-wide bg-nord-1 text-nord-5 text-lg flex flex-col min-h-screen font-medium`}
       >
-          <Header />
-          <div className="my-10 mx-40 h-full flex flex-grow justify-center">
-            {children}
-          </div>
-          <Footer/>
+          <ReactQueryProvider>
+              <Header />
+              <div className="my-10 mx-40 h-full flex flex-grow justify-center">
+                {children}
+              </div>
+              <Footer/>
+          </ReactQueryProvider>
       </body>
     </html>
   );
