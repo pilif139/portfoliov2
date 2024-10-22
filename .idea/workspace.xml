@@ -5,12 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f69dcca6-b496-4591-94a1-be1bf5cbc9ff" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/DropdownMenu.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/AccountDropdownMenu.tsx" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/AccountMenu.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/AccountMenu.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/Header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/Header.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lib/auth/session.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/auth/session.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/api/session/route.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/api/session/route.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -95,7 +92,7 @@
       <workItem from="1729515238947" duration="92000" />
       <workItem from="1729524545858" duration="4450000" />
       <workItem from="1729537586093" duration="13549000" />
-      <workItem from="1729598809791" duration="2065000" />
+      <workItem from="1729598809791" duration="2361000" />
     </task>
     <servers />
   </component>

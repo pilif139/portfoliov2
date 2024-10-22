@@ -23,6 +23,7 @@ export default async function AccountMenu(){
                 <hr className="bg-nord-6 h-2"/>
                 <Link href="/profile" className={menuElementClass}>Profile</Link>
                 <Link href="/settings" className={menuElementClass}>Settings</Link>
+                { user.role === "admin" && <Link href="/admin" className={menuElementClass}>Admin panel</Link>}
                 <LogoutButton sessionId={session.id}></LogoutButton>
             </DropdownMenu>
         )
