@@ -12,4 +12,9 @@ export const projectLinksTable = pgTable("project_links", {
     url: varchar({ length: 600 }).notNull(),
 });
 
+export const projectTechTable = pgTable("project_tech", {
+    projectId: integer().references(()=> projectTable.id),
+    tech: varchar({ length: 255 }).notNull(),
+});
+
 export type Project = InferSelectModel<typeof projectTable>;

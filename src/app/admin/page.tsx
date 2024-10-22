@@ -1,15 +1,14 @@
 import {getCurrentSession} from "@/lib/auth/session";
+import FadeDiv from "@/components/ui/FadeDiv";
+import Heading from "@/components/ui/Heading";
+import ProjectsPanel from "@/app/admin/ProjectsPanel";
 
 export default async function AdminPage() {
-    const { user } = await getCurrentSession();
-    if(user === null || user.role !== "admin") {
-        return <div>Access Denied</div>;
-    }
 
     return (
-        <div>
-            <h1>Admin Page</h1>
-            <p>Admin page content</p>
-        </div>
+        <>
+            <Heading>Admin Panel</Heading>
+            <ProjectsPanel/>
+        </>
     );
 }

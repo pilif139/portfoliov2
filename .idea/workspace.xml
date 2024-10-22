@@ -5,9 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f69dcca6-b496-4591-94a1-be1bf5cbc9ff" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/app/admin/ProjectsPanel.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/admin/layout.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/AccountMenu.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/AccountMenu.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/api/session/route.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/api/session/route.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/drizzle/meta/_journal.json" beforeDir="false" afterPath="$PROJECT_DIR$/drizzle/meta/_journal.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/admin/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/admin/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/db/schema/projects.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/db/schema/projects.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -92,7 +96,7 @@
       <workItem from="1729515238947" duration="92000" />
       <workItem from="1729524545858" duration="4450000" />
       <workItem from="1729537586093" duration="13549000" />
-      <workItem from="1729598809791" duration="2361000" />
+      <workItem from="1729598809791" duration="4028000" />
     </task>
     <servers />
   </component>
