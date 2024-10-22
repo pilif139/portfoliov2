@@ -1,5 +1,5 @@
 import Link from "next/link";
-import AccountDropdownMenu from "./AccountDropdownMenu";
+import AccountMenu from "@/app/AccountMenu";
 
 export default function Header(){
     const navigation = [
@@ -21,7 +21,7 @@ export default function Header(){
                         </Link>
                     ))}
                 </div>
-                <AccountDropdownMenu/>
+                <AccountMenu/>
             </div>
         </header>
     );
