@@ -41,3 +41,21 @@ npx drizzle-kit studio # open drizzle studio
 │   ├── server - server logic
 │   │   ├── auth - server actions for auth
 ```
+
+# TODO
+- [ ] Add file storage from Vercel
+- [ ] Project page
+- [ ] Blog page
+- [ ] About me page
+- [ ] Contact page
+
+**Admin panel**
+- [ ] Add user management
+- [ ] Create new project, blog
+- [ ] Managing content of projects and blogs
+- [ ] In a create view add file upload
+- [ ] Add tags to project, blog
+- [ ] Edit project, blog
+- [ ] Delete project, blog
+
+

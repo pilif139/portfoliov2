@@ -46,8 +46,8 @@ export default async function register(state: FormState, formData: FormData) : P
     const token = generateSessionToken();
     const session = await createSession(token, id);
     setSessionTokenCookie(token, session.expiresAt);
-  } catch (error : Error | any) {
-    throw new Error("Failed to insert user into databse - " + error.message);
+  } catch (error) {
+    throw new Error("Failed to insert user into databse - " + error);
   }
 
   revalidatePath("/", "layout");

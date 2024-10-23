@@ -1,9 +1,7 @@
 "use client";
 
 import {useEffect, useRef, useState} from "react";
-import {MdOutlineAccountCircle} from "react-icons/md";
 import {AnimatePresence, motion} from "framer-motion";
-import AccountMenu from "@/app/AccountMenu";
 
 type DropdownMenuProps = {
     button: React.ReactNode;

@@ -5,13 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f69dcca6-b496-4591-94a1-be1bf5cbc9ff" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/app/admin/ProjectsPanel.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/admin/layout.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/admin/BlogsPanel.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/drizzle/meta/_journal.json" beforeDir="false" afterPath="$PROJECT_DIR$/drizzle/meta/_journal.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/admin/ProjectsPanel.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/admin/ProjectsPanel.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/admin/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/admin/layout.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/admin/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/admin/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/db/schema/projects.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/db/schema/projects.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/api/session/route.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/api/session/route.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/DropdownMenu.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DropdownMenu.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/server/auth/register.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/auth/register.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,13 +55,13 @@
     "full.screen.before.presentation.mode": "false",
     "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/nodejs/node.exe",
+    "last_opened_file_path": "C:/Users/User/Desktop/programming/portfoliov2/src/app/admin",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "ImportCost",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
     "ts.external.directory.path": "C:\\Users\\User\\Desktop\\programming\\portfoliov2\\node_modules\\typescript\\lib",
     "vue.rearranger.settings.migration": "true"
   },
@@ -69,6 +72,9 @@
   }
 }]]></component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\User\Desktop\programming\portfoliov2\src\app\admin" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\User\Desktop\programming\portfoliov2\src\server\auth" />
     </key>
@@ -96,7 +102,10 @@
       <workItem from="1729515238947" duration="92000" />
       <workItem from="1729524545858" duration="4450000" />
       <workItem from="1729537586093" duration="13549000" />
-      <workItem from="1729598809791" duration="4028000" />
+      <workItem from="1729598809791" duration="5869000" />
+      <workItem from="1729619601054" duration="1388000" />
+      <workItem from="1729624040880" duration="18000" />
+      <workItem from="1729684658483" duration="193000" />
     </task>
     <servers />
   </component>
