@@ -1,11 +1,13 @@
 import { text, integer, pgTable, varchar, uniqueIndex} from "drizzle-orm/pg-core"
 import {InferSelectModel} from "drizzle-orm";
 import { contentType } from "./projects";
+import { userTable } from "./users";
 
 export const postsTable = pgTable("posts", {
     id: integer().primaryKey().generatedAlwaysAsIdentity(),
     title: varchar({ length: 255 }).notNull(),
     description: text().notNull(),
+    author_id: integer().notNull().references(()=>userTable.id),
 });
 
 export const post_content_blocksTable = pgTable("post_content_blocks", {

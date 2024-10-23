@@ -1,10 +1,12 @@
 import { text, integer, pgTable, varchar, pgEnum, uniqueIndex} from "drizzle-orm/pg-core"
 import {InferSelectModel} from "drizzle-orm";
+import { userTable } from "./users";
 
 export const projectTable = pgTable("projects", {
     id: integer().primaryKey().generatedAlwaysAsIdentity(),
     title: varchar({ length: 255 }).notNull(),
     description: text().notNull(),
+    author_id: integer().notNull().references(()=>userTable.id),
 });
 
 export const contentType = pgEnum("content_type", ["p", "h1", "h2", "h3", "h4", "image", "video", "file", "link", "tag"]);
