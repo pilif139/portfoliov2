@@ -1,4 +1,4 @@
-type HeadingProps = {
+export type HeadingProps = {
     children: React.ReactNode;
     className?: string;
     variant?: "1" | "2" | "3" | "4" | "5" | "6" | "7";
