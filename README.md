@@ -9,6 +9,7 @@ Auth is made with help of [lucia-auth](https://lucia-auth.com/sessions/cookies/n
 I'm planning to deploy it on Vercel and use their file storage and postgres.
 
 ## how to run
+
 ```bash
 npm install
 npm run dev # start dev server
@@ -27,8 +28,8 @@ npx drizzle-kit studio # open drizzle studio
 ```
 
 ## file structure
-```
-.
+
+```bash
 ├── src
 │   ├── app
 │   ├── components
@@ -42,14 +43,16 @@ npx drizzle-kit studio # open drizzle studio
 │   │   ├── auth - server actions for auth
 ```
 
-# TODO
+## TODO
+
 - [ ] Add file storage from Vercel
 - [ ] Project page
 - [ ] Blog page
 - [ ] About me page
 - [ ] Contact page
 
-**Admin panel**
+  **Admin panel**
+
 - [ ] Add user management
 - [ ] Create new project, blog
 - [ ] Managing content of projects and blogs
@@ -57,5 +60,3 @@ npx drizzle-kit studio # open drizzle studio
 - [ ] Add tags to project, blog
 - [ ] Edit project, blog
 - [ ] Delete project, blog
-
-
