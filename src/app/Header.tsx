@@ -11,7 +11,7 @@ export default function Header(){
     ]
 
     return (
-        <header className=" flex items-center justify-between mx-8 py-5 font-bold text-2xl sticky top-0">
+        <header className=" flex items-center justify-between px-8 py-5 font-bold text-2xl sticky z-50 top-0 bg-nord-0">
             <Link href="/" className="hover:text-nord-10 transition duration-300 text-3xl">My Portfolio</Link>
             <div className="flex items-center gap-4">
                 <div className="flex gap-4">

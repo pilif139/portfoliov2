@@ -25,11 +25,11 @@ export default function RootLayout({
   return (
     <html lang="pl">
       <body
-        className={`${font.className} tracking-wide bg-nord-1 text-nord-5 text-lg flex flex-col min-h-screen font-medium`}
+        className={`${font.className} tracking-wide bg-nord-1 text-nord-5 text-lg flex flex-grow flex-col min-h-screen font-medium max-w-full overflow-auto`}
       >
           <ReactQueryProvider>
               <Header />
-              <div className="my-10 mx-40 h-full flex flex-grow justify-center">
+              <div className="my-10 mx-10 h-full flex flex-grow justify-center max-w-full">
                 {children}
               </div>
               <Footer/>

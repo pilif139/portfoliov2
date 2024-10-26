@@ -2,7 +2,7 @@
 
 import React from 'react';
 import {useSortable} from '@dnd-kit/sortable';
-import {CSS} from '@dnd-kit/utilities';
+import {CSS, Transform} from '@dnd-kit/utilities';
 
 export function SortableContent({id,children} : {id: number, children: React.ReactNode}) {
   const {
@@ -13,9 +13,15 @@ export function SortableContent({id,children} : {id: number, children: React.Rea
     transition,
     isDragging,
   } = useSortable({id: id});
+
+  const modifiedTransform = {
+    ...transform,
+    scaleX: isDragging ? 1.05 : 1, // Slightly scale up when dragging
+    scaleY: isDragging ? 1.05 : 1, // Slightly scale up when dragging
+  };
   
   const style = {
-    transform: CSS.Transform.toString(transform),
+    transform: CSS.Transform.toString(modifiedTransform as Transform),
     transition: transition,
     opacity: isDragging ? 0.8 : 1,
     backgroundColor: isDragging ? "#2e3440" : "#3b4252",
@@ -29,7 +35,7 @@ export function SortableContent({id,children} : {id: number, children: React.Rea
         style={style}
         {...attributes}
         {...listeners} 
-        className="rounded-lg p-2">
+        className="rounded-lg p-2 flex justify-between">
       {children}
     </div>
   );

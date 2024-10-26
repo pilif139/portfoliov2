@@ -38,13 +38,13 @@ export default function ContentsList({contents, setContents}: ContentsListProps)
             <p>{content.content}</p>
         ),
         "image": () => (
-            <Image src={content.content as string} alt="img" width={350} height={350} />
+            <Image src={content.content as string} alt="img" width={350} height={350} className="rounded-xl shadow-gray-900 shadow-lg"/>
         ),
         "video": () => (
-            <video src={content.content as string} controls width="350" height="350" />
+            <video src={content.content as string} controls width="350" height="350" className="rounded-xl shadow-gray-900 shadow-lg"/>
         ),
         "file": () => (
-            <a href={content.content as string} download>Download file</a>
+            <a href={content.content as string} download className="bg-nord-10 px-4 py-2 rounded-xl">Download file</a>
         ),
     });
 
@@ -72,10 +72,8 @@ export default function ContentsList({contents, setContents}: ContentsListProps)
                                 const ContentComponent = contentMap(content)[type];
                                 return (
                                     <SortableContent key={position} id={position}>
-                                        <div className="flex w-full justify-between items-center space-x-4">
                                             <ContentComponent />
                                             <DeleteButton onClick={(e) => deleteElement(position, e)} />
-                                        </div>
                                     </SortableContent>
                                 )
                         })}

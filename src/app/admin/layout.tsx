@@ -9,7 +9,7 @@ export default async function AdminLayout({children} : {children: React.ReactNod
     }
 
     return (
-        <FadeDiv className="flex flex-col items-center w-screen gap-2">
+        <FadeDiv className="flex flex-col items-center w-screen gap-2 mx-0">
             {children}
         </FadeDiv>
     );
