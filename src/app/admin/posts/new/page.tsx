@@ -47,6 +47,29 @@ export default function NewPostPage(){
         setFile(newBlob);
     }
 
+    const handleFilePreview = async (type: PostContentBlock["type"])=>{
+        const input = inputFileRef.current;
+        if(input && input.files && input.files[0]){
+            const file = input.files[0];
+            const reader = new FileReader();
+
+            reader.onload = (e) => {
+                if(e.target?.result){
+                    const content_block = {
+                        type,
+                        content: e.target.result as string,
+                        position: contents.length,
+                    }
+                    setContents([...contents, content_block]);
+                }
+            }
+
+            reader.readAsDataURL(file);
+        } else{
+            alert("No file selected");
+        }
+    }
+
     const handleContentSubmit = async (formData: FormData) =>{
        const type = formData.get("type") as PostContentBlock["type"];
        if(type !== "image" && type !== "video" && type !== "file"){
@@ -56,6 +79,9 @@ export default function NewPostPage(){
                 position: contents.length
            }
             setContents([...contents, content_block]);
+       }
+       else{
+            handleFilePreview(type);
        }
     }
 

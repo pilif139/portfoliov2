@@ -1,11 +1,12 @@
 "use client";
 
-import Heading, { HeadingProps } from "@/components/ui/Heading";
+import Heading from "@/components/ui/Heading";
 import { PostContentBlock } from "@/db/schema/posts";
 import { closestCenter, DndContext, DragEndEvent, KeyboardSensor, useSensor, useSensors } from "@dnd-kit/core";
 import { arrayMove, SortableContext, sortableKeyboardCoordinates, verticalListSortingStrategy } from "@dnd-kit/sortable";
 import { SortableContent } from "./SortableContent";
 import CustomPointerSensor from "./CustomPointerSensor";
+import Image from "next/image";
 
 type ContentsListProps = {
     contents: Partial<PostContentBlock>[];
@@ -19,6 +20,34 @@ export default function ContentsList({contents, setContents}: ContentsListProps)
           coordinateGetter: sortableKeyboardCoordinates,
         })
       );
+
+    const contentMap = (content: Partial<PostContentBlock>) : { [key : string]: () => JSX.Element }=> ({
+        "h1": () => (
+            <Heading variant="1">{content.content}</Heading>
+        ),
+        "h2": () => (
+            <Heading variant="2">{content.content}</Heading>
+        ),
+        "h3": () => (
+            <Heading variant="3">{content.content}</Heading>
+        ),
+        "h4": () => (
+            <Heading variant="4">{content.content}</Heading>
+        ),
+        "p": () => (
+            <p>{content.content}</p>
+        ),
+        "image": () => (
+            <Image src={content.content as string} alt="img" width={350} height={350} />
+        ),
+        "video": () => (
+            <video src={content.content as string} controls width="350" height="350" />
+        ),
+        "file": () => (
+            <a href={content.content as string} download>Download file</a>
+        ),
+    });
+
 
     const deleteElement = (position: number, e: React.MouseEvent<HTMLButtonElement>) => {
         e.stopPropagation();
@@ -37,26 +66,18 @@ export default function ContentsList({contents, setContents}: ContentsListProps)
                     strategy={verticalListSortingStrategy}
                 >
                     <div className="space-y-4">
-                        {contents.map((content, id) => {
+                        {contents.map((content) => {
                                 const position = content.position as number;
-
-                                if(content.type === "h1" || content.type === "h2" || content.type === "h3" || content.type === "h4"){
-                                    const variant = content.type.slice(1) as HeadingProps["variant"];
-                                    return (
-                                        <SortableContent id={position} key={id}>
-                                                <Heading variant={variant}>{content.content}</Heading>
-                                                <button onClick={(e) => deleteElement(position,e)} className="p-2 text-white bg-nord-11 rounded-lg">X</button>
-                                        </SortableContent>
-                                    )
-                                }
-                                if(content.type === "p"){
-                                    return (
-                                        <SortableContent id={position} key={id}>
-                                                <p>{content.content}</p>
-                                                <button onClick={(e) => deleteElement(position,e)} className="p-2 text-white bg-nord-11 rounded-lg">X</button>
-                                        </SortableContent>
-                                    )
-                                }
+                                const type = content.type as string;
+                                const ContentComponent = contentMap(content)[type];
+                                return (
+                                    <SortableContent key={position} id={position}>
+                                        <div className="flex w-full justify-between items-center space-x-4">
+                                            <ContentComponent />
+                                            <DeleteButton onClick={(e) => deleteElement(position, e)} />
+                                        </div>
+                                    </SortableContent>
+                                )
                         })}
                     </div>
                 </SortableContext>
@@ -80,4 +101,10 @@ export default function ContentsList({contents, setContents}: ContentsListProps)
             }
         }
 
+}
+
+function DeleteButton({onClick} : {onClick: (e: React.MouseEvent<HTMLButtonElement>) => void}){
+    return (
+        <button onClick={onClick} className="p-2 text-white bg-nord-11 rounded-lg h-fit">X</button>
+    )
 }
