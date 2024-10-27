@@ -7,14 +7,11 @@ import { arrayMove, SortableContext, sortableKeyboardCoordinates, verticalListSo
 import { SortableContent } from "./SortableContent";
 import CustomPointerSensor from "./CustomPointerSensor";
 import Image from "next/image";
-import { AnimatePresence } from "framer-motion";
+import { useCreatePostContext } from "@/components/CreatePostContextProvider";
 
-type ContentsListProps = {
-    contents: Partial<PostContentBlock>[];
-    setContents: React.Dispatch<React.SetStateAction<Partial<PostContentBlock>[]>>;
-}
+export default function ContentsList(){
+    const { contents, setContents } = useCreatePostContext();
 
-export default function ContentsList({contents, setContents}: ContentsListProps){
     const sensors = useSensors(
         useSensor(CustomPointerSensor),
         useSensor(KeyboardSensor, {
