@@ -38,5 +38,5 @@ export function SortableContent({id,children} : {id: number, children: React.Rea
         className="rounded-lg p-2 flex justify-between">
       {children}
     </div>
-  );
+  )
 }

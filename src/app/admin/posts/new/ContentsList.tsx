@@ -7,6 +7,7 @@ import { arrayMove, SortableContext, sortableKeyboardCoordinates, verticalListSo
 import { SortableContent } from "./SortableContent";
 import CustomPointerSensor from "./CustomPointerSensor";
 import Image from "next/image";
+import { AnimatePresence } from "framer-motion";
 
 type ContentsListProps = {
     contents: Partial<PostContentBlock>[];
@@ -51,7 +52,9 @@ export default function ContentsList({contents, setContents}: ContentsListProps)
 
     const deleteElement = (position: number, e: React.MouseEvent<HTMLButtonElement>) => {
         e.stopPropagation();
-        const newContents = contents.filter((content) => content.position !== position);
+        const newContents = contents
+                .filter((content) => content.position !== position)
+                .map((content, index) => ({...content, position: index}));
         setContents(newContents);
     }
 
@@ -65,7 +68,7 @@ export default function ContentsList({contents, setContents}: ContentsListProps)
                     items={contents.map(({position}) => position as number)}
                     strategy={verticalListSortingStrategy}
                 >
-                    <div className="space-y-4">
+                    <div className="space-y-4">  
                         {contents.map((content) => {
                                 const position = content.position as number;
                                 const type = content.type as string;
@@ -93,7 +96,7 @@ export default function ContentsList({contents, setContents}: ContentsListProps)
             
                     return arrayMove(contents, oldIndex, newIndex).map((content, index) => ({
                       ...content,
-                      position: index + 1, // Update positions to be sequential
+                      position: index, // Update positions to be sequential
                     }));
                 });
             }
