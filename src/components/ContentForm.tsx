@@ -4,7 +4,7 @@ import { contentType } from "@/db/schema/projects";
 import { useCreatePostContext } from "./CreatePostContextProvider";
 import Button from "./ui/Button";
 import Heading from "./ui/Heading";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { PostContentBlock } from "@/db/schema/posts";
 
 const contentTypeLabels: Record<string, string> = {
@@ -28,12 +28,13 @@ export default function ContentForm() {
         setSelectedContentType,
         textContent,
         setTextContent,
-        inputFileRef,
+        setFiles,
     } = useCreatePostContext();
     const [formErrors, setFormErrors] = useState({
         text: "",
         file: "",
     });
+    const inputFileRef = useRef<HTMLInputElement>(null);
 
     const validateTextInput = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
         const content = e.target.value;
@@ -55,6 +56,7 @@ export default function ContentForm() {
             if (file.size > 1024 * 1024 * 50) {
                 setFormErrors({ ...formErrors, file: "File size is too big" });
             } else {
+                setFiles((f)=>[...f, file]);
                 setFormErrors({ ...formErrors, file: "" });
             }
         } else {
@@ -131,7 +133,7 @@ export default function ContentForm() {
                     onChange={(e) => {
                         setSelectedContentType(e.target.value);
                         setTextContent("");
-                        setFormErrors({ ...formErrors, text: "", file: "" });
+                        setFormErrors({text: "", file: "" });
                     }}
                 >
                     {contentType.enumValues.map((type, id) => (

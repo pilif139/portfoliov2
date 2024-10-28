@@ -1,7 +1,7 @@
 "use client";
 
 import { PostContentBlock } from "@/db/schema/posts";
-import { createContext, Dispatch, SetStateAction, useContext, useRef, useState } from "react";
+import { createContext, Dispatch, SetStateAction, useContext, useState } from "react";
 
 type CreatePostContextType = {
     selectedContentType: string;
@@ -10,7 +10,8 @@ type CreatePostContextType = {
     setTextContent: Dispatch<SetStateAction<string>>;
     contents: Partial<PostContentBlock>[];
     setContents: Dispatch<SetStateAction<Partial<PostContentBlock>[]>>;
-    inputFileRef: React.MutableRefObject<HTMLInputElement | null>;
+    files: File[];
+    setFiles: Dispatch<SetStateAction<File[]>>;
     title: string;
     setTitle: Dispatch<SetStateAction<string>>;
     description: string;
@@ -25,12 +26,10 @@ export default function CreatePostContextProvider({ children }: { children: Reac
     const [selectedContentType, setSelectedContentType] = useState("p");
     const [textContent, setTextContent] = useState<string>("");
     const [contents, setContents] = useState<Partial<PostContentBlock>[]>([]);
-
-    // files
-    const inputFileRef = useRef<HTMLInputElement>(null);
+    const [files, setFiles] = useState<File[]>([]);
 
     return (
-        <CreatePostContext.Provider value={{ selectedContentType, setSelectedContentType, textContent, setTextContent, contents, setContents, inputFileRef, title, setTitle, description, setDescription }}>
+        <CreatePostContext.Provider value={{ selectedContentType, setSelectedContentType, textContent, setTextContent, contents, setContents, files, setFiles, title, setTitle, description, setDescription }}>
             {children}
         </CreatePostContext.Provider>
     );
