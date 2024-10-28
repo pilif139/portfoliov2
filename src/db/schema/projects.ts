@@ -15,11 +15,12 @@ export const project_content_blocksTable = pgTable("project_content_blocks", {
     project_id: integer().notNull().references(()=>projectTable.id),
     type: contentType().notNull(),
     content: text().notNull(),
+    // position starts from 1 bcs drag and drop library interprets 0 as false and disables the drag and drop feature so whenever we are changing the position of a content block we must increment it by 1
     position: integer().notNull(),
 }, 
-// constraint that ensure that the combination of project_id and position is unique
 (table) => {
     return {
+        // each project can have only one content block at a specific position so there cannot be two content blocks with the same position in the same project
         uniqueProjectPosition: uniqueIndex("unique_project_position").on(table.project_id, table.position),
         compositePrimaryKey: primaryKey({ columns: [table.project_id, table.position]})
     };

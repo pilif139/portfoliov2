@@ -18,9 +18,12 @@ export const getCurrentSession = cache(async ()=>{
     return result;
 })
 
+/** 
+* Generates a random session token with cryptographically secure random generator.
+**/
 export function generateSessionToken() : string{
     const bytes = new Uint8Array(20);
-    crypto.getRandomValues(bytes);
+    crypto.getRandomValues(bytes); 
     return encodeBase32LowerCaseNoPadding(bytes);
 }
 
