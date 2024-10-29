@@ -1,9 +1,12 @@
 import { getCurrentSession } from "@/lib/auth/session";
 import { handleUpload, HandleUploadBody } from "@vercel/blob/client";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
-export async function POST(request: Request): Promise<NextResponse> {
+export async function POST(request: NextRequest): Promise<NextResponse> {
     const body = (await request.json()) as HandleUploadBody;
+    const searchParams = request.nextUrl.searchParams;
+    const post_id = searchParams.get('post_id');
+    const position = searchParams.get('position');
    
     try {
       const jsonResponse = await handleUpload({

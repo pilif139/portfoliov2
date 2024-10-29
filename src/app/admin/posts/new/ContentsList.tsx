@@ -3,7 +3,7 @@
 import Heading from "@/components/ui/Heading";
 import { PostContentBlock } from "@/db/schema/posts";
 import { closestCenter, DndContext, DragEndEvent, KeyboardSensor, useSensor, useSensors } from "@dnd-kit/core";
-import { arrayMove, SortableContext, sortableKeyboardCoordinates, verticalListSortingStrategy } from "@dnd-kit/sortable";
+import { arrayMove, SortableContext, sortableKeyboardCoordinates} from "@dnd-kit/sortable";
 import { SortableContent } from "./SortableContent";
 import CustomPointerSensor from "./CustomPointerSensor";
 import Image from "next/image";
@@ -51,7 +51,7 @@ export default function ContentsList(){
         e.stopPropagation();
         const newContents = contents
                 .filter((content) => content.position !== position)
-                .map((content, index) => ({...content, position: index}));
+                .map((content, index) => ({...content, position: index + 1}));
         setContents(newContents);
     }
 
@@ -63,7 +63,6 @@ export default function ContentsList(){
             >
                 <SortableContext
                     items={contents.map(({position}) => position as number)}
-                    strategy={verticalListSortingStrategy}
                 >
                     <div className="space-y-4">  
                         {contents.map((content) => {

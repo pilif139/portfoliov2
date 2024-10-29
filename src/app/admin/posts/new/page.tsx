@@ -19,9 +19,10 @@ export default function NewPostPage(){
 
     const handleFileSubmitToVercelStorage = async (post_id: number) =>{
         files.forEach(async (file) => {
-            await upload(file.name, file, {
+            const content = file.file;
+            await upload(content.name, content, {
                 access: "public",
-                handleUploadUrl: `/api/images/${post_id}` // url to api route in the app that handles file upload to blob storage
+                handleUploadUrl: `/api/images?post_id=${post_id}&position=${file.position}` // url to api route in the app that handles file upload to blob storage
             })
         });
     }
