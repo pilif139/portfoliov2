@@ -6,6 +6,8 @@ import Button from "./ui/Button";
 import Heading from "./ui/Heading";
 import { useRef, useState } from "react";
 import { PostContentBlock } from "@/db/schema/posts";
+import Input from "./ui/Input";
+import TextArea from "./ui/TextArea";
 
 const contentTypeLabels: Record<string, string> = {
     p: "Text",
@@ -28,6 +30,7 @@ export default function ContentForm() {
         setSelectedContentType,
         textContent,
         setTextContent,
+        files,
         setFiles,
     } = useCreatePostContext();
     const [formErrors, setFormErrors] = useState({
@@ -56,7 +59,8 @@ export default function ContentForm() {
             if (file.size > 1024 * 1024 * 50) {
                 setFormErrors({ ...formErrors, file: "File size is too big" });
             } else {
-                setFiles((f)=>[...f, file]);
+                const newFile = { file, position: contents.length + 1 };
+                setFiles([...files, newFile]);
                 setFormErrors({ ...formErrors, file: "" });
             }
         } else {
@@ -117,18 +121,16 @@ export default function ContentForm() {
 
     return (
         <form
-            className="flex gap-4 flex-col flex-grow h-full"
+            className="flex gap-4 flex-col flex-grow h-full max-h-[60vh] w-[20vw]"
             action={handleContentSubmit}
         >
-            <Heading variant="3">Add content</Heading>
+            <Heading variant="3" className="text-nord-9">Add content</Heading>
             <div className="flex items-center gap-2">
-                <Heading variant="4" className="text-nord-15">
-                    Type:{" "}
-                </Heading>
+                <label htmlFor="type">Type</label>
                 <select
                     name="type"
                     id="type"
-                    className="p-2 rounded-lg bg-nord-1 text-nord-9 w-max"
+                    className="p-2 rounded-lg bg-nord-1 text-nord-9 w-max focus:bg-nord-2 transition"
                     value={selectedContentType}
                     onChange={(e) => {
                         setSelectedContentType(e.target.value);
@@ -143,42 +145,31 @@ export default function ContentForm() {
                     ))}
                 </select>
             </div>
-            <div className="flex gap-2 flex-col max-h-[40vh]">
-                <Heading variant="4" className="text-nord-15">
-                    {contentTypeLabels[selectedContentType]}:{" "}
-                </Heading>
+            <div className="flex gap-2 flex-col max-h-max">
                 {(selectedContentType === "image" ||
                     selectedContentType === "video" ||
                     selectedContentType === "file") && (
-                        <>
-                            <input
-                                name="image"
-                                type="file"
-                                accept={acceptFileTypes[selectedContentType]}
-                                ref={inputFileRef}
-                                className="p-2 rounded-lg bg-nord-1 text-nord-9 w-max"
-                                onChange={validateFileInput}
-                            />
-                            {formErrors.file && (
-                                <p className="text-nord-11">{formErrors.file}</p>
-                            )}
-                        </>
+                        <Input
+                            type="file"
+                            name="file"
+                            label={contentTypeLabels[selectedContentType]}
+                            ref={inputFileRef}
+                            accept={acceptFileTypes[selectedContentType]}
+                            error={formErrors.file}
+                            onChange={validateFileInput}
+                        />
                     )}
                 {selectedContentType !== "image" &&
                     selectedContentType !== "video" &&
                     selectedContentType !== "file" && (
-                        <>
-                            <textarea
-                                name="content"
-                                id="content"
-                                className="p-2 rounded-lg bg-nord-1 text-nord-6 w-96 min-h-max"
-                                value={textContent}
-                                onChange={(e) => validateTextInput(e)}
-                            ></textarea>
-                            {formErrors.text && (
-                                <p className="text-nord-11">{formErrors.text}</p>
-                            )}
-                        </>
+                        <TextArea
+                            className="max-h-[30vh]"
+                            label={contentTypeLabels[selectedContentType]}
+                            name="content"
+                            value={textContent}
+                            onChange={validateTextInput}
+                            error={formErrors.text}
+                        />
                     )}
             </div>
             <Button type="submit" className="self-end mt-auto">
