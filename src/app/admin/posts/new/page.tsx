@@ -7,22 +7,32 @@ import FadeDiv from "@/components/ui/FadeDiv";
 import CreatePostForm from "@/components/CreatePostForm";
 import { useCreatePostContext } from "@/components/CreatePostContextProvider";
 import ContentForm from "@/components/ContentForm";
+import base64ToFile from "@/lib/utils/base64ToFile";
+import CreatePost from "@/server/post/post";
 
 export default function NewPostPage(){
-    const { files } = useCreatePostContext();
+    const { contents, title, description,  } = useCreatePostContext();
     
-    const handleCreatePost = (e: React.MouseEvent<HTMLButtonElement>) => {
+    const handleCreatePost = async (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
-        console.log("Creating post");
-        // server action to create post
+        const {post_id, errors} = await CreatePost({title, description, contents});
+        if(!post_id){
+            return;
+        }
+        if(errors){
+            throw new Error("An error occurred while creating the post");
+        }
+        await submitFileToVercelStorage(post_id);
+        
     }
 
-    const handleFileSubmitToVercelStorage = async (post_id: number) =>{
+    const submitFileToVercelStorage = async (post_id: number) =>{
+        const files = contents.filter(content => content.type === "file" || content.type === "image" || content.type === "video");
         files.forEach(async (file) => {
-            const content = file.file;
-            await upload(content.name, content, {
+            const newFile = base64ToFile(file.content as string, `${post_id}-${file.position}`);
+            await upload(newFile.name, newFile, {
                 access: "public",
-                handleUploadUrl: `/api/images?post_id=${post_id}&position=${file.position}` // url to api route in the app that handles file upload to blob storage
+                handleUploadUrl: `/api/images?post_id=${post_id}&position=${file.position}`
             })
         });
     }

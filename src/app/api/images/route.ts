@@ -1,5 +1,8 @@
+import db from "@/db/db";
+import { post_content_blocksTable } from "@/db/schema/posts";
 import { getCurrentSession } from "@/lib/auth/session";
 import { handleUpload, HandleUploadBody } from "@vercel/blob/client";
+import { and, eq } from "drizzle-orm";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(request: NextRequest): Promise<NextResponse> {
@@ -22,6 +25,9 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
             if(user.role !== 'admin'){
                 throw new Error('User is not authorized to upload files to the server!');
             }
+            if (!post_id || !position) {
+              throw new Error('Post id and position are required to insert the file url into the database');
+            }
    
           return {
             allowedContentTypes: ['image/jpeg', 'image/png', 'image/gif'],
@@ -38,6 +44,17 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
    
           try {
             // insert the content block with blob.url into the database with their position and post_id from request params
+            await db
+              .update(post_content_blocksTable)
+              .set({content: blob.url})
+              .where(
+                and(
+                  eq(post_content_blocksTable.position, parseInt(position!)),
+                  eq(post_content_blocksTable.post_id, parseInt(post_id!)),
+                  eq(post_content_blocksTable.content, '')
+                ),
+              )
+              .execute();
           } catch (error : Error | unknown) {
             throw new Error('Could not update user'+error);
           }
