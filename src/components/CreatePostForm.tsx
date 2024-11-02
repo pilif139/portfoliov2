@@ -55,7 +55,8 @@ export default function CreatePostForm({ handleCreatePost } : { handleCreatePost
       <Input label="Title" type="text" id="title" value={title} onChange={(e) => validateTitle(e.target.value)} error={formErrors.title}/>
       <TextArea label="Description" id="description" value={description} onChange={(e) => validateDescription(e.target.value)} error={formErrors.description}/>
       <Button
-        className="bg-nord-14 hover:bg-nord-13 px-10 py-4 text-2xl mt-auto"
+        variant="primary-2"
+        className="px-8 py-4 text-xl"
         onClick={submitForm}
       >
         Create post

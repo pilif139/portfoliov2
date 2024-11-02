@@ -3,11 +3,6 @@
 import { PostContentBlock } from "@/db/schema/posts";
 import { createContext, Dispatch, SetStateAction, useContext, useState } from "react";
 
-type FileContent = {
-    file: File;
-    position: number;
-}
-
 type CreatePostContextType = {
     selectedContentType: string;
     setSelectedContentType: Dispatch<SetStateAction<string>>;
@@ -15,8 +10,6 @@ type CreatePostContextType = {
     setTextContent: Dispatch<SetStateAction<string>>;
     contents: Partial<PostContentBlock>[];
     setContents: Dispatch<SetStateAction<Partial<PostContentBlock>[]>>;
-    files: FileContent[];
-    setFiles: Dispatch<SetStateAction<FileContent[]>>;
     title: string;
     setTitle: Dispatch<SetStateAction<string>>;
     description: string;
@@ -31,10 +24,9 @@ export default function CreatePostContextProvider({ children }: { children: Reac
     const [selectedContentType, setSelectedContentType] = useState("p");
     const [textContent, setTextContent] = useState<string>("");
     const [contents, setContents] = useState<Partial<PostContentBlock>[]>([]);
-    const [files, setFiles] = useState<FileContent[]>([]);
 
     return (
-        <CreatePostContext.Provider value={{ selectedContentType, setSelectedContentType, textContent, setTextContent, contents, setContents, files, setFiles, title, setTitle, description, setDescription }}>
+        <CreatePostContext.Provider value={{ selectedContentType, setSelectedContentType, textContent, setTextContent, contents, setContents, title, setTitle, description, setDescription }}>
             {children}
         </CreatePostContext.Provider>
     );

@@ -3,7 +3,7 @@
 import Heading from "@/components/ui/Heading";
 import { PostContentBlock } from "@/db/schema/posts";
 import { closestCenter, DndContext, DragEndEvent, KeyboardSensor, useSensor, useSensors } from "@dnd-kit/core";
-import { arrayMove, SortableContext, sortableKeyboardCoordinates} from "@dnd-kit/sortable";
+import { arrayMove, SortableContext, sortableKeyboardCoordinates, verticalListSortingStrategy} from "@dnd-kit/sortable";
 import { SortableContent } from "./SortableContent";
 import CustomPointerSensor from "./CustomPointerSensor";
 import Image from "next/image";
@@ -36,7 +36,7 @@ export default function ContentsList(){
             <p>{content.content}</p>
         ),
         "image": () => (
-            <Image src={content.content as string} alt="img" width={350} height={350} className="rounded-xl shadow-gray-900 shadow-lg"/>
+            <Image src={content.content as string} alt="img" width={350} height={350} className="rounded-xl shadow-gray-900 shadow-lg max-w-min max-h-min"/>
         ),
         "video": () => (
             <video src={content.content as string} controls width="350" height="350" className="rounded-xl shadow-gray-900 shadow-lg"/>
@@ -49,10 +49,11 @@ export default function ContentsList(){
 
     const deleteElement = (position: number, e: React.MouseEvent<HTMLButtonElement>) => {
         e.stopPropagation();
-        const newContents = contents
+        setContents((contents)=>{
+            return contents
                 .filter((content) => content.position !== position)
                 .map((content, index) => ({...content, position: index + 1}));
-        setContents(newContents);
+        });
     }
 
         return (
@@ -63,6 +64,7 @@ export default function ContentsList(){
             >
                 <SortableContext
                     items={contents.map(({position}) => position as number)}
+                    strategy={verticalListSortingStrategy}
                 >
                     <div className="space-y-4">  
                         {contents.map((content) => {
@@ -89,11 +91,13 @@ export default function ContentsList(){
                 setContents((contents) => {
                     const oldIndex = contents.findIndex(({ position }) => position === active.id);
                     const newIndex = contents.findIndex(({ position }) => position === over?.id);
-            
-                    return arrayMove(contents, oldIndex, newIndex).map((content, index) => ({
-                      ...content,
-                      position: index + 1, // Update positions to be sequential
-                    }));
+
+                    return arrayMove(contents, oldIndex, newIndex).map((content, index) => {
+                        return {
+                            ...content,
+                            position: index + 1, // Update positions to be sequential
+                        }
+                    });
                 });
             }
         }

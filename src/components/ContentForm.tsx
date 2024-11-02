@@ -30,8 +30,6 @@ export default function ContentForm() {
         setSelectedContentType,
         textContent,
         setTextContent,
-        files,
-        setFiles,
     } = useCreatePostContext();
     const [formErrors, setFormErrors] = useState({
         text: "",
@@ -56,11 +54,10 @@ export default function ContentForm() {
         const input = inputFileRef.current;
         if (input && input.files && input.files[0]) {
             const file = input.files[0];
-            if (file.size > 1024 * 1024 * 50) {
+            const MB = 1024 * 1024;
+            if (file.size > MB * 25) {
                 setFormErrors({ ...formErrors, file: "File size is too big" });
             } else {
-                const newFile = { file, position: contents.length + 1 };
-                setFiles([...files, newFile]);
                 setFormErrors({ ...formErrors, file: "" });
             }
         } else {
@@ -90,7 +87,7 @@ export default function ContentForm() {
 
     const handleFilePreview = async (type: PostContentBlock["type"]) => {
         const input = inputFileRef.current;
-        if (input && input.files && input.files[0]) {
+        if (input && input.files && input.files[0] && !formErrors.file) {
             const file = input.files[0];
             const reader = new FileReader();
 
@@ -100,7 +97,7 @@ export default function ContentForm() {
                         type,
                         content: e.target.result as string,
                         position: contents.length + 1,
-                    };
+                    };   
                     setContents([...contents, content_block]);
                     setFormErrors({ ...formErrors, file: "" });
                 }
