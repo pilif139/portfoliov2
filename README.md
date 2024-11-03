@@ -41,6 +41,7 @@ npx drizzle-kit studio # open drizzle studio
 │   │   ├── auth - auth and sessions logic
 │   ├── server - server logic
 │   │   ├── auth - server actions for auth
+│   │   ├── post - server actions for post
 ```
 
 ## TODO

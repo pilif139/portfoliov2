@@ -41,17 +41,18 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
           // Use ngrok or similar to get the full upload flow
    
           console.log('blob upload completed', blob, tokenPayload);
+
+          const url = await blob.url;
    
           try {
             // insert the content block with blob.url into the database with their position and post_id from request params
             await db
               .update(post_content_blocksTable)
-              .set({content: blob.url})
+              .set({content: url || 'there should be a url here'})
               .where(
                 and(
                   eq(post_content_blocksTable.position, parseInt(position!)),
                   eq(post_content_blocksTable.post_id, parseInt(post_id!)),
-                  eq(post_content_blocksTable.content, '')
                 ),
               )
               .execute();

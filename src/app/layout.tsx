@@ -23,7 +23,7 @@ export default function RootLayout({
 }>) 
 {
   return (
-    <html lang="pl">
+    <html lang="en">
       <body
         className={`${font.className} tracking-wide bg-nord-1 text-nord-5 text-lg flex flex-grow flex-col min-h-screen font-medium max-w-full overflow-auto`}
       >

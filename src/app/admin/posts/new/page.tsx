@@ -8,7 +8,8 @@ import CreatePostForm from "@/components/CreatePostForm";
 import { useCreatePostContext } from "@/components/CreatePostContextProvider";
 import ContentForm from "@/components/ContentForm";
 import base64ToFile from "@/lib/utils/base64ToFile";
-import CreatePost from "@/server/post/post";
+import CreatePost from "@/server/post/createPost";
+import submitFileOnLocalhost from "@/server/post/submitFilesToDatabaseLocal";
 
 export default function NewPostPage(){
     const { contents, title, description,  } = useCreatePostContext();
@@ -22,14 +23,21 @@ export default function NewPostPage(){
         if(errors){
             throw new Error("An error occurred while creating the post");
         }
-        await submitFileToVercelStorage(post_id);
-        
+        if(process.env.NODE_ENV === "production"){
+            await submitFileToVercelStorage(post_id);
+        } else {
+            const files = contents.filter(content => content.type === "file" || content.type === "image" || content.type === "video");
+            await submitFileOnLocalhost(post_id, files);
+        }
     }
 
     const submitFileToVercelStorage = async (post_id: number) =>{
         const files = contents.filter(content => content.type === "file" || content.type === "image" || content.type === "video");
         files.forEach(async (file) => {
             const newFile = base64ToFile(file.content as string, `${post_id}-${file.position}`);
+            if(!(newFile instanceof File)){
+                throw new Error("An error occurred while creating the file");
+            }
             await upload(newFile.name, newFile, {
                 access: "public",
                 handleUploadUrl: `/api/images?post_id=${post_id}&position=${file.position}`
