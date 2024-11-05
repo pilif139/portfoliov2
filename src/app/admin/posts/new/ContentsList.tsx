@@ -1,13 +1,11 @@
 "use client";
 
-import Heading from "@/components/ui/Heading";
-import { PostContentBlock } from "@/db/schema/posts";
 import { closestCenter, DndContext, DragEndEvent, KeyboardSensor, useSensor, useSensors } from "@dnd-kit/core";
 import { arrayMove, SortableContext, sortableKeyboardCoordinates, verticalListSortingStrategy} from "@dnd-kit/sortable";
 import { SortableContent } from "./SortableContent";
 import CustomPointerSensor from "./CustomPointerSensor";
-import Image from "next/image";
 import { useCreatePostContext } from "@/components/CreatePostContextProvider";
+import contentMap from "@/lib/utils/contentMap";
 
 export default function ContentsList(){
     const { contents, setContents } = useCreatePostContext();
@@ -18,34 +16,6 @@ export default function ContentsList(){
           coordinateGetter: sortableKeyboardCoordinates,
         })
       );
-
-    const contentMap = (content: Partial<PostContentBlock>) : { [key : string]: () => JSX.Element }=> ({
-        "h1": () => (
-            <Heading variant="1">{content.content}</Heading>
-        ),
-        "h2": () => (
-            <Heading variant="2">{content.content}</Heading>
-        ),
-        "h3": () => (
-            <Heading variant="3">{content.content}</Heading>
-        ),
-        "h4": () => (
-            <Heading variant="4">{content.content}</Heading>
-        ),
-        "p": () => (
-            <p>{content.content}</p>
-        ),
-        "image": () => (
-            <Image src={content.content as string} alt="img" width={350} height={350} className="rounded-xl shadow-gray-900 shadow-lg max-w-min max-h-min"/>
-        ),
-        "video": () => (
-            <video src={content.content as string} controls width="350" height="350" className="rounded-xl shadow-gray-900 shadow-lg"/>
-        ),
-        "file": () => (
-            <a href={content.content as string} download className="bg-nord-10 px-4 py-2 rounded-xl">Download file</a>
-        ),
-    });
-
 
     const deleteElement = (position: number, e: React.MouseEvent<HTMLButtonElement>) => {
         e.stopPropagation();
