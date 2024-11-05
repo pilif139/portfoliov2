@@ -1,11 +1,11 @@
 import {getCurrentSession} from "@/lib/auth/session";
-import Heading from "@/components/ui/Heading";
 import FadeDiv from "@/components/ui/FadeDiv";
+import Unauthorized from "@/components/Unauthorized";
 
 export default async function AdminLayout({children} : {children: React.ReactNode}) {
     const { user } = await getCurrentSession();
     if(user === null || user.role !== "admin") {
-        return <Heading className="text-nord-11">Access Denied</Heading>;
+        return <Unauthorized/>
     }
 
     return (
