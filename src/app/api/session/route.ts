@@ -1,6 +1,6 @@
 export const dynamic = true;
 
-import {NextRequest, NextResponse} from "next/server";
+import { NextResponse} from "next/server";
 import {getCurrentSession} from "@/lib/auth/session";
 
 // Route handler for client components to get current session and user;
