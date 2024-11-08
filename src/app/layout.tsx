@@ -4,6 +4,8 @@ import "./globals.css";
 import Header from "./Header";
 import Footer from "./Footer";
 import ReactQueryProvider from "@/app/ReactQueryProvider";
+import { ModalContextProvider } from "@/components/ModalContext";
+import Modal from "@/components/ui/Modal";
 
 const font = Font({
   subsets: ["latin"],
@@ -28,11 +30,14 @@ export default function RootLayout({
         className={`${font.className} tracking-wide bg-nord-1 text-nord-5 text-lg flex flex-grow flex-col min-h-screen font-medium max-w-full overflow-auto`}
       >
           <ReactQueryProvider>
-              <Header />
-              <div className="my-10 mx-10 h-full flex flex-grow justify-center max-w-full">
-                {children}
-              </div>
-              <Footer/>
+            <ModalContextProvider>
+                <Modal />
+                <Header />
+                <div className="my-10 mx-10 h-full flex flex-grow justify-center max-w-full">
+                  {children}
+                </div>
+                <Footer/>
+              </ModalContextProvider>
           </ReactQueryProvider>
       </body>
     </html>
