@@ -14,6 +14,7 @@ export function ModalContextProvider({children}: {children: ReactNode}) {
     const [isOpen, setIsOpen] = useState(false);
     const [component, setComponent] = useState<ReactNode | null>(null);
     const openModal = (component: ReactNode) =>{
+        closeModal(); // Close any existing modal before opening a new one
         setComponent(component);
         setIsOpen(true);
     }

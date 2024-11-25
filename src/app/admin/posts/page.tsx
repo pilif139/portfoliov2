@@ -4,7 +4,7 @@ import db from "@/db/db";
 import { postsTable } from "@/db/schema/posts";
 import { getCurrentSession } from "@/lib/auth/session";
 import { eq } from "drizzle-orm";
-import PostCard from "./Post";
+import PostCard from "./PostCard";
 
 export default async function ViewPostsPage(){
     const { user, session } = await getCurrentSession();
