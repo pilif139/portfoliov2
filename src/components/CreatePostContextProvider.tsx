@@ -4,10 +4,6 @@ import { PostContentBlock } from "@/db/schema/posts";
 import { createContext, Dispatch, SetStateAction, useContext, useState } from "react";
 
 type CreatePostContextType = {
-    selectedContentType: string;
-    setSelectedContentType: Dispatch<SetStateAction<string>>;
-    textContent: string;
-    setTextContent: Dispatch<SetStateAction<string>>;
     contents: Partial<PostContentBlock>[];
     setContents: Dispatch<SetStateAction<Partial<PostContentBlock>[]>>;
     title: string;
@@ -21,12 +17,10 @@ export const CreatePostContext = createContext<CreatePostContextType | null>(nul
 export default function CreatePostContextProvider({ children }: { children: React.ReactNode }) {
     const [title, setTitle] = useState<string>("");
     const [description, setDescription] = useState<string>("");
-    const [selectedContentType, setSelectedContentType] = useState("p");
-    const [textContent, setTextContent] = useState<string>("");
     const [contents, setContents] = useState<Partial<PostContentBlock>[]>([]);
 
     return (
-        <CreatePostContext.Provider value={{ selectedContentType, setSelectedContentType, textContent, setTextContent, contents, setContents, title, setTitle, description, setDescription }}>
+        <CreatePostContext.Provider value={{ contents, setContents, title, setTitle, description, setDescription }}>
             {children}
         </CreatePostContext.Provider>
     );

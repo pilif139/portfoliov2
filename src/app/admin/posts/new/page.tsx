@@ -9,9 +9,11 @@ import ContentForm from "@/components/ContentForm";
 import CreatePost from "@/server/post/createPost";
 import submitFileToVercelStorage, { FileContent } from "@/server/post/submitFileToVercelStorage";
 import base64ToFile from "@/lib/utils/base64ToFile";
+import { useRouter } from "next/navigation";
 
 export default function NewPostPage() {
     const { contents, title, description, } = useCreatePostContext();
+    const router = useRouter();
 
     const handleCreatePost = async (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
@@ -43,6 +45,7 @@ export default function NewPostPage() {
             formData.append("post_id", post_id.toString());
             await submitFileToVercelStorage(formData);
         }
+        router.push(`/admin/posts/${post_id}`);
     }
 
     return (

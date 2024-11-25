@@ -26,11 +26,9 @@ export default function ContentForm() {
     const {
         setContents,
         contents,
-        selectedContentType,
-        setSelectedContentType,
-        textContent,
-        setTextContent,
     } = useCreatePostContext();
+    const [selectedContentType, setSelectedContentType] = useState("p");
+    const [textContent, setTextContent] = useState("");
     const [formErrors, setFormErrors] = useState({
         text: "",
         file: "",

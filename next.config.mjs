@@ -8,6 +8,11 @@ const nextConfig = {
                 port: '',
             }
         ]
+    },
+    experimental: {
+        serverActions: {
+            bodySizeLimit: '8mb',
+        }
     }
 };
 
