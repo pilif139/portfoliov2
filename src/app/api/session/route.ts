@@ -1,4 +1,4 @@
-export const dynamic = true;
+export const dynamic = 'force-dynamic';
 
 import { NextResponse} from "next/server";
 import {getCurrentSession} from "@/lib/auth/session";

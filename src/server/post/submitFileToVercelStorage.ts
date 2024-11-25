@@ -2,6 +2,7 @@
 
 import db from "@/db/db";
 import { post_content_blocksTable } from "@/db/schema/posts";
+import { getCurrentSession } from "@/lib/auth/session";
 import { put } from "@vercel/blob";
 import { and, eq } from "drizzle-orm";
 
@@ -17,6 +18,13 @@ export default async function submitFileToVercelStorage(formData: FormData) {
   const post_id = parseInt(formData.get("post_id") as string);
   const position = parseInt(formData.get("position") as string);
   const type = formData.get("type") as "file" | "image" | "video";
+
+  const { user, session } = await getCurrentSession();
+  if (!user || !session || user.role !== "admin") {
+    throw new Error(
+      "Current user either isn't logged in or doesn't have the required permissions"
+    );
+  }
 
   if (!file || !type || !position || !post_id) {
     throw new Error(

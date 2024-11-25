@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 
 export default function Footer(){
     return (
-        <footer className="relative bottom-0 flex items-center justify-center p-4 font-bold text-xl gap-3">
+        <footer className="mt-auto flex items-center justify-center p-4 font-bold text-xl gap-3">
             <h1>Created by Filip Kasperski</h1>
             <motion.a 
                 whileHover={{ scale: 1.2 }}
