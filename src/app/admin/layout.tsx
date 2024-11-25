@@ -1,11 +1,11 @@
-import {getCurrentSession} from "@/lib/auth/session";
+import { getCurrentSession } from "@/lib/auth/session";
 import FadeDiv from "@/components/ui/FadeDiv";
 import Unauthorized from "@/components/Unauthorized";
 
-export default async function AdminLayout({children} : {children: React.ReactNode}) {
+export default async function AdminLayout({ children }: { children: React.ReactNode }) {
     const { user } = await getCurrentSession();
-    if(user === null || user.role !== "admin") {
-        return <Unauthorized/>
+    if (user === null || user.role !== "admin") {
+        return <Unauthorized />
     }
 
     return (

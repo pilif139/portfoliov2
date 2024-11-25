@@ -1,13 +1,13 @@
 import Link from "next/link";
 import AccountMenu from "@/app/AccountMenu";
 
-export default function Header(){
+export default function Header() {
     const navigation = [
-        {name: "Home", href: "/"},
-        {name: "Projects", href: "/projects"},
-        {name: "About", href: "/about"},
-        {name: "Blog", href: "/blog"},
-        {name: "Contact", href: "/contact"},
+        { name: "Home", href: "/" },
+        { name: "Projects", href: "/projects" },
+        { name: "About", href: "/about" },
+        { name: "Blog", href: "/blog" },
+        { name: "Contact", href: "/contact" },
     ]
 
     return (
@@ -15,13 +15,13 @@ export default function Header(){
             <Link href="/" className="hover:text-nord-10 transition duration-300 text-3xl">My Portfolio</Link>
             <div className="flex items-center gap-4">
                 <div className="flex gap-4">
-                    {navigation.map(({name, href}) => (
+                    {navigation.map(({ name, href }) => (
                         <Link key={name} href={href} className="hover:text-nord-9 transition duration-300">
                             {name}
                         </Link>
                     ))}
                 </div>
-                <AccountMenu/>
+                <AccountMenu />
             </div>
         </header>
     );

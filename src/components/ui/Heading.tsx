@@ -4,9 +4,9 @@ export type HeadingProps = {
     variant?: "1" | "2" | "3" | "4" | "5" | "6" | "7";
 };
 
-export default function Heading({ children, className, variant = "2"} : HeadingProps) {
+export default function Heading({ children, className, variant = "2" }: HeadingProps) {
     const CustomTag = `h${variant}` as keyof JSX.IntrinsicElements;
-    const textSize : Record<string, string> = {
+    const textSize: Record<string, string> = {
         "1": "text-5xl",
         "2": "text-4xl",
         "3": "text-3xl",
@@ -15,7 +15,7 @@ export default function Heading({ children, className, variant = "2"} : HeadingP
         "6": "text-lg",
         "7": "text-base",
     }
-    
+
     return (
         <CustomTag className={`${textSize[variant]} font-bold text-nord-10 ${className}`}>{children}</CustomTag>
     );

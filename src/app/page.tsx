@@ -6,7 +6,7 @@ import Link from "next/link";
 export default function Home() {
   return (
     <FadeDiv
-        className="w-[40vw] text-justify flex flex-col gap-4">
+      className="w-[40vw] text-justify flex flex-col gap-4">
       <div>
         <Heading>Welcome to my portfolio!</Heading>
         {/* About me section */}

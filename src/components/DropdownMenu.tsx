@@ -1,19 +1,19 @@
 "use client";
 
-import {useEffect, useRef, useState} from "react";
-import {AnimatePresence, motion} from "framer-motion";
+import { useEffect, useRef, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 
 type DropdownMenuProps = {
     button: React.ReactNode;
     children: React.ReactNode;
 }
 
-export default function DropdownMenu({button, children}: DropdownMenuProps){
+export default function DropdownMenu({ button, children }: DropdownMenuProps) {
     const [isOpen, setIsOpen] = useState(false);
     const node = useRef<HTMLDivElement>(null);
 
     const handleClickOutside = (e: MouseEvent) => {
-        if (node.current && (node.current === e.target || node.current.contains(e.target as Node))){
+        if (node.current && (node.current === e.target || node.current.contains(e.target as Node))) {
             // inside click
             return;
         }
@@ -37,11 +37,11 @@ export default function DropdownMenu({button, children}: DropdownMenuProps){
         <div ref={node}>
             <button
                 className="hover:text-nord-10 transition duration-300 cursor-pointer flex items-center"
-                onClick={()=>setIsOpen(!isOpen)}>
+                onClick={() => setIsOpen(!isOpen)}>
                 {button}
             </button>
             <AnimatePresence>
-                { isOpen && (
+                {isOpen && (
                     <motion.div
                         initial={{ opacity: 0, y: -10 }}
                         animate={{ opacity: 1, y: 0 }}

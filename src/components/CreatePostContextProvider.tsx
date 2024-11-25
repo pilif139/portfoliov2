@@ -28,7 +28,7 @@ export default function CreatePostContextProvider({ children }: { children: Reac
 
 export function useCreatePostContext() {
     const context = useContext(CreatePostContext);
-    if(!context){
+    if (!context) {
         throw new Error("useCreatePostContext must be used within CreatePostContextProvider");
     }
     return context;

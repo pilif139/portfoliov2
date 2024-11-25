@@ -22,23 +22,22 @@ export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
-}>) 
-{
+}>) {
   return (
     <html lang="en">
       <body
         className={`${font.className} tracking-wide bg-nord-1 text-nord-5 text-lg flex flex-grow flex-col min-h-screen font-medium max-w-full overflow-auto`}
       >
-          <ReactQueryProvider>
-            <ModalContextProvider>
-                <Modal />
-                <Header />
-                <div className="my-10 mx-10 h-full flex flex-grow justify-center max-w-full">
-                  {children}
-                </div>
-                <Footer/>
-              </ModalContextProvider>
-          </ReactQueryProvider>
+        <ReactQueryProvider>
+          <ModalContextProvider>
+            <Modal />
+            <Header />
+            <div className="my-10 mx-10 h-full flex flex-grow justify-center max-w-full">
+              {children}
+            </div>
+            <Footer />
+          </ModalContextProvider>
+        </ReactQueryProvider>
       </body>
     </html>
   );

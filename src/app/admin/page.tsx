@@ -8,8 +8,8 @@ export default async function AdminPage() {
         <>
             <Heading>Admin Panel</Heading>
             <div className="flex flex-wrap justify-center w-full gap-4">
-                <ProjectsPanel/>
-                <BlogsPanel/>
+                <ProjectsPanel />
+                <BlogsPanel />
             </div>
         </>
     );

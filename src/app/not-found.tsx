@@ -1,7 +1,7 @@
 import FadeDiv from "@/components/ui/FadeDiv"
 import Heading from "@/components/ui/Heading"
 
-export default function NotFound(){
+export default function NotFound() {
     return (
         <FadeDiv
             className="m-auto text-center"

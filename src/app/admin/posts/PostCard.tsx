@@ -22,10 +22,10 @@ export default function PostCard({ post }: PostProps) {
   const { openModal, closeModal } = useModalContext();
 
   const handleDelete = () => {
-    openModal(<DeleteModal onClick={()=>{
-        deletePost(post.id);
-        closeModal();
-    }}/>);
+    openModal(<DeleteModal onClick={() => {
+      deletePost(post.id);
+      closeModal();
+    }} />);
   };
 
   return (
@@ -59,7 +59,7 @@ export default function PostCard({ post }: PostProps) {
   );
 }
 
-const DeleteModal = ({onClick} : {onClick: ()=>void}) => {
+const DeleteModal = ({ onClick }: { onClick: () => void }) => {
   const { closeModal } = useModalContext();
 
   return (

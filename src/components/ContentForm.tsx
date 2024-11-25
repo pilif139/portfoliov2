@@ -95,7 +95,7 @@ export default function ContentForm() {
                         type,
                         content: e.target.result as string,
                         position: contents.length + 1,
-                    };   
+                    };
                     setContents([...contents, content_block]);
                     setFormErrors({ ...formErrors, file: "" });
                 }
@@ -130,7 +130,7 @@ export default function ContentForm() {
                     onChange={(e) => {
                         setSelectedContentType(e.target.value);
                         setTextContent("");
-                        setFormErrors({text: "", file: "" });
+                        setFormErrors({ text: "", file: "" });
                     }}
                 >
                     {contentType.enumValues.map((type, id) => (

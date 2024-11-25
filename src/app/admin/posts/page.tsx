@@ -6,10 +6,10 @@ import { getCurrentSession } from "@/lib/auth/session";
 import { eq } from "drizzle-orm";
 import PostCard from "./PostCard";
 
-export default async function ViewPostsPage(){
+export default async function ViewPostsPage() {
     const { user, session } = await getCurrentSession();
-    if(!user && !session){
-        return <Unauthorized/>
+    if (!user && !session) {
+        return <Unauthorized />
     }
 
     const posts = await db.select().from(postsTable).where(eq(postsTable.author_id, user.id)).execute();
@@ -19,7 +19,7 @@ export default async function ViewPostsPage(){
             <Heading variant="1" className="text-nord-9">View your posts</Heading>
             <div className="flex gap-4 flex-wrap">
                 {posts.map(post => (
-                    <PostCard post={post} key={post.id}/>
+                    <PostCard post={post} key={post.id} />
                 ))}
                 {posts.length === 0 && <p className="text-nord-4 text-xl">You have no posts</p>}
             </div>

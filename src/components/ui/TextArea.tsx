@@ -10,7 +10,7 @@ type TextAreaProps = {
     error?: string;
 }
 
-export default function TextArea({ className ,label,name, id, value, onChange, error } : TextAreaProps) {
+export default function TextArea({ className, label, name, id, value, onChange, error }: TextAreaProps) {
     return (
         <>
             {label && <label htmlFor={id} className={`transition ${error ? 'text-nord-11' : ''}`}>{label}</label>}
