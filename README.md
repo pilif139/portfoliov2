@@ -31,7 +31,7 @@ npx drizzle-kit studio # open drizzle studio
 
 ```bash
 ├── src
-│   ├── app
+│   ├── app - nextjs app router
 │   ├── components
 │   │   ├── ui - reusable generic components 
 │   ├── db
@@ -39,9 +39,11 @@ npx drizzle-kit studio # open drizzle studio
 │   │   ├── db.ts - db connection and drizzle orm setup
 │   ├── lib
 │   │   ├── auth - auth and sessions logic
+│   ├── hooks - react hooks
 │   ├── server - server logic
 │   │   ├── auth - server actions for auth
 │   │   ├── post - server actions for post
+ configs, env etc.
 ```
 
 ## TODO
@@ -51,13 +53,14 @@ npx drizzle-kit studio # open drizzle studio
 - [ ] Blog page
 - [ ] About me page
 - [ ] Contact page
+- [ ] Refactor some components that have a lot of bloat code
 
-  **Admin panel**
+- **Admin panel :**
 
 - [ ] Add user management
-- [ ] Create new project, blog
+- [x] Create new project, blog
 - [ ] Managing content of projects and blogs
-- [ ] In a create view add file upload
+- [x] In a create view add file upload
 - [ ] Add tags to project, blog
 - [ ] Edit project, blog
-- [ ] Delete project, blog
+- [x] Delete project, blog
