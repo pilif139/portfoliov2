@@ -25,19 +25,19 @@ export default function NewPostPage() {
             throw new Error("An error occurred while creating the post");
         }
         const files = contents
-                        .filter((content) => content.type === "file" || content.type === "image" || content.type === "video")
-                        .map((file) => {
-                            if (file.content && file.type && file.position && post_id && post_id) {
-                                return {
-                                    post_id,
-                                    position: file.position,
-                                    type: file.type,
-                                    content: base64ToFile(file.content, `${file.type}-${post_id}-${file.position}`)
-                                }
-                            }
-                            return null
-                        }).filter(file => file !== null) as FileContent[];
-        for(const file of files){
+            .filter((content) => content.type === "file" || content.type === "image" || content.type === "video")
+            .map((file) => {
+                if (file.content && file.type && file.position && post_id && post_id) {
+                    return {
+                        post_id,
+                        position: file.position,
+                        type: file.type,
+                        content: base64ToFile(file.content, `${file.type}-${post_id}-${file.position}`)
+                    }
+                }
+                return null
+            }).filter(file => file !== null) as FileContent[];
+        for (const file of files) {
             const formData = new FormData();
             formData.append("file", file.content);
             formData.append("type", file.type);
