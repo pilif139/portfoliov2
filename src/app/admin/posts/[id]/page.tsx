@@ -2,9 +2,9 @@ import FadeDiv from "@/components/ui/FadeDiv";
 import Heading from "@/components/ui/Heading";
 import db from "@/db/db";
 import { post_content_blocksTable, postsTable } from "@/db/schema/posts";
-import contentMap from "@/lib/utils/contentMap";
 import { eq } from "drizzle-orm";
 import { notFound } from "next/navigation";
+import Content from "@/components/Content";
 
 type ViewPostPageProps = {
     params: Promise<{ id: number }>;
@@ -33,8 +33,7 @@ export default async function ViewPostPage({ params }: ViewPostPageProps) {
             <div className="flex gap-2 flex-col w-[35vw]">
                 {
                     contents.map((content, index) => {
-                        const Component = contentMap(content)[content.type];
-                        return <Component key={index} />
+                        return <Content key={index} content={content} />
                     }
                     )
                 }
