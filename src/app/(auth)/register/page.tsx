@@ -1,77 +1,90 @@
 "use client"
 
-import React from "react";
-import register from "@/server/auth/register";
-import Link from "next/link";
-import Heading from "@/components/ui/Heading";
-import FadeDiv from "@/components/ui/FadeDiv";
-import { useFormState, useFormStatus } from "react-dom";
-import { useQueryClient } from "@tanstack/react-query";
+import React from "react"
+import register from "@/server/auth/register"
+import Link from "next/link"
+import Heading from "@/components/ui/Heading"
+import FadeDiv from "@/components/ui/FadeDiv"
+import { useFormState, useFormStatus } from "react-dom"
+import { useQueryClient } from "@tanstack/react-query"
+import Input from "@/components/ui/Input"
+import { RegisterSchema } from "@/server/auth/registerTypes"
+import useDebouncedState from "@/hooks/useDebouncedState"
+import Button from "@/components/ui/Button"
 
 export default function Register() {
-    const [state, action] = useFormState(register, undefined);
-
-    const queryClient = useQueryClient();
+    const [state, action] = useFormState(register, undefined)
+    const [usernameErrors, setUsernameErrors] = useDebouncedState<string[]>([], 300)
+    const [emailErrors, setEmailErrors] = useDebouncedState<string[]>([], 300)
+    const [passwordErrors, setPasswordErrors] = useDebouncedState<string[]>([], 300)
+    const queryClient = useQueryClient()
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-        await queryClient.invalidateQueries({ queryKey: ["session"] });
-        const formData = new FormData(e.target as HTMLFormElement);
-        action(formData);
+        e.preventDefault()
+        await new Promise((resolve) => setTimeout(resolve, 300)) // ensures that the errors are set before the form is submitted
+        if (usernameErrors.length || emailErrors.length || passwordErrors.length) return
+        await queryClient.invalidateQueries({ queryKey: ["session"] })
+        const formData = new FormData(e.target as HTMLFormElement)
+        action(formData)
+        setUsernameErrors([...(state?.errors?.username || [])])
+        setEmailErrors([...(state?.errors?.email || [])])
+        setPasswordErrors([...(state?.errors?.password || [])])
     }
 
     return (
         <FadeDiv className="flex flex-col gap-4">
             <Heading variant="2">Register</Heading>
-            <form onSubmit={handleSubmit}
-                className="flex flex-col gap-1 text-xl w-[28em]">
-                <label htmlFor="username">Username</label>
-                <input type="text"
+            <form onSubmit={handleSubmit} className="flex flex-col gap-1 text-xl w-[28em]">
+                <Input
+                    type="text"
+                    label="Username"
                     id="username"
                     name="username"
                     required
                     placeholder="username..."
-                    className="w-full rounded-xl p-2 text-black outline-none transition focus:bg-slate-100 dark:focus:bg-slate-200"
+                    validateSchema={RegisterSchema.shape.username}
+                    errors={usernameErrors}
+                    setErrors={setUsernameErrors}
                 />
-                {state?.errors?.username && state.errors.username.map((error: string, id) => (
-                    <li key={id} className="text-red-500">{error}</li>))}
-                <label htmlFor="email">Email</label>
-                <input type="email"
+                <Input
+                    type="email"
+                    label="Email"
                     id="email"
                     name="email"
                     required
                     placeholder="email..."
-                    className="w-full rounded-xl p-2 text-black outline-none transition focus:bg-slate-100 dark:focus:bg-slate-200"
+                    validateSchema={RegisterSchema.shape.email}
+                    errors={emailErrors}
+                    setErrors={setEmailErrors}
                 />
-                {state?.errors?.email && state.errors.email.map((error: string, id) => (
-                    <li key={id} className="text-red-500">{error}</li>))}
-                <label htmlFor="password">Password</label>
-                <input type="password"
+                <Input
+                    type="password"
+                    label="Password"
                     id="password"
                     name="password"
                     required
                     placeholder="password..."
-                    className="w-full rounded-xl p-2 text-black outline-none transition focus:bg-slate-100 dark:focus:bg-slate-200"
+                    validateSchema={RegisterSchema.shape.password}
+                    errors={passwordErrors}
+                    setErrors={setPasswordErrors}
                 />
-                {state?.errors?.password && state.errors.password.map((error: string, id) => (
-                    <li key={id} className="text-red-500">{error}</li>))}
                 <p className="text-xl mb-2">
-                    Already have an account? <Link href={"/login"} className="text-nord-10">Login</Link>
+                    Already have an account?{" "}
+                    <Link href={"/login"} className="text-nord-10">
+                        Login
+                    </Link>
                 </p>
                 <RegisterButton />
             </form>
         </FadeDiv>
-    );
+    )
 }
 
 function RegisterButton() {
-    const { pending } = useFormStatus();
+    const { pending } = useFormStatus()
     return (
-        <button
-            type="submit"
-            aria-disabled={pending}
-            className="w-max rounded-2xl bg-nord-10 hover:bg-nord-9 p-3 px-12 text-xl text-nord-6 transition">
+        <Button type="submit" disabled={pending} variant="primary">
             {pending ? "loading..." : "Register"}
-        </button>
+        </Button>
     )
 }

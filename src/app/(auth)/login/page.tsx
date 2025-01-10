@@ -1,50 +1,65 @@
-"use client";
+"use client"
 
-import FadeDiv from "@/components/ui/FadeDiv";
-import Heading from "@/components/ui/Heading";
-import Link from "next/link";
-import React from "react";
-import { useFormState, useFormStatus } from "react-dom";
-import login from "@/server/auth/login";
-import { useQueryClient } from "@tanstack/react-query";
+import FadeDiv from "@/components/ui/FadeDiv"
+import Heading from "@/components/ui/Heading"
+import Link from "next/link"
+import React from "react"
+import { useFormState, useFormStatus } from "react-dom"
+import login from "@/server/auth/login"
+import { useQueryClient } from "@tanstack/react-query"
+import { LoginSchema } from "@/server/auth/loginTypes"
+import useDebouncedState from "@/hooks/useDebouncedState"
+import Input from "@/components/ui/Input"
+import Button from "@/components/ui/Button"
 
 export default function Login() {
-    const [state, action] = useFormState(login, undefined);
-    const queryClient = useQueryClient();
+    const [state, action] = useFormState(login, undefined)
+    const [emailErrors, setEmailErrors] = useDebouncedState<string[]>([], 300)
+    const [passwordErrors, setPasswordErrors] = useDebouncedState<string[]>([], 300)
+    const queryClient = useQueryClient()
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-        await queryClient.invalidateQueries({ queryKey: ["session"] });
-        const formData = new FormData(e.target as HTMLFormElement);
-        action(formData);
+        e.preventDefault()
+        await new Promise((resolve) => setTimeout(resolve, 300))
+        if (emailErrors.length || passwordErrors.length) return
+        await queryClient.invalidateQueries({ queryKey: ["session"] }) // Invalidate session query works on the cache of react query if some page is fetching the session from the api and not the db
+        const formData = new FormData(e.target as HTMLFormElement)
+        action(formData)
+        setEmailErrors([...(state?.errors?.email || [])])
+        setPasswordErrors([...(state?.errors?.password || [])])
     }
 
     return (
         <FadeDiv className="flex flex-col gap-4">
             <Heading variant="2">Login</Heading>
             <form className="flex flex-col gap-1 text-xl w-[28em]" onSubmit={handleSubmit}>
-                <label htmlFor="email">Email</label>
-                <input type="email"
+                <Input
+                    type="email"
+                    label="Email"
                     id="email"
                     name="email"
                     required
                     placeholder="email..."
-                    className="w-full rounded-xl p-2 text-black outline-none transition focus:bg-slate-100 dark:focus:bg-slate-200"
+                    validateSchema={LoginSchema.shape.email}
+                    errors={emailErrors}
+                    setErrors={setEmailErrors}
                 />
-                {state?.errors?.email && state.errors.email.map((error: string, id) => (
-                    <li key={id} className="text-red-500">{error}</li>))}
-                <label htmlFor="password">Password</label>
-                <input type="password"
+                <Input
+                    type="password"
+                    label="Password"
                     id="password"
                     name="password"
                     required
                     placeholder="password..."
-                    className="w-full rounded-xl p-2 text-black outline-none transition focus:bg-slate-100 dark:focus:bg-slate-200"
+                    errors={passwordErrors}
+                    setErrors={setPasswordErrors}
+                    validateSchema={LoginSchema.shape.password}
                 />
-                {state?.errors?.password && state.errors.password.map((error: string, id) => (
-                    <li key={id} className="text-red-500">{error}</li>))}
                 <p className="text-xl mb-2">
-                    You don&apos;have an account? <Link href={"/register"} className="text-nord-10">Sign up</Link>
+                    You don&apos;have an account?{" "}
+                    <Link href={"/register"} className="text-nord-10">
+                        Sign up
+                    </Link>
                 </p>
                 <LoginButton />
             </form>
@@ -53,14 +68,11 @@ export default function Login() {
 }
 
 function LoginButton() {
-    const { pending } = useFormStatus();
+    const { pending } = useFormStatus()
 
     return (
-        <button
-            type="submit"
-            aria-disabled={pending}
-            className="w-max rounded-2xl bg-nord-10 hover:bg-nord-9 p-3 px-12 text-xl text-nord-6 transition">
+        <Button type="submit" disabled={pending} variant="primary">
             {pending ? "loading..." : "Login"}
-        </button>
+        </Button>
     )
 }
