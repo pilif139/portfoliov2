@@ -33,7 +33,7 @@ npx drizzle-kit studio # open drizzle studio
 ├── src
 │   ├── app - nextjs app router
 │   ├── components
-│   │   ├── ui - reusable generic components 
+│   │   ├── ui - reusable generic components
 │   ├── db
 │   │   ├── schema - folder with all models
 │   │   ├── db.ts - db connection and drizzle orm setup

@@ -1,7 +1,7 @@
-import {pgEnum, pgTable, timestamp, varchar,  integer} from "drizzle-orm/pg-core";
-import {InferSelectModel} from "drizzle-orm";
+import { pgEnum, pgTable, timestamp, varchar, integer } from "drizzle-orm/pg-core"
+import { InferSelectModel } from "drizzle-orm"
 
-export const role = pgEnum("role", ["user", "admin"]);
+export const role = pgEnum("role", ["user", "admin"])
 
 export const userTable = pgTable("user", {
     id: integer("id").primaryKey().unique().generatedAlwaysAsIdentity(),
@@ -11,6 +11,6 @@ export const userTable = pgTable("user", {
     createdAt: timestamp().notNull().defaultNow(),
     updatedAt: timestamp().notNull().defaultNow(),
     role: role().notNull().default("user"),
-});
+})
 
-export type User = InferSelectModel<typeof userTable>;
+export type User = InferSelectModel<typeof userTable>

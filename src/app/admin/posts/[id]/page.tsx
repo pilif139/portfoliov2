@@ -1,42 +1,33 @@
-import FadeDiv from "@/components/ui/FadeDiv";
-import Heading from "@/components/ui/Heading";
-import db from "@/db/db";
-import { post_content_blocksTable, postsTable } from "@/db/schema/posts";
-import { eq } from "drizzle-orm";
-import { notFound } from "next/navigation";
-import Content from "@/components/Content";
+import FadeDiv from "@/components/ui/FadeDiv"
+import Heading from "@/components/ui/Heading"
+import db from "@/db/db"
+import { post_content_blocksTable, postsTable } from "@/db/schema/posts"
+import { eq } from "drizzle-orm"
+import { notFound } from "next/navigation"
+import Content from "@/components/Content"
 
 type ViewPostPageProps = {
-    params: Promise<{ id: number }>;
+    params: Promise<{ id: number }>
 }
 
 export default async function ViewPostPage({ params }: ViewPostPageProps) {
-    const id = (await params).id;
-    const [post] = await db
-        .select()
-        .from(postsTable)
-        .where(eq(postsTable.id, id))
-        .execute();
+    const id = (await params).id
+    const [post] = await db.select().from(postsTable).where(eq(postsTable.id, id)).execute()
     if (!post) {
-        notFound();
+        notFound()
     }
-    const contents = await db
-        .select()
-        .from(post_content_blocksTable)
-        .where(eq(post_content_blocksTable.post_id, id))
-        .execute();
+    const contents = await db.select().from(post_content_blocksTable).where(eq(post_content_blocksTable.post_id, id)).execute()
 
     return (
         <FadeDiv className="flex flex-col gap-4 items-center">
-            <Heading variant="1" className="text-nord-9">{post.title}</Heading>
+            <Heading variant="1" className="text-nord-9">
+                {post.title}
+            </Heading>
             <p>{post.description}</p>
             <div className="flex gap-2 flex-col w-[35vw]">
-                {
-                    contents.map((content, index) => {
-                        return <Content key={index} content={content} />
-                    }
-                    )
-                }
+                {contents.map((content, index) => {
+                    return <Content key={index} content={content} />
+                })}
             </div>
         </FadeDiv>
     )
