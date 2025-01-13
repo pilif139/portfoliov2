@@ -5,72 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f69dcca6-b496-4591-94a1-be1bf5cbc9ff" name="Changes" comment="added prettier">
-      <change afterPath="$PROJECT_DIR$/.prettierrc.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.eslintrc.json" beforeDir="false" afterPath="$PROJECT_DIR$/.eslintrc.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/hooks/useValidate.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vscode/settings.json" beforeDir="false" afterPath="$PROJECT_DIR$/.vscode/settings.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/compose.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/compose.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/drizzle.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/drizzle.config.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/drizzle/meta/0000_snapshot.json" beforeDir="false" afterPath="$PROJECT_DIR$/drizzle/meta/0000_snapshot.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/drizzle/meta/_journal.json" beforeDir="false" afterPath="$PROJECT_DIR$/drizzle/meta/_journal.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/next.config.mjs" beforeDir="false" afterPath="$PROJECT_DIR$/next.config.mjs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/postcss.config.mjs" beforeDir="false" afterPath="$PROJECT_DIR$/postcss.config.mjs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/AccountMenu.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/AccountMenu.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/Footer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/Footer.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/Header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/Header.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/ReactQueryProvider.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/ReactQueryProvider.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/admin/BlogsPanel.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/admin/BlogsPanel.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/admin/ProjectsPanel.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/admin/ProjectsPanel.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/admin/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/admin/layout.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/admin/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/admin/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/admin/posts/PostCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/admin/posts/PostCard.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/admin/posts/[id]/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/admin/posts/[id]/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/admin/posts/new/ContentsList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/admin/posts/new/ContentsList.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/admin/posts/new/CustomPointerSensor.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/admin/posts/new/CustomPointerSensor.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/admin/posts/new/SortableContent.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/admin/posts/new/SortableContent.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/admin/posts/new/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/admin/posts/new/layout.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/admin/posts/new/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/admin/posts/new/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/admin/posts/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/admin/posts/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/api/session/route.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/api/session/route.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/error.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/error.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/layout.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/not-found.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/not-found.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Content.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Content.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(auth)/login/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(auth)/login/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(auth)/register/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(auth)/register/page.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/ContentForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ContentForm.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/CreatePostContextProvider.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CreatePostContextProvider.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/CreatePostForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CreatePostForm.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/DropdownMenu.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DropdownMenu.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ModalContext.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ModalContext.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Unauthorized.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Unauthorized.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ui/FadeDiv.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/FadeDiv.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ui/Heading.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/Heading.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ui/Modal.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/Modal.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ui/Input.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/Input.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/ui/TextArea.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/TextArea.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/db/db.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/db/db.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/db/schema/posts.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/db/schema/posts.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/db/schema/projects.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/db/schema/projects.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/db/schema/session.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/db/schema/session.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/db/schema/users.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/db/schema/users.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/hooks/useDebouncedState.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/useDebouncedState.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lib/auth/cookies.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/auth/cookies.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lib/auth/logoutAction.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/auth/logoutAction.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lib/auth/session.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/auth/session.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lib/utils/base64ToFile.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/utils/base64ToFile.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/middleware.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/middleware.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server/auth/login.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/auth/login.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server/auth/loginTypes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/auth/loginTypes.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server/auth/register.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/auth/register.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server/auth/registerTypes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/auth/registerTypes.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server/post/createPost.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/post/createPost.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server/post/deletePost.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/post/deletePost.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server/post/submitFileToVercelStorage.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/post/submitFileToVercelStorage.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tailwind.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/tailwind.config.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/tsconfig.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -94,7 +36,7 @@
     <dismissed value="$PROJECT_DIR$/package.json" />
   </component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="CurrentFile" />
+    <option name="selectedTabId" value="ProjectErrors" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
@@ -171,7 +113,9 @@
       <workItem from="1736364619141" duration="4294000" />
       <workItem from="1736434402132" duration="2799000" />
       <workItem from="1736437453002" duration="1620000" />
-      <workItem from="1736466466234" duration="2450000" />
+      <workItem from="1736466466234" duration="2528000" />
+      <workItem from="1736520625091" duration="3730000" />
+      <workItem from="1736620589431" duration="2113000" />
     </task>
     <task id="LOCAL-00001" summary="added disabled prop to button component">
       <option name="closed" value="true" />
@@ -197,7 +141,15 @@
       <option name="project" value="LOCAL" />
       <updated>1736468866372</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="added prettier">
+      <option name="closed" value="true" />
+      <created>1736469036692</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1736469036692</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

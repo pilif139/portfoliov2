@@ -4,10 +4,12 @@ import { contentType } from "@/db/schema/projects"
 import { useCreatePostContext } from "./CreatePostContextProvider"
 import Button from "./ui/Button"
 import Heading from "./ui/Heading"
-import { useRef, useState } from "react"
+import React, { useRef, useState } from "react"
 import { PostContentBlock } from "@/db/schema/posts"
 import Input from "./ui/Input"
 import TextArea from "./ui/TextArea"
+import { z } from "zod"
+import useValidate from "@/hooks/useValidate"
 
 const contentTypeLabels: Record<string, string> = {
     p: "Text",
@@ -22,28 +24,15 @@ const contentTypeLabels: Record<string, string> = {
     tag: "Tag",
 }
 
+const textSchema = z.string().min(3, { message: "Text must be atleast 3 characters long" }) //need fix
+
 export default function ContentForm() {
     const { setContents, contents } = useCreatePostContext()
     const [selectedContentType, setSelectedContentType] = useState("p")
     const [textContent, setTextContent] = useState("")
-    const [formErrors, setFormErrors] = useState({
-        text: "",
-        file: "",
-    })
+    const [textErrors, setTextErrors, validate] = useValidate(textSchema, textContent)
+    const [fileErrors, setFileErrors] = useState<string[] | string>([])
     const inputFileRef = useRef<HTMLInputElement>(null)
-
-    const validateTextInput = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-        const content = e.target.value
-        setTextContent(content)
-        if (!content) {
-            setFormErrors({
-                ...formErrors,
-                text: contentTypeLabels[selectedContentType] + " cannot be empty",
-            })
-        } else {
-            setFormErrors({ ...formErrors, text: "" })
-        }
-    }
 
     const validateFileInput = () => {
         const input = inputFileRef.current
@@ -51,33 +40,26 @@ export default function ContentForm() {
             const file = input.files[0]
             const MB = 1024 * 1024
             if (file.size > MB * 25) {
-                setFormErrors({ ...formErrors, file: "File size is too big" })
+                setFileErrors("File size must be less than 25MB")
             } else {
-                setFormErrors({ ...formErrors, file: "" })
+                setFileErrors([])
             }
         } else {
-            setFormErrors({ ...formErrors, file: "No file selected" })
+            setFileErrors("No file selected")
         }
     }
 
     const handleContentSubmit = async (formData: FormData) => {
         const type = formData.get("type") as PostContentBlock["type"]
-        if (type !== "image" && type !== "video" && type !== "file") {
+        if (type !== "image" && type !== "video" && type !== "file" && !textErrors) {
             const content = formData.get("content") as string
-            if (!content) {
-                setFormErrors({
-                    ...formErrors,
-                    text: type + " cannot be empty",
-                })
-            } else {
-                const content_block = {
-                    type,
-                    content: formData.get("content") as string,
-                    position: contents.length + 1,
-                }
-                setContents([...contents, content_block])
-                setFormErrors({ ...formErrors, text: "" })
+            const content_block = {
+                type,
+                content,
+                position: contents.length + 1,
             }
+
+            setContents([...contents, content_block])
         } else {
             await handleFilePreview(type)
         }
@@ -85,7 +67,7 @@ export default function ContentForm() {
 
     const handleFilePreview = async (type: PostContentBlock["type"]) => {
         const input = inputFileRef.current
-        if (input && input.files && input.files[0] && !formErrors.file) {
+        if (input && input.files && input.files[0] && !fileErrors) {
             const file = input.files[0]
             const reader = new FileReader()
 
@@ -97,13 +79,13 @@ export default function ContentForm() {
                         position: contents.length + 1,
                     }
                     setContents([...contents, content_block])
-                    setFormErrors({ ...formErrors, file: "" })
+                    setFileErrors([])
                 }
             }
 
             reader.readAsDataURL(file)
         } else {
-            setFormErrors({ ...formErrors, file: "No file selected" })
+            setFileErrors("No file selected")
         }
     }
 
@@ -124,12 +106,13 @@ export default function ContentForm() {
                 <select
                     name="type"
                     id="type"
-                    className="p-2 rounded-lg bg-nord-1 text-nord-9 w-max focus:bg-nord-2 transition"
+                    className="p-2 rounded-lg bg-nord-3 text-nord-9 focus:bg-nord-2 w-max transition"
                     value={selectedContentType}
                     onChange={(e) => {
                         setSelectedContentType(e.target.value)
                         setTextContent("")
-                        setFormErrors({ text: "", file: "" })
+                        setFileErrors([])
+                        setTextErrors([])
                     }}
                 >
                     {contentType.enumValues.map((type, id) => (
@@ -147,7 +130,7 @@ export default function ContentForm() {
                         label={contentTypeLabels[selectedContentType]}
                         ref={inputFileRef}
                         accept={acceptFileTypes[selectedContentType]}
-                        errors={formErrors.file}
+                        errors={fileErrors}
                         onChange={validateFileInput}
                     />
                 )}
@@ -157,8 +140,11 @@ export default function ContentForm() {
                         label={contentTypeLabels[selectedContentType]}
                         name="content"
                         value={textContent}
-                        onChange={validateTextInput}
-                        error={formErrors.text}
+                        onChange={(e) => {
+                            setTextContent(e.target.value)
+                            validate()
+                        }}
+                        errors={textErrors}
                     />
                 )}
             </div>

@@ -1,6 +1,6 @@
 "use client"
 
-import React from "react"
+import React, { useState } from "react"
 import register from "@/server/auth/register"
 import Link from "next/link"
 import Heading from "@/components/ui/Heading"
@@ -9,14 +9,17 @@ import { useFormState, useFormStatus } from "react-dom"
 import { useQueryClient } from "@tanstack/react-query"
 import Input from "@/components/ui/Input"
 import { RegisterSchema } from "@/server/auth/registerTypes"
-import useDebouncedState from "@/hooks/useDebouncedState"
 import Button from "@/components/ui/Button"
+import useValidate from "@/hooks/useValidate"
 
 export default function Register() {
     const [state, action] = useFormState(register, undefined)
-    const [usernameErrors, setUsernameErrors] = useDebouncedState<string[]>([], 300)
-    const [emailErrors, setEmailErrors] = useDebouncedState<string[]>([], 300)
-    const [passwordErrors, setPasswordErrors] = useDebouncedState<string[]>([], 300)
+    const [username, setUsername] = useState("")
+    const [usernameErrors, setUsernameErrors, validateUsername] = useValidate(RegisterSchema.shape.username, username)
+    const [email, setEmail] = useState("")
+    const [emailErrors, setEmailErrors, validateEmail] = useValidate(RegisterSchema.shape.email, email)
+    const [password, setPassword] = useState("")
+    const [passwordErrors, setPasswordErrors, validatePassword] = useValidate(RegisterSchema.shape.password, password)
     const queryClient = useQueryClient()
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -42,9 +45,12 @@ export default function Register() {
                     name="username"
                     required
                     placeholder="username..."
-                    validateSchema={RegisterSchema.shape.username}
                     errors={usernameErrors}
-                    setErrors={setUsernameErrors}
+                    value={username}
+                    onChange={(e) => {
+                        setUsername(e.target.value)
+                        validateUsername()
+                    }}
                 />
                 <Input
                     type="email"
@@ -53,9 +59,12 @@ export default function Register() {
                     name="email"
                     required
                     placeholder="email..."
-                    validateSchema={RegisterSchema.shape.email}
                     errors={emailErrors}
-                    setErrors={setEmailErrors}
+                    onChange={(e) => {
+                        setEmail(e.target.value)
+                        validateEmail()
+                    }}
+                    value={email}
                 />
                 <Input
                     type="password"
@@ -64,9 +73,12 @@ export default function Register() {
                     name="password"
                     required
                     placeholder="password..."
-                    validateSchema={RegisterSchema.shape.password}
                     errors={passwordErrors}
-                    setErrors={setPasswordErrors}
+                    onChange={(e) => {
+                        setPassword(e.target.value)
+                        validatePassword()
+                    }}
+                    value={password}
                 />
                 <p className="text-xl mb-2">
                     Already have an account?{" "}

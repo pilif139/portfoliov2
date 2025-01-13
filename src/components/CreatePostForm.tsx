@@ -7,6 +7,7 @@ import React, { useState, MouseEvent } from "react"
 import Input from "./ui/Input"
 import TextArea from "./ui/TextArea"
 import { z } from "zod"
+import useValidate from "@/hooks/useValidate"
 
 const titleSchema = z.string().min(3, "Title must be atleast 3 characters long").max(150, "Title must be at most 150 characters long")
 const descriptionSchema = z
@@ -16,47 +17,18 @@ const descriptionSchema = z
 
 export default function CreatePostForm({ handleCreatePost }: { handleCreatePost: (e: React.MouseEvent<HTMLButtonElement>) => void }) {
     const { title, setTitle, description, setDescription } = useCreatePostContext()
-    const [formErrors, setFormErrors] = useState({
-        title: "",
-        description: "",
-    })
+    const [titleErrors, setTtitleErrors, validateTitle] = useValidate(titleSchema, title)
+    const [descriptionErrors, setDescriptionErrors, validateDescription] = useValidate(descriptionSchema, description)
 
     const submitForm = (e: MouseEvent<HTMLButtonElement>) => {
         e.preventDefault()
-        validateDescription(description)
-        validateTitle(title)
-        if (!formErrors.title && !formErrors.description) {
+        if (!titleErrors && !descriptionErrors) {
             handleCreatePost(e)
         }
     }
 
-    const validateTitle = (title: string) => {
-        setTitle(title)
-        setFormErrors((prevErrors) => {
-            const validate = titleSchema.safeParse(title)
-            if (!validate.success) {
-                console.log(validate.error.flatten().formErrors[0])
-                return { ...prevErrors, title: validate.error.flatten().formErrors[0] }
-            } else {
-                return { ...prevErrors, title: "" }
-            }
-        })
-    }
-
-    const validateDescription = (description: string) => {
-        setDescription(description)
-        setFormErrors((prevErrors) => {
-            const validate = descriptionSchema.safeParse(description)
-            if (!validate.success) {
-                return { ...prevErrors, description: validate.error.message }
-            } else {
-                return { ...prevErrors, description: "" }
-            }
-        })
-    }
-
     return (
-        <form className="w-[20vw] max-h-[60vh] h-max bg-nord-0 rounded-xl p-4 flex flex-col gap-4">
+        <form className="w-[20vw] max-h-[60vh] h-max bg-nord-0 rounded-xl p-4 flex flex-col gap-2">
             <Heading variant="3" className="text-nord-14">
                 Post details
             </Heading>
@@ -65,15 +37,21 @@ export default function CreatePostForm({ handleCreatePost }: { handleCreatePost:
                 type="text"
                 id="title"
                 value={title}
-                onChange={(e) => validateTitle(e.target.value)}
-                errors={formErrors.title}
+                onChange={(e) => {
+                    setTitle(e.target.value)
+                    validateTitle()
+                }}
+                errors={titleErrors}
             />
             <TextArea
                 label="Description"
                 id="description"
                 value={description}
-                onChange={(e) => validateDescription(e.target.value)}
-                error={formErrors.description}
+                onChange={(e) => {
+                    setDescription(e.target.value)
+                    validateDescription()
+                }}
+                errors={descriptionErrors}
             />
             <Button variant="primary-2" onClick={submitForm}>
                 Create post

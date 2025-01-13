@@ -3,19 +3,21 @@
 import FadeDiv from "@/components/ui/FadeDiv"
 import Heading from "@/components/ui/Heading"
 import Link from "next/link"
-import React from "react"
+import React, { useState } from "react"
 import { useFormState, useFormStatus } from "react-dom"
 import login from "@/server/auth/login"
 import { useQueryClient } from "@tanstack/react-query"
 import { LoginSchema } from "@/server/auth/loginTypes"
-import useDebouncedState from "@/hooks/useDebouncedState"
 import Input from "@/components/ui/Input"
 import Button from "@/components/ui/Button"
+import useValidate from "@/hooks/useValidate"
 
 export default function Login() {
     const [state, action] = useFormState(login, undefined)
-    const [emailErrors, setEmailErrors] = useDebouncedState<string[]>([], 300)
-    const [passwordErrors, setPasswordErrors] = useDebouncedState<string[]>([], 300)
+    const [email, setEmail] = useState("")
+    const [emailErrors, setEmailErrors, validateEmail] = useValidate(LoginSchema.shape.email, email)
+    const [password, setPassword] = useState("")
+    const [passwordErrors, setPasswordErrors, validatePassword] = useValidate(LoginSchema.shape.password, password)
     const queryClient = useQueryClient()
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -40,9 +42,12 @@ export default function Login() {
                     name="email"
                     required
                     placeholder="email..."
-                    validateSchema={LoginSchema.shape.email}
                     errors={emailErrors}
-                    setErrors={setEmailErrors}
+                    value={email}
+                    onChange={(e) => {
+                        setEmail(e.target.value)
+                        validateEmail()
+                    }}
                 />
                 <Input
                     type="password"
@@ -52,8 +57,11 @@ export default function Login() {
                     required
                     placeholder="password..."
                     errors={passwordErrors}
-                    setErrors={setPasswordErrors}
-                    validateSchema={LoginSchema.shape.password}
+                    onChange={(e) => {
+                        setPassword(e.target.value)
+                        validatePassword()
+                    }}
+                    value={password}
                 />
                 <p className="text-xl mb-2">
                     You don&apos;have an account?{" "}
