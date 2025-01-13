@@ -11,6 +11,7 @@ import Input from "@/components/ui/Input"
 import { RegisterSchema } from "@/server/auth/registerTypes"
 import Button from "@/components/ui/Button"
 import useValidate from "@/hooks/useValidate"
+import useDebounce from "@/hooks/useDebounce"
 
 export default function Register() {
     const [state, action] = useFormState(register, undefined)
@@ -21,6 +22,7 @@ export default function Register() {
     const [password, setPassword] = useState("")
     const [passwordErrors, setPasswordErrors, validatePassword] = useValidate(RegisterSchema.shape.password, password)
     const queryClient = useQueryClient()
+    const [debounce] = useDebounce()
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
@@ -49,7 +51,9 @@ export default function Register() {
                     value={username}
                     onChange={(e) => {
                         setUsername(e.target.value)
-                        validateUsername()
+                        debounce(() => {
+                            validateUsername()
+                        }, 300)
                     }}
                 />
                 <Input
@@ -62,7 +66,9 @@ export default function Register() {
                     errors={emailErrors}
                     onChange={(e) => {
                         setEmail(e.target.value)
-                        validateEmail()
+                        debounce(() => {
+                            validateEmail()
+                        }, 300)
                     }}
                     value={email}
                 />
@@ -76,7 +82,9 @@ export default function Register() {
                     errors={passwordErrors}
                     onChange={(e) => {
                         setPassword(e.target.value)
-                        validatePassword()
+                        debounce(() => {
+                            validatePassword()
+                        }, 300)
                     }}
                     value={password}
                 />

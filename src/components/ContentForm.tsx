@@ -10,6 +10,7 @@ import Input from "./ui/Input"
 import TextArea from "./ui/TextArea"
 import { z } from "zod"
 import useValidate from "@/hooks/useValidate"
+import useDebounce from "@/hooks/useDebounce"
 
 const contentTypeLabels: Record<string, string> = {
     p: "Text",
@@ -33,6 +34,7 @@ export default function ContentForm() {
     const [textErrors, setTextErrors, validate] = useValidate(textSchema, textContent)
     const [fileErrors, setFileErrors] = useState<string[] | string>([])
     const inputFileRef = useRef<HTMLInputElement>(null)
+    const [debounce] = useDebounce()
 
     const validateFileInput = () => {
         const input = inputFileRef.current
@@ -142,7 +144,9 @@ export default function ContentForm() {
                         value={textContent}
                         onChange={(e) => {
                             setTextContent(e.target.value)
-                            validate()
+                            debounce(() => {
+                                validate()
+                            }, 300)
                         }}
                         errors={textErrors}
                     />

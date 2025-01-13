@@ -11,6 +11,7 @@ import { LoginSchema } from "@/server/auth/loginTypes"
 import Input from "@/components/ui/Input"
 import Button from "@/components/ui/Button"
 import useValidate from "@/hooks/useValidate"
+import useDebounce from "@/hooks/useDebounce"
 
 export default function Login() {
     const [state, action] = useFormState(login, undefined)
@@ -19,6 +20,7 @@ export default function Login() {
     const [password, setPassword] = useState("")
     const [passwordErrors, setPasswordErrors, validatePassword] = useValidate(LoginSchema.shape.password, password)
     const queryClient = useQueryClient()
+    const [debounce] = useDebounce()
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
@@ -46,7 +48,9 @@ export default function Login() {
                     value={email}
                     onChange={(e) => {
                         setEmail(e.target.value)
-                        validateEmail()
+                        debounce(() => {
+                            validateEmail()
+                        }, 300)
                     }}
                 />
                 <Input
@@ -59,7 +63,9 @@ export default function Login() {
                     errors={passwordErrors}
                     onChange={(e) => {
                         setPassword(e.target.value)
-                        validatePassword()
+                        debounce(() => {
+                            validatePassword()
+                        }, 300)
                     }}
                     value={password}
                 />
