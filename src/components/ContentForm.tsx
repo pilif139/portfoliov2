@@ -32,7 +32,7 @@ export default function ContentForm() {
     const [selectedContentType, setSelectedContentType] = useState("p")
     const [textContent, setTextContent] = useState("")
     const [textErrors, setTextErrors, validate] = useValidate(textSchema, textContent)
-    const [fileErrors, setFileErrors] = useState<string[] | string>([])
+    const [fileErrors, setFileErrors] = useState<string | null>(null)
     const inputFileRef = useRef<HTMLInputElement>(null)
     const [debounce] = useDebounce()
 
@@ -44,7 +44,7 @@ export default function ContentForm() {
             if (file.size > MB * 25) {
                 setFileErrors("File size must be less than 25MB")
             } else {
-                setFileErrors([])
+                setFileErrors(null)
             }
         } else {
             setFileErrors("No file selected")
@@ -81,7 +81,7 @@ export default function ContentForm() {
                         position: contents.length + 1,
                     }
                     setContents([...contents, content_block])
-                    setFileErrors([])
+                    setFileErrors(null)
                 }
             }
 
@@ -113,8 +113,8 @@ export default function ContentForm() {
                     onChange={(e) => {
                         setSelectedContentType(e.target.value)
                         setTextContent("")
-                        setFileErrors([])
-                        setTextErrors([])
+                        setFileErrors(null)
+                        setTextErrors(null)
                     }}
                 >
                     {contentType.enumValues.map((type, id) => (
@@ -144,9 +144,7 @@ export default function ContentForm() {
                         value={textContent}
                         onChange={(e) => {
                             setTextContent(e.target.value)
-                            debounce(() => {
-                                validate()
-                            }, 300)
+                            debounce(() => validate(e.target.value), 300)
                         }}
                         errors={textErrors}
                     />

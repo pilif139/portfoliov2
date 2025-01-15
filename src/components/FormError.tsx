@@ -2,15 +2,19 @@
 
 import { AnimatePresence, motion } from "framer-motion"
 
-export default function FormError({ errors }: { errors: string[] | string }) {
+export default function FormError({ errors }: { errors: string[] | string | null | undefined }) {
+    // converting string to array so we can map over it and use AnimatePresence
     if (typeof errors === "string") {
         errors = [errors]
+    }
+    if (!errors) {
+        errors = []
     }
 
     return (
         <ul className="list-disc ml-5">
             <AnimatePresence>
-                {errors?.map((error, index) => (
+                {errors.map((error, index) => (
                     <motion.li
                         key={index}
                         initial={{ opacity: 0 }}

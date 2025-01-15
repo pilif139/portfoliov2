@@ -27,7 +27,7 @@ export default function Register() {
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         await new Promise((resolve) => setTimeout(resolve, 300)) // ensures that the errors are set before the form is submitted
-        if (usernameErrors.length || emailErrors.length || passwordErrors.length) return
+        if (usernameErrors || emailErrors || passwordErrors) return
         await queryClient.invalidateQueries({ queryKey: ["session"] })
         const formData = new FormData(e.target as HTMLFormElement)
         action(formData)

@@ -3,11 +3,12 @@
 import Button from "./ui/Button"
 import Heading from "./ui/Heading"
 import { useCreatePostContext } from "./CreatePostContextProvider"
-import React, { useState, MouseEvent } from "react"
+import React, { MouseEvent } from "react"
 import Input from "./ui/Input"
 import TextArea from "./ui/TextArea"
 import { z } from "zod"
 import useValidate from "@/hooks/useValidate"
+import useDebounce from "@/hooks/useDebounce"
 
 const titleSchema = z.string().min(3, "Title must be atleast 3 characters long").max(150, "Title must be at most 150 characters long")
 const descriptionSchema = z
@@ -19,6 +20,7 @@ export default function CreatePostForm({ handleCreatePost }: { handleCreatePost:
     const { title, setTitle, description, setDescription } = useCreatePostContext()
     const [titleErrors, setTtitleErrors, validateTitle] = useValidate(titleSchema, title)
     const [descriptionErrors, setDescriptionErrors, validateDescription] = useValidate(descriptionSchema, description)
+    const [debounce] = useDebounce()
 
     const submitForm = (e: MouseEvent<HTMLButtonElement>) => {
         e.preventDefault()
@@ -39,7 +41,7 @@ export default function CreatePostForm({ handleCreatePost }: { handleCreatePost:
                 value={title}
                 onChange={(e) => {
                     setTitle(e.target.value)
-                    validateTitle()
+                    debounce(() => validateTitle(), 300)
                 }}
                 errors={titleErrors}
             />
@@ -49,7 +51,7 @@ export default function CreatePostForm({ handleCreatePost }: { handleCreatePost:
                 value={description}
                 onChange={(e) => {
                     setDescription(e.target.value)
-                    validateDescription()
+                    debounce(() => validateDescription(), 300)
                 }}
                 errors={descriptionErrors}
             />

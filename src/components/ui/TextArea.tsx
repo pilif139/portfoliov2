@@ -1,7 +1,6 @@
 "use client"
 
-import { ChangeEvent, Dispatch, SetStateAction, TextareaHTMLAttributes, useState } from "react"
-import { ZodSchema } from "zod"
+import { ChangeEvent, TextareaHTMLAttributes } from "react"
 import FormError from "@/components/FormError"
 
 type TextAreaProps = TextareaHTMLAttributes<HTMLTextAreaElement> & {
@@ -11,7 +10,7 @@ type TextAreaProps = TextareaHTMLAttributes<HTMLTextAreaElement> & {
     id?: string
     value?: string
     onChange?: (e: ChangeEvent<HTMLTextAreaElement>) => void
-    errors?: string[] | string
+    errors?: string[] | string | null
 }
 
 export default function TextArea({ className, label, id, onChange, errors, ...props }: TextAreaProps) {
@@ -28,7 +27,7 @@ export default function TextArea({ className, label, id, onChange, errors, ...pr
                 onChange={onChange}
                 {...props}
             />
-            {errors && <FormError errors={errors} />}
+            <FormError errors={errors} />
         </>
     )
 }
