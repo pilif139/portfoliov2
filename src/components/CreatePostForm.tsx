@@ -18,8 +18,8 @@ const descriptionSchema = z
 
 export default function CreatePostForm({ handleCreatePost }: { handleCreatePost: (e: React.MouseEvent<HTMLButtonElement>) => void }) {
     const { title, setTitle, description, setDescription } = useCreatePostContext()
-    const [titleErrors, setTtitleErrors, validateTitle] = useValidate(titleSchema, title)
-    const [descriptionErrors, setDescriptionErrors, validateDescription] = useValidate(descriptionSchema, description)
+    const [titleErrors, , validateTitle] = useValidate(titleSchema, title)
+    const [descriptionErrors, , validateDescription] = useValidate(descriptionSchema, description)
     const [debounce] = useDebounce()
 
     const submitForm = (e: MouseEvent<HTMLButtonElement>) => {
