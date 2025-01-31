@@ -1,5 +1,3 @@
-"use client"
-
 import Button from "./ui/Button"
 import Heading from "./ui/Heading"
 import { useCreatePostContext } from "./CreatePostContextProvider"
@@ -16,16 +14,24 @@ const descriptionSchema = z
     .min(7, "Description must be atleast 7 characters long")
     .max(250, "Description must be at most 250 characters long")
 
-export default function CreatePostForm({ handleCreatePost }: { handleCreatePost: (e: React.MouseEvent<HTMLButtonElement>) => void }) {
+type Errors = { description?: string[]; title?: string[]; user?: string }
+
+export default function CreatePostForm({
+    handleCreatePost,
+}: {
+    handleCreatePost: (e: React.MouseEvent<HTMLButtonElement>) => Promise<Errors | undefined>
+}) {
     const { title, setTitle, description, setDescription } = useCreatePostContext()
-    const [titleErrors, , validateTitle] = useValidate(titleSchema, title)
-    const [descriptionErrors, , validateDescription] = useValidate(descriptionSchema, description)
+    const [titleErrors, setTitleErrors, validateTitle] = useValidate(titleSchema, title)
+    const [descriptionErrors, setDescriptionErrors, validateDescription] = useValidate(descriptionSchema, description)
     const [debounce] = useDebounce()
 
-    const submitForm = (e: MouseEvent<HTMLButtonElement>) => {
+    const submitForm = async (e: MouseEvent<HTMLButtonElement>) => {
         e.preventDefault()
         if (!titleErrors && !descriptionErrors) {
-            handleCreatePost(e)
+            const errors = await handleCreatePost(e)
+            setTitleErrors(errors?.title || null)
+            setDescriptionErrors(errors?.description || null)
         }
     }
 

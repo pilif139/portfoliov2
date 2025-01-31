@@ -6,50 +6,48 @@ import FadeDiv from "@/components/ui/FadeDiv"
 import CreatePostForm from "@/components/CreatePostForm"
 import { useCreatePostContext } from "@/components/CreatePostContextProvider"
 import ContentForm from "@/components/ContentForm"
-import CreatePost from "@/server/post/createPost"
-import submitFileToVercelStorage, { FileContent } from "@/server/post/submitFileToVercelStorage"
+import createPost from "@/server/post/createPost"
 import base64ToFile from "@/lib/utils/base64ToFile"
 import { useRouter } from "next/navigation"
+import { MouseEvent } from "react"
+import addContentToPost from "@/server/post/addContentToPost"
 
 export default function NewPostPage() {
     const { contents, title, description } = useCreatePostContext()
     const router = useRouter()
 
-    const handleCreatePost = async (e: React.MouseEvent<HTMLButtonElement>) => {
+    const handleCreatePost = async (e: MouseEvent<HTMLButtonElement>) => {
         e.preventDefault()
-        const { post_id, errors } = await CreatePost({
-            title,
-            description,
-            contents,
-        })
-        if (!post_id) {
-            return
-        }
-        if (errors) {
-            throw new Error("An error occurred while creating the post")
-        }
-        const files = contents
-            .filter(({ type }) => type === "file" || type === "image" || type === "video")
-            .map(({ content, type, position }) => {
-                if (content && type && position && post_id) {
-                    return {
-                        post_id,
-                        position,
-                        type,
-                        content: base64ToFile(content, `${type}-${post_id}-${position}`),
-                    }
+
+        const contentWithConvertedFiles = contents
+            .map(({ type, content, position }) => {
+                if (!content || !type || !position) {
+                    return null
                 }
-                return null
+                if (type === "file" || type === "image" || type === "video") {
+                    return {
+                        type,
+                        content: base64ToFile(content, `${title}-${type}-${position}`),
+                        position,
+                    }
+                } else {
+                    return { type, content, position }
+                }
             })
-            .filter((file) => file !== null) as FileContent[]
-        for (const file of files) {
-            const formData = new FormData()
-            formData.append("file", file.content)
-            formData.append("type", file.type)
-            formData.append("position", file.position.toString())
-            formData.append("post_id", post_id.toString())
-            await submitFileToVercelStorage(formData)
+            .filter((content) => content !== null)
+
+        const { post_id, errors } = await createPost(title, description)
+        if (post_id === undefined || errors) {
+            return errors
         }
+        for (const content of contentWithConvertedFiles) {
+            const formData = new FormData()
+            formData.append("type", content.type)
+            formData.append("position", content.position.toString())
+            formData.append("content", content.content)
+            await addContentToPost(post_id, formData)
+        }
+
         router.push(`/admin/posts/${post_id}`)
     }
 

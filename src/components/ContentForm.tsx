@@ -41,7 +41,7 @@ export default function ContentForm() {
         if (input && input.files && input.files[0]) {
             const file = input.files[0]
             const MB = 1024 * 1024
-            if (file.size > MB * 25) {
+            if (file.size > MB * 4.5) {
                 setFileErrors("File size must be less than 25MB")
             } else {
                 setFileErrors(null)
