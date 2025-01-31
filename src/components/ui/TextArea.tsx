@@ -23,7 +23,7 @@ export default function TextArea({ className, label, id, onChange, errors, ...pr
             )}
             <textarea
                 id={id}
-                className={`w-full p-2 rounded-xl transition outline-none bg-nord-3 text-nord-9 focus:bg-nord-2 min-h-max ${errors && errors.length > 0 ? "border-4 border-nord-11" : ""} ${className}`}
+                className={`w-full p-2 rounded-xl transition outline-hidden bg-nord-3 text-nord-9 focus:bg-nord-2 min-h-max ${errors && errors.length > 0 ? "border-4 border-nord-11" : ""} ${className}`}
                 onChange={onChange}
                 {...props}
             />

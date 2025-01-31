@@ -99,7 +99,7 @@ export default function ContentForm() {
     }
 
     return (
-        <form className="flex gap-4 flex-col flex-grow h-full max-h-[60vh] w-[20vw]" action={handleContentSubmit}>
+        <form className="flex gap-4 flex-col grow h-full max-h-[60vh] w-[20vw]" action={handleContentSubmit}>
             <Heading variant="3" className="text-nord-9">
                 Add content
             </Heading>

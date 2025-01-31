@@ -20,7 +20,7 @@ const Input = forwardRef(({ className, label, id, onChange, errors, ...props }: 
             )}
             <input
                 className={clsx(
-                    `w-full p-2 rounded-lg transition outline-none bg-nord-3 text-nord-9 focus:bg-nord-2 file:bg-nord-1 file:text-white file:rounded-xl file:border-none file:px-6 file:py-1 file:transition file:outline-none file:focus:bg-nord-0 file:hover:bg-nord-0 file:cursor-pointer file:mr-4`,
+                    `w-full p-2 rounded-lg transition outline-hidden bg-nord-3 text-nord-9 focus:bg-nord-2 file:bg-nord-1 file:text-white file:rounded-xl file:border-none file:px-6 file:py-1 file:transition file:outline-hidden file:focus:bg-nord-0 file:hover:bg-nord-0 file:cursor-pointer file:mr-4`,
                     errors && errors.length > 0 ? "border-4 border-nord-11" : "",
                     className
                 )}
