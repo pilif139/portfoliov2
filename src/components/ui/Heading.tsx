@@ -1,3 +1,5 @@
+import React from "react"
+
 export type HeadingProps = {
     children: React.ReactNode
     className?: string
@@ -5,7 +7,7 @@ export type HeadingProps = {
 }
 
 export default function Heading({ children, className, variant = "2" }: HeadingProps) {
-    const CustomTag = `h${variant}` as keyof JSX.IntrinsicElements
+    const CustomTag = `h${variant}` as keyof React.JSX.IntrinsicElements
     const textSize: Record<string, string> = {
         "1": "text-5xl",
         "2": "text-4xl",
