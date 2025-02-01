@@ -1,5 +1,5 @@
 export default function useDebounce() {
-    let debounce: NodeJS.Timeout
+    let debounce: Timer
     const debounced = (callback: () => void, timeout: number = 0) => {
         clearTimeout(debounce)
         debounce = setTimeout(() => {

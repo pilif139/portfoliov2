@@ -1,0 +1,82 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Content component should render anchor tag 1`] = `
+<div>
+  <a
+    class="bg-theme-10 px-4 py-2 rounded-xl"
+    download=""
+    href="file.pdf"
+  >
+    Download file
+  </a>
+</div>
+`;
+
+exports[`Content component should render h1 1`] = `
+<div>
+  <h1
+    class="text-5xl font-bold text-theme-10 undefined"
+  >
+    Hello
+  </h1>
+</div>
+`;
+
+exports[`Content component should render h2 1`] = `
+<div>
+  <h2
+    class="text-4xl font-bold text-theme-10 undefined"
+  >
+    Hello
+  </h2>
+</div>
+`;
+
+exports[`Content component should render h3 1`] = `
+<div>
+  <h3
+    class="text-3xl font-bold text-theme-10 undefined"
+  >
+    Hello
+  </h3>
+</div>
+`;
+
+exports[`Content component should render h4 1`] = `
+<div>
+  <h4
+    class="text-2xl font-bold text-theme-10 undefined"
+  >
+    Hello
+  </h4>
+</div>
+`;
+
+exports[`Content component should render image 1`] = `
+<div>
+  <img
+    alt="alternative text"
+    src="image.jpg"
+  />
+</div>
+`;
+
+exports[`Content component should render p 1`] = `
+<div>
+  <p>
+    Hello
+  </p>
+</div>
+`;
+
+exports[`Content component should render video 1`] = `
+<div>
+  <video
+    class="shadow-gray-900 shadow-lg"
+    controls=""
+    height="350"
+    src="video.mp4"
+    width="350"
+  />
+</div>
+`;
