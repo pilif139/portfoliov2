@@ -4,13 +4,14 @@ import { contentType } from "@/db/schema/projects"
 import { useCreatePostContext } from "./CreatePostContextProvider"
 import Button from "./ui/Button"
 import Heading from "./ui/Heading"
-import React, { useRef, useState } from "react"
+import React, { useState } from "react"
 import { PostContentBlock } from "@/db/schema/posts"
 import Input from "./ui/Input"
 import TextArea from "./ui/TextArea"
 import { z } from "zod"
 import useValidate from "@/hooks/useValidate"
 import useDebounce from "@/hooks/useDebounce"
+import useFileReader from "@/hooks/useFileReader"
 
 const contentTypeLabels: Record<string, string> = {
     p: "Text",
@@ -32,24 +33,8 @@ export default function ContentForm() {
     const [selectedContentType, setSelectedContentType] = useState("p")
     const [textContent, setTextContent] = useState("")
     const [textErrors, setTextErrors, validate] = useValidate(textSchema, textContent)
-    const [fileErrors, setFileErrors] = useState<string | null>(null)
-    const inputFileRef = useRef<HTMLInputElement>(null)
+    const { fileRef, fileErrors, setFileErrors, validateFileInput, readFile } = useFileReader()
     const [debounce] = useDebounce()
-
-    const validateFileInput = () => {
-        const input = inputFileRef.current
-        if (input && input.files && input.files[0]) {
-            const file = input.files[0]
-            const MB = 1024 * 1024
-            if (file.size > MB * 4.5) {
-                setFileErrors("File size must be less than 25MB")
-            } else {
-                setFileErrors(null)
-            }
-        } else {
-            setFileErrors("No file selected")
-        }
-    }
 
     const handleContentSubmit = async (formData: FormData) => {
         const type = formData.get("type") as PostContentBlock["type"]
@@ -63,31 +48,17 @@ export default function ContentForm() {
 
             setContents([...contents, content_block])
         } else {
-            await handleFilePreview(type)
-        }
-    }
-
-    const handleFilePreview = async (type: PostContentBlock["type"]) => {
-        const input = inputFileRef.current
-        if (input && input.files && input.files[0] && !fileErrors) {
-            const file = input.files[0]
-            const reader = new FileReader()
-
-            reader.onload = (e) => {
-                if (e.target?.result) {
-                    const content_block = {
-                        type,
-                        content: e.target.result as string,
-                        position: contents.length + 1,
-                    }
-                    setContents([...contents, content_block])
-                    setFileErrors(null)
+            validateFileInput()
+            const file = (await readFile()) as string
+            if (file && !fileErrors) {
+                const content_block = {
+                    type,
+                    content: file,
+                    position: contents.length + 1,
                 }
-            }
 
-            reader.readAsDataURL(file)
-        } else {
-            setFileErrors("No file selected")
+                setContents([...contents, content_block])
+            }
         }
     }
 
@@ -130,7 +101,7 @@ export default function ContentForm() {
                         type="file"
                         name="file"
                         label={contentTypeLabels[selectedContentType]}
-                        ref={inputFileRef}
+                        ref={fileRef}
                         accept={acceptFileTypes[selectedContentType]}
                         errors={fileErrors}
                         onChange={validateFileInput}
