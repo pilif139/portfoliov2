@@ -36,7 +36,9 @@ export default function ContentForm() {
     const { fileRef, fileErrors, setFileErrors, validateFileInput, readFile } = useFileReader()
     const [debounce] = useDebounce()
 
-    const handleContentSubmit = async (formData: FormData) => {
+    const handleContentSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault()
+        const formData = new FormData(e.currentTarget)
         const type = formData.get("type") as PostContentBlock["type"]
         if (type !== "image" && type !== "video" && type !== "file" && !textErrors) {
             const content = formData.get("content") as string
@@ -70,7 +72,7 @@ export default function ContentForm() {
     }
 
     return (
-        <form className="flex gap-4 flex-col grow h-full max-h-[60vh] w-[20vw]" action={handleContentSubmit}>
+        <form className="flex gap-4 flex-col grow h-full max-h-[60vh] w-[20vw]" onSubmit={handleContentSubmit}>
             <Heading variant="3" className="text-theme-9">
                 Add content
             </Heading>
