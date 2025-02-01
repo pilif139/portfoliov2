@@ -6,6 +6,7 @@ import Footer from "./Footer"
 import ReactQueryProvider from "@/app/ReactQueryProvider"
 import { ModalContextProvider } from "@/components/ModalContext"
 import Modal from "@/components/ui/Modal"
+import React from "react"
 
 const font = Font({
     subsets: ["latin"],

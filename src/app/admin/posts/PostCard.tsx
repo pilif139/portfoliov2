@@ -24,8 +24,8 @@ export default function PostCard({ post }: PostProps) {
     const handleDelete = () => {
         openModal(
             <DeleteModal
-                onClick={() => {
-                    deletePost(post.id)
+                onClick={async () => {
+                    await deletePost(post.id)
                     closeModal()
                 }}
             />

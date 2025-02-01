@@ -20,6 +20,7 @@ export default async function AccountMenu() {
             </DropdownMenu>
         )
     } else {
+        // noinspection Annotator
         return (
             <DropdownMenu button={<MdOutlineAccountCircle size={35} />}>
                 <p className="text-center p-2">{user.username}</p>

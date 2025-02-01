@@ -2,6 +2,7 @@ import { PointerEvent } from "react"
 
 import { PointerSensor, PointerSensorOptions } from "@dnd-kit/core"
 
+// noinspection Annotator
 export default class CustomPointerSensor extends PointerSensor {
     static activators = [
         {

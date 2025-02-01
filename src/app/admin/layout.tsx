@@ -1,6 +1,7 @@
 import { getCurrentSession } from "@/lib/auth/session"
 import FadeDiv from "@/components/ui/FadeDiv"
 import Unauthorized from "@/components/Unauthorized"
+import React from "react"
 
 export default async function AdminLayout({ children }: { children: React.ReactNode }) {
     const { user } = await getCurrentSession()

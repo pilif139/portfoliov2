@@ -1,3 +1,5 @@
+// noinspection Annotator
+
 import Heading from "@/components/ui/Heading"
 import Link from "next/link"
 import Button from "@/components/ui/Button"

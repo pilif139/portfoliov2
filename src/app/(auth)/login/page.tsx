@@ -1,3 +1,5 @@
+// noinspection Annotator
+
 "use client"
 
 import FadeDiv from "@/components/ui/FadeDiv"

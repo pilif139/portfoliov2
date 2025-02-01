@@ -6,6 +6,7 @@ import { SortableContent } from "./SortableContent"
 import CustomPointerSensor from "./CustomPointerSensor"
 import { useCreatePostContext } from "@/components/CreatePostContextProvider"
 import Content from "@/components/Content"
+import React from "react"
 
 export default function ContentsList() {
     const { contents, setContents } = useCreatePostContext()

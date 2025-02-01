@@ -1,7 +1,7 @@
 "use client"
 
 import { PostContentBlock } from "@/db/schema/posts"
-import { createContext, Dispatch, SetStateAction, useContext, useState } from "react"
+import React, { createContext, Dispatch, SetStateAction, useContext, useState } from "react"
 
 type CreatePostContextType = {
     contents: Partial<PostContentBlock>[]
