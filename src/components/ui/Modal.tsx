@@ -25,7 +25,7 @@ export default function Modal() {
                         initial={{ scale: 0.5, y: -100 }}
                         animate={{ scale: 1, y: 0 }}
                         exit={{ scale: 0.5 }}
-                        className="bg-nord-3 p-4 rounded-xl absolute m-auto z-52"
+                        className="bg-theme-3 p-4 rounded-xl absolute m-auto z-52"
                     >
                         {component}
                     </motion.div>

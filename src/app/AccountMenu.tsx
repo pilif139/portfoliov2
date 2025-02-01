@@ -4,7 +4,7 @@ import logout from "@/lib/auth/logoutAction"
 import DropdownMenu from "@/components/DropdownMenu"
 import { MdOutlineAccountCircle } from "react-icons/md"
 
-const menuElementClass = "block px-4 py-2 hover:bg-nord-4 hover:text-nord-10 transition duration-300 font-medium w-full flex"
+const menuElementClass = "block px-4 py-2 hover:bg-theme-4 hover:text-theme-10 transition duration-300 font-medium w-full flex"
 
 export default async function AccountMenu() {
     const { user, session } = await getCurrentSession()
@@ -23,7 +23,7 @@ export default async function AccountMenu() {
         return (
             <DropdownMenu button={<MdOutlineAccountCircle size={35} />}>
                 <p className="text-center p-2">{user.username}</p>
-                <hr className="bg-nord-6 h-2" />
+                <hr className="bg-theme-6 h-2" />
                 <Link href={"/profile"} className={menuElementClass}>
                     Profile
                 </Link>

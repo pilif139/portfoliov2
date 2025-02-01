@@ -20,11 +20,11 @@ export default async function ViewPostPage({ params }: ViewPostPageProps) {
 
     return (
         <FadeDiv className="flex flex-col gap-4 items-center">
-            <Heading variant="1" className="text-nord-9">
+            <Heading variant="1" className="text-theme-9">
                 {post.title}
             </Heading>
             <p>{post.description}</p>
-            <div className="flex gap-2 flex-col w-[35vw]">
+            <div className="flex gap-4 flex-col w-[50vw]">
                 {contents.map((content, index) => {
                     return <Content key={index} content={content} />
                 })}

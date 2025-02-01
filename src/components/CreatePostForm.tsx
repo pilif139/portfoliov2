@@ -36,8 +36,8 @@ export default function CreatePostForm({
     }
 
     return (
-        <form className="w-[20vw] max-h-[60vh] h-max bg-nord-0 rounded-xl p-4 flex flex-col gap-2">
-            <Heading variant="3" className="text-nord-14">
+        <form className="w-[20vw] max-h-[60vh] h-max bg-theme-0 rounded-xl p-4 flex flex-col gap-2">
+            <Heading variant="3" className="text-theme-14">
                 Post details
             </Heading>
             <Input

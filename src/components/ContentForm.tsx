@@ -100,7 +100,7 @@ export default function ContentForm() {
 
     return (
         <form className="flex gap-4 flex-col grow h-full max-h-[60vh] w-[20vw]" action={handleContentSubmit}>
-            <Heading variant="3" className="text-nord-9">
+            <Heading variant="3" className="text-theme-9">
                 Add content
             </Heading>
             <div className="flex items-center gap-2">
@@ -108,7 +108,7 @@ export default function ContentForm() {
                 <select
                     name="type"
                     id="type"
-                    className="p-2 rounded-lg bg-nord-3 text-nord-9 focus:bg-nord-2 w-max transition"
+                    className="p-2 rounded-lg bg-theme-3 text-theme-9 focus:bg-theme-2 w-max transition"
                     value={selectedContentType}
                     onChange={(e) => {
                         setSelectedContentType(e.target.value)

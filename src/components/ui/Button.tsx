@@ -13,10 +13,10 @@ type ButtonProps = {
 
 export default function Button({ children, type = "button", onClick, className, variant, disabled }: ButtonProps) {
     const variants = {
-        primary: "bg-nord-10 hover:bg-nord-9 text-2xl border-2 border-nord-10 py-3 px-7",
-        "primary-2": "bg-nord-14 hover:bg-nord-13 text-2xl border-2 border-nord-14 py-4 px-5",
-        secondary: "bg-nord-0 hover:bg-nord-1 border-2 border-white",
-        error: "bg-nord-11 hover:bg-nord-12",
+        primary: "bg-theme-10 hover:bg-theme-9 text-2xl border-2 border-theme-10 py-3 px-7",
+        "primary-2": "bg-theme-14 hover:bg-theme-13 text-2xl border-2 border-theme-14 py-4 px-5",
+        secondary: "bg-theme-0 hover:bg-theme-1 border-2 border-white",
+        error: "bg-theme-11 hover:bg-theme-12",
     }
     const variantStyle = variants[variant || "primary"]
 

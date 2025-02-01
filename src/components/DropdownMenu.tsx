@@ -36,7 +36,7 @@ export default function DropdownMenu({ button, children }: DropdownMenuProps) {
     return (
         <div ref={node}>
             <button
-                className="hover:text-nord-10 transition duration-300 cursor-pointer flex items-center"
+                className="hover:text-theme-10 transition duration-300 cursor-pointer flex items-center"
                 onClick={() => setIsOpen(!isOpen)}
             >
                 {button}
@@ -47,7 +47,7 @@ export default function DropdownMenu({ button, children }: DropdownMenuProps) {
                         initial={{ opacity: 0, y: -10 }}
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -10 }}
-                        className="absolute top-16 bg-nord-3 text-nord-5 right-0 mt-2 py-2 w-48 rounded-sm shadow-xl shadow-gray-950"
+                        className="absolute top-16 bg-theme-3 text-theme-5 right-0 mt-2 py-2 w-48 rounded-sm shadow-xl shadow-gray-950"
                     >
                         {children}
                     </motion.div>

@@ -16,5 +16,5 @@ export default function Heading({ children, className, variant = "2" }: HeadingP
         "7": "text-base",
     }
 
-    return <CustomTag className={`${textSize[variant]} font-bold text-nord-10 ${className}`}>{children}</CustomTag>
+    return <CustomTag className={`${textSize[variant]} font-bold text-theme-10 ${className}`}>{children}</CustomTag>
 }

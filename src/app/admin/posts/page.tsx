@@ -16,14 +16,14 @@ export default async function ViewPostsPage() {
 
     return (
         <div className="flex flex-col gap-4 items-center">
-            <Heading variant="1" className="text-nord-9">
+            <Heading variant="1" className="text-theme-9">
                 View your posts
             </Heading>
             <div className="flex gap-4 flex-wrap">
                 {posts.map((post) => (
                     <PostCard post={post} key={post.id} />
                 ))}
-                {posts.length === 0 && <p className="text-nord-4 text-xl">You have no posts</p>}
+                {posts.length === 0 && <p className="text-theme-4 text-xl">You have no posts</p>}
             </div>
         </div>
     )

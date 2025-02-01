@@ -25,7 +25,7 @@ export default function RootLayout({
     return (
         <html lang="en">
             <body
-                className={`${font.className} tracking-wide bg-nord-1 text-nord-5 text-lg flex grow flex-col min-h-screen font-medium max-w-full overflow-auto`}
+                className={`${font.className} tracking-wide bg-theme-1 text-theme-5 text-lg flex grow flex-col min-h-screen font-medium max-w-full overflow-auto`}
             >
                 <ReactQueryProvider>
                     <ModalContextProvider>

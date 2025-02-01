@@ -1,25 +1,25 @@
-@import 'tailwindcss';
+@import "tailwindcss";
 
 @theme {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+    --color-background: var(--background);
+    --color-foreground: var(--foreground);
 
-  --color-nord-0: #2e3440;
-  --color-nord-1: #3b4252;
-  --color-nord-2: #434c5e;
-  --color-nord-3: #4c566a;
-  --color-nord-4: #d8dee9;
-  --color-nord-5: #e5e9f0;
-  --color-nord-6: #eceff4;
-  --color-nord-7: #8fbcbb;
-  --color-nord-8: #88c0d0;
-  --color-nord-9: #81a1c1;
-  --color-nord-10: #5e81ac;
-  --color-nord-11: #bf616a;
-  --color-nord-12: #d08770;
-  --color-nord-13: #ebcb8b;
-  --color-nord-14: #a3be8c;
-  --color-nord-15: #b48ead;
+    --color-theme-0: #2e3440;
+    --color-theme-1: #3b4252;
+    --color-theme-2: #434c5e;
+    --color-theme-3: #4c566a;
+    --color-theme-4: #d8dee9;
+    --color-theme-5: #e5e9f0;
+    --color-theme-6: #eceff4;
+    --color-theme-7: #8fbcbb;
+    --color-theme-8: #88c0d0;
+    --color-theme-9: #81a1c1;
+    --color-theme-10: #5e81ac;
+    --color-theme-11: #bf616a;
+    --color-theme-12: #d08770;
+    --color-theme-13: #ebcb8b;
+    --color-theme-14: #a3be8c;
+    --color-theme-15: #b48ead;
 }
 
 /*
@@ -31,11 +31,11 @@
   color utility to any element that depends on these defaults.
 */
 @layer base {
-  *,
-  ::after,
-  ::before,
-  ::backdrop,
-  ::file-selector-button {
-    border-color: var(--color-gray-200, currentColor);
-  }
+    *,
+    ::after,
+    ::before,
+    ::backdrop,
+    ::file-selector-button {
+        border-color: var(--color-gray-200, currentColor);
+    }
 }

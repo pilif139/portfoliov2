@@ -14,14 +14,14 @@ const Input = forwardRef(({ className, label, id, onChange, errors, ...props }: 
     return (
         <>
             {label && (
-                <label htmlFor={id} className={`transition ${errors && errors.length > 0 ? "text-nord-11" : ""}`}>
+                <label htmlFor={id} className={`transition ${errors && errors.length > 0 ? "text-theme-11" : ""}`}>
                     {label}
                 </label>
             )}
             <input
                 className={clsx(
-                    `w-full p-2 rounded-lg transition outline-hidden bg-nord-3 text-nord-9 focus:bg-nord-2 file:bg-nord-1 file:text-white file:rounded-xl file:border-none file:px-6 file:py-1 file:transition file:outline-hidden file:focus:bg-nord-0 file:hover:bg-nord-0 file:cursor-pointer file:mr-4`,
-                    errors && errors.length > 0 ? "border-4 border-nord-11" : "",
+                    `w-full p-2 rounded-lg transition outline-hidden bg-theme-3 text-theme-9 focus:bg-theme-2 file:bg-theme-1 file:text-white file:rounded-xl file:border-none file:px-6 file:py-1 file:transition file:outline-hidden file:focus:bg-theme-0 file:hover:bg-theme-0 file:cursor-pointer file:mr-4`,
+                    errors && errors.length > 0 ? "border-4 border-theme-11" : "",
                     className
                 )}
                 ref={ref}

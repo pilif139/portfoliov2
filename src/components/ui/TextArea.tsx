@@ -17,13 +17,13 @@ export default function TextArea({ className, label, id, onChange, errors, ...pr
     return (
         <>
             {label && (
-                <label htmlFor={id} className={`transition ${errors && errors.length > 0 ? "text-nord-11" : ""}`}>
+                <label htmlFor={id} className={`transition ${errors && errors.length > 0 ? "text-theme-11" : ""}`}>
                     {label}
                 </label>
             )}
             <textarea
                 id={id}
-                className={`w-full p-2 rounded-xl transition outline-hidden bg-nord-3 text-nord-9 focus:bg-nord-2 min-h-max ${errors && errors.length > 0 ? "border-4 border-nord-11" : ""} ${className}`}
+                className={`w-full p-2 rounded-xl transition outline-hidden bg-theme-3 text-theme-9 focus:bg-theme-2 min-h-max ${errors && errors.length > 0 ? "border-4 border-theme-11" : ""} ${className}`}
                 onChange={onChange}
                 {...props}
             />

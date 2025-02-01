@@ -21,7 +21,7 @@ export default function FormError({ errors }: { errors: string[] | string | null
                         animate={{ opacity: 1 }}
                         transition={{ delay: index * 0.1, duration: 0.3 }}
                         exit={{ opacity: 0 }}
-                        className="text-nord-11"
+                        className="text-theme-11"
                     >
                         {error}
                     </motion.li>

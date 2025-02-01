@@ -71,7 +71,7 @@ export default function Login() {
                 />
                 <p className="text-xl mb-2">
                     You don&apos;have an account?{" "}
-                    <Link href={"/register"} className="text-nord-10">
+                    <Link href={"/register"} className="text-theme-10">
                         Sign up
                     </Link>
                 </p>

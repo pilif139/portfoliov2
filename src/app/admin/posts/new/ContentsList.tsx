@@ -65,7 +65,7 @@ export default function ContentsList() {
 
 function DeleteButton({ onClick }: { onClick: (e: React.MouseEvent<HTMLButtonElement>) => void }) {
     return (
-        <button onClick={onClick} className="p-2 text-white bg-nord-11 hover:bg-red-400 duration-300 transition-colors rounded-lg h-fit">
+        <button onClick={onClick} className="p-2 text-white bg-theme-11 hover:bg-red-400 duration-300 transition-colors rounded-lg h-fit">
             X
         </button>
     )

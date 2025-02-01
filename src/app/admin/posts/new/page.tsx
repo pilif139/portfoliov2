@@ -53,7 +53,7 @@ export default function NewPostPage() {
 
     return (
         <FadeDiv className="w-full min-h-[75vh] flex flex-col items-center mx-0">
-            <Heading variant="2" className="text-nord-9">
+            <Heading variant="2" className="text-theme-9">
                 Create new post
             </Heading>
             <div className="flex gap-4 w-full py-4 justify-between">
@@ -61,7 +61,7 @@ export default function NewPostPage() {
                 <article className="w-[50%] flex flex-col px-8">
                     <ContentsList />
                 </article>
-                <aside className="w-max h-fit bg-nord-0 rounded-xl p-4">
+                <aside className="w-max h-fit bg-theme-0 rounded-xl p-4">
                     <ContentForm />
                 </aside>
             </div>

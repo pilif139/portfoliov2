@@ -90,7 +90,7 @@ export default function Register() {
                 />
                 <p className="text-xl mb-2">
                     Already have an account?{" "}
-                    <Link href={"/login"} className="text-nord-10">
+                    <Link href={"/login"} className="text-theme-10">
                         Login
                     </Link>
                 </p>
