@@ -1,5 +1,3 @@
-// noinspection Annotator
-
 "use client"
 
 import FadeDiv from "@/components/ui/FadeDiv"
@@ -31,8 +29,8 @@ export default function Login() {
         await queryClient.invalidateQueries({ queryKey: ["session"] }) // Invalidate session query works on the cache of react query if some page is fetching the session from the api and not the db
         const formData = new FormData(e.target as HTMLFormElement)
         action(formData)
-        setEmailErrors([...(state?.errors?.email || [])])
-        setPasswordErrors([...(state?.errors?.password || [])])
+        setEmailErrors(state?.errors?.email ? [...state?.errors?.email] : null)
+        setPasswordErrors(state?.errors?.password ? [...state?.errors?.password] : null)
     }
 
     return (

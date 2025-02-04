@@ -1,5 +1,3 @@
-// noinspection Annotator
-
 "use client"
 
 import React, { useState } from "react"
@@ -33,9 +31,9 @@ export default function Register() {
         await queryClient.invalidateQueries({ queryKey: ["session"] })
         const formData = new FormData(e.target as HTMLFormElement)
         action(formData)
-        setUsernameErrors([...(state?.errors?.username || [])])
-        setEmailErrors([...(state?.errors?.email || [])])
-        setPasswordErrors([...(state?.errors?.password || [])])
+        setUsernameErrors(state?.errors?.username ? [...state?.errors?.username] : null);
+        setEmailErrors(state?.errors?.email ? [...state?.errors?.email] : null);
+        setPasswordErrors(state?.errors?.password ? [...state?.errors?.password] : null);
     }
 
     return (
