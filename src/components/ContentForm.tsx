@@ -91,7 +91,7 @@ export default function ContentForm() {
                     }}
                 >
                     {contentType.enumValues.map((type, id) => (
-                        <option key={id} value={type}>
+                        <option key={id} value={type} className="hover:bg-theme-2">
                             {type}
                         </option>
                     ))}

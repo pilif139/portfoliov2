@@ -14,7 +14,7 @@ const Input = forwardRef(({ className, label, id, onChange, errors, ...props }: 
     return (
         <>
             {label && (
-                <label htmlFor={id} className={`transition ${errors && errors.length > 0 ? "text-theme-11" : ""}`}>
+                <label htmlFor={label || id} className={`transition ${errors && errors.length > 0 ? "text-theme-11" : ""}`}>
                     {label}
                 </label>
             )}
@@ -26,7 +26,7 @@ const Input = forwardRef(({ className, label, id, onChange, errors, ...props }: 
                 )}
                 ref={ref}
                 onChange={onChange}
-                id={id}
+                id={label || id}
                 {...props}
             />
             <FormError errors={errors} />

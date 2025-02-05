@@ -1,0 +1,115 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ContentForm renders without errors and match snapshot 1`] = `
+<div>
+  <form
+    class="flex gap-4 flex-col grow h-full max-h-[60vh] w-[20vw]"
+  >
+    <h3
+      class="text-3xl font-bold text-theme-10 text-theme-9"
+    >
+      Add content
+    </h3>
+    <div
+      class="flex items-center gap-2"
+    >
+      <label
+        for="type"
+      >
+        Type
+      </label>
+      <select
+        class="p-2 rounded-lg bg-theme-3 text-theme-9 focus:bg-theme-2 w-max transition"
+        id="type"
+        name="type"
+      >
+        <option
+          class="hover:bg-theme-2"
+          value="p"
+        >
+          p
+        </option>
+        <option
+          class="hover:bg-theme-2"
+          value="h1"
+        >
+          h1
+        </option>
+        <option
+          class="hover:bg-theme-2"
+          value="h2"
+        >
+          h2
+        </option>
+        <option
+          class="hover:bg-theme-2"
+          value="h3"
+        >
+          h3
+        </option>
+        <option
+          class="hover:bg-theme-2"
+          value="h4"
+        >
+          h4
+        </option>
+        <option
+          class="hover:bg-theme-2"
+          value="image"
+        >
+          image
+        </option>
+        <option
+          class="hover:bg-theme-2"
+          value="video"
+        >
+          video
+        </option>
+        <option
+          class="hover:bg-theme-2"
+          value="file"
+        >
+          file
+        </option>
+        <option
+          class="hover:bg-theme-2"
+          value="link"
+        >
+          link
+        </option>
+        <option
+          class="hover:bg-theme-2"
+          value="tag"
+        >
+          tag
+        </option>
+      </select>
+    </div>
+    <div
+      class="flex gap-2 flex-col max-h-max"
+    >
+      <label
+        class="transition "
+        for="Text"
+      >
+        Text
+      </label>
+      <textarea
+        class="w-full p-2 rounded-xl transition outline-hidden bg-theme-3 text-theme-9 focus:bg-theme-2 min-h-max  max-h-[30vh]"
+        id="Text"
+        name="content"
+      />
+      <ul
+        class="list-disc ml-5"
+      />
+    </div>
+    <button
+      class="bg-theme-10 hover:bg-theme-9 text-2xl border-2 border-theme-10 py-3 px-7 self-end mt-auto cursor-pointer text-white font-bold py-2 px-4 rounded-lg transition duration-300 w-fit 
+     "
+      type="submit"
+    >
+      Add content
+    </button>
+  </form>
+</div>
+`;
