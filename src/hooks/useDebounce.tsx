@@ -1,8 +1,15 @@
+"use client";
+
+import { useRef } from 'react'
+
 export default function useDebounce() {
-    let debounce: Timer
+    const debouncedRef = useRef<Timer | null>(null)
     const debounced = (callback: () => void, timeout: number = 0) => {
-        clearTimeout(debounce)
-        debounce = setTimeout(() => {
+        if (debouncedRef.current) {
+            clearTimeout(debouncedRef.current)
+        }
+
+        debouncedRef.current = setTimeout(() => {
             callback()
         }, timeout)
     }
