@@ -1,25 +1,25 @@
 @import "tailwindcss";
 
+/* gruvbox theme */
 @theme {
-    --color-background: var(--background);
-    --color-foreground: var(--foreground);
+    --color-background: #1d2021; /* Dark Gray background */
+    --color-foreground: #fbf1c7; /* Light Gray foreground */
 
-    --color-theme-0: #2e3440;
-    --color-theme-1: #3b4252;
-    --color-theme-2: #434c5e;
-    --color-theme-3: #4c566a;
-    --color-theme-4: #d8dee9;
-    --color-theme-5: #e5e9f0;
-    --color-theme-6: #eceff4;
-    --color-theme-7: #8fbcbb;
-    --color-theme-8: #88c0d0;
-    --color-theme-9: #81a1c1;
-    --color-theme-10: #5e81ac;
-    --color-theme-11: #bf616a;
-    --color-theme-12: #d08770;
-    --color-theme-13: #ebcb8b;
-    --color-theme-14: #a3be8c;
-    --color-theme-15: #b48ead;
+    --color-theme-0: #1d2021;
+    --color-theme-1: #282828;
+    --color-theme-2: #3c3836;
+    --color-theme-3: #665c54;
+    --color-theme-4: #7c6f64;
+    --color-theme-5: #ebdbb2;
+    --color-theme-6: #fbf1c7;
+    --color-theme-7: #83a598;
+    --color-theme-8: #458588;
+    --color-theme-9: #fabd2f;
+    --color-theme-10: #d79921;
+    --color-theme-11: #fb4934;
+    --color-theme-12: #d65d0e;
+    --color-theme-13: #d3869b;
+    --color-theme-14: #b16286;
 }
 
 /*

@@ -1,11 +1,11 @@
 "use client"
 
-import React, { useState } from "react"
+import React, { useActionState, useState } from "react"
 import register from "@/server/auth/register"
 import Link from "next/link"
 import Heading from "@/components/ui/Heading"
 import FadeDiv from "@/components/ui/FadeDiv"
-import { useFormState, useFormStatus } from "react-dom"
+import { useFormStatus } from "react-dom"
 import { useQueryClient } from "@tanstack/react-query"
 import Input from "@/components/ui/Input"
 import { RegisterSchema } from "@/server/auth/registerTypes"
@@ -14,7 +14,7 @@ import useValidate from "@/hooks/useValidate"
 import useDebounce from "@/hooks/useDebounce"
 
 export default function Register() {
-    const [state, action] = useFormState(register, undefined)
+    const [state, action] = useActionState(register, undefined)
     const [username, setUsername] = useState("")
     const [usernameErrors, setUsernameErrors, validateUsername] = useValidate(RegisterSchema.shape.username, username)
     const [email, setEmail] = useState("")

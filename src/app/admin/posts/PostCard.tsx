@@ -64,10 +64,10 @@ const DeleteModal = ({ onClick }: { onClick: () => void }) => {
             <Heading variant="2">Are you sure you want to delete this post?</Heading>
             <p>This will permamently delete all the data, images and all information about this post.</p>
             <div className="flex gap-4">
-                <Button variant="secondary" className="bg-theme-14 hover:bg-green-500 text-xl" onClick={onClick}>
+                <Button variant="secondary" className="bg-theme-8 hover:bg-theme-7 text-xl" onClick={onClick}>
                     Yes
                 </Button>
-                <Button variant="secondary" className="bg-theme-11 hover:bg-red-400 text-xl" onClick={() => closeModal()}>
+                <Button variant="secondary" className="bg-theme-11 hover:bg-theme-12 text-xl" onClick={() => closeModal()}>
                     No
                 </Button>
             </div>

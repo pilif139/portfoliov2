@@ -1,5 +1,3 @@
-// noinspection Annotator
-
 import Button from "@/components/ui/Button"
 import FadeDiv from "@/components/ui/FadeDiv"
 import Heading from "@/components/ui/Heading"

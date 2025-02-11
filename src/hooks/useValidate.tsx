@@ -1,3 +1,5 @@
+"use client"
+
 import { ZodSchema } from "zod"
 import { useState } from "react"
 

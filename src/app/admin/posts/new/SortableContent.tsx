@@ -17,13 +17,12 @@ export function SortableContent({ id, children }: { id: number; children: React.
         transform: CSS.Transform.toString(modifiedTransform as Transform),
         transition: transition,
         opacity: isDragging ? 0.8 : 1,
-        backgroundColor: isDragging ? "#2e3440" : "#3b4252",
         boxShadow: isDragging ? "0 4px 8px rgba(0, 0, 0, 0.2)" : "0 2px 4px rgba(0, 0, 0, 0.1)",
         cursor: isDragging ? "grabbing" : "grab",
     }
 
     return (
-        <div ref={setNodeRef} style={style} {...attributes} {...listeners} className="rounded-lg p-2 flex justify-between">
+        <div ref={setNodeRef} style={style} {...attributes} {...listeners} className={`rounded-lg p-2 flex justify-between ${isDragging ? "bg-theme-0" : "bg-theme-2"}`}>
             {children}
         </div>
     )

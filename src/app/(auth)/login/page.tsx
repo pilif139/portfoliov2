@@ -3,8 +3,8 @@
 import FadeDiv from "@/components/ui/FadeDiv"
 import Heading from "@/components/ui/Heading"
 import Link from "next/link"
-import React, { useState } from "react"
-import { useFormState, useFormStatus } from "react-dom"
+import React, { useActionState, useState } from "react"
+import { useFormStatus } from "react-dom"
 import login from "@/server/auth/login"
 import { useQueryClient } from "@tanstack/react-query"
 import { LoginSchema } from "@/server/auth/loginTypes"
@@ -14,7 +14,7 @@ import useValidate from "@/hooks/useValidate"
 import useDebounce from "@/hooks/useDebounce"
 
 export default function Login() {
-    const [state, action] = useFormState(login, undefined)
+    const [state, action] = useActionState(login, undefined)
     const [email, setEmail] = useState("")
     const [emailErrors, setEmailErrors, validateEmail] = useValidate(LoginSchema.shape.email, email)
     const [password, setPassword] = useState("")

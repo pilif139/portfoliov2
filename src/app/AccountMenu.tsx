@@ -1,10 +1,10 @@
 import { getCurrentSession } from "@/lib/auth/session"
 import Link from "next/link"
-import logout from "@/lib/auth/logoutAction"
+import logout from "@/server/auth/logoutAction"
 import DropdownMenu from "@/components/DropdownMenu"
 import { MdOutlineAccountCircle } from "react-icons/md"
 
-const menuElementClass = "block px-4 py-2 hover:bg-theme-4 hover:text-theme-10 transition duration-300 font-medium w-full flex"
+const menuElementClass = "block px-4 py-2 hover:bg-theme-4 hover:text-theme-10 transition duration-300 font-medium w-full flex cursor-pointer"
 
 export default async function AccountMenu() {
     const { user, session } = await getCurrentSession()
@@ -20,7 +20,6 @@ export default async function AccountMenu() {
             </DropdownMenu>
         )
     } else {
-        // noinspection Annotator
         return (
             <DropdownMenu button={<MdOutlineAccountCircle size={35} />}>
                 <p className="text-center p-2">{user.username}</p>

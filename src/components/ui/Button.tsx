@@ -1,5 +1,6 @@
 "use client"
 
+import clsx from "clsx"
 import React, { MouseEvent } from "react"
 
 type ButtonProps = {
@@ -13,9 +14,9 @@ type ButtonProps = {
 
 export default function Button({ children, type = "button", onClick, className, variant, disabled }: ButtonProps) {
     const variants = {
-        primary: "bg-theme-10 hover:bg-theme-9 text-2xl border-2 border-theme-10 py-3 px-7",
-        "primary-2": "bg-theme-14 hover:bg-theme-13 text-2xl border-2 border-theme-14 py-4 px-5",
-        secondary: "bg-theme-0 hover:bg-theme-1 border-2 border-white",
+        primary: "bg-theme-10 hover:bg-theme-9 text-xl border-2 border-theme-10 py-3 px-5",
+        "primary-2": "bg-theme-14 hover:bg-theme-13 text-xl border-2 border-theme-14 py-3 px-4",
+        secondary: "border-2 border-white",
         error: "bg-theme-11 hover:bg-theme-12",
     }
     const variantStyle = variants[variant || "primary"]
@@ -23,8 +24,10 @@ export default function Button({ children, type = "button", onClick, className, 
     return (
         <button
             type={type}
-            className={`${variantStyle} ${className} cursor-pointer text-white font-bold py-2 px-4 rounded-lg transition duration-300 w-fit ${disabled ? "opacity-50" : ""}
-     `}
+            className={clsx(`cursor-pointer text-white font-bold py-2 px-4 rounded-lg transition duration-300 w-fit ${disabled ? "opacity-50" : ""}`,
+                className,
+                variantStyle,
+            )}
             aria-disabled={disabled}
             disabled={disabled}
             onClick={onClick}

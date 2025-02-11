@@ -7,6 +7,7 @@ import CustomPointerSensor from "./CustomPointerSensor"
 import { useCreatePostContext } from "@/components/CreatePostContextProvider"
 import Content from "@/components/Content"
 import React from "react"
+import Button from "@/components/ui/Button"
 
 export default function ContentsList() {
     const { contents, setContents } = useCreatePostContext()
@@ -30,7 +31,7 @@ export default function ContentsList() {
     return (
         <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
             <SortableContext items={contents.map(({ position }) => position as number)} strategy={verticalListSortingStrategy}>
-                <div className="space-y-4">
+                <div className="space-y-4 w-full">
                     {contents.map((content) => {
                         const position = content.position as number
                         return (
@@ -66,8 +67,8 @@ export default function ContentsList() {
 
 function DeleteButton({ onClick }: { onClick: (e: React.MouseEvent<HTMLButtonElement>) => void }) {
     return (
-        <button onClick={onClick} className="p-2 text-white bg-theme-11 hover:bg-red-400 duration-300 transition-colors rounded-lg h-fit">
+        <Button onClick={onClick} variant="secondary" className="text-white bg-theme-11 hover:bg-red-400 border-none duration-300 transition-colors rounded-lg h-fit">
             X
-        </button>
+        </Button>
     )
 }

@@ -72,7 +72,7 @@ export default function ContentForm() {
     }
 
     return (
-        <form className="flex gap-4 flex-col grow h-full max-h-[60vh] w-[20vw]" onSubmit={handleContentSubmit}>
+        <form className="flex gap-2 flex-col grow max-h-[60vh] h-fit bg-theme-0 rounded-xl p-4 sticky top-25" onSubmit={handleContentSubmit}>
             <Heading variant="3" className="text-theme-9">
                 Add content
             </Heading>
@@ -123,7 +123,7 @@ export default function ContentForm() {
                     />
                 )}
             </div>
-            <Button type="submit" className="self-end mt-auto">
+            <Button type="submit" className="self-end">
                 Add content
             </Button>
         </form>
