@@ -1,11 +1,10 @@
 "use client"
 
-import React, { useActionState, useState } from "react"
+import React, { startTransition, useActionState, useState } from "react"
 import register from "@/server/auth/register"
 import Link from "next/link"
 import Heading from "@/components/ui/Heading"
 import FadeDiv from "@/components/ui/FadeDiv"
-import { useFormStatus } from "react-dom"
 import { useQueryClient } from "@tanstack/react-query"
 import Input from "@/components/ui/Input"
 import { RegisterSchema } from "@/server/auth/registerTypes"
@@ -14,7 +13,7 @@ import useValidate from "@/hooks/useValidate"
 import useDebounce from "@/hooks/useDebounce"
 
 export default function Register() {
-    const [state, action] = useActionState(register, undefined)
+    const [state, action, pending] = useActionState(register, undefined)
     const [username, setUsername] = useState("")
     const [usernameErrors, setUsernameErrors, validateUsername] = useValidate(RegisterSchema.shape.username, username)
     const [email, setEmail] = useState("")
@@ -30,7 +29,9 @@ export default function Register() {
         if (usernameErrors || emailErrors || passwordErrors) return
         await queryClient.invalidateQueries({ queryKey: ["session"] })
         const formData = new FormData(e.target as HTMLFormElement)
-        action(formData)
+        startTransition(() => {
+            action(formData)
+        })
         setUsernameErrors(state?.errors?.username ? [...state?.errors?.username] : null);
         setEmailErrors(state?.errors?.email ? [...state?.errors?.email] : null);
         setPasswordErrors(state?.errors?.password ? [...state?.errors?.password] : null);
@@ -94,14 +95,13 @@ export default function Register() {
                         Login
                     </Link>
                 </p>
-                <RegisterButton />
+                <RegisterButton pending={pending} />
             </form>
         </FadeDiv>
     )
 }
 
-function RegisterButton() {
-    const { pending } = useFormStatus()
+function RegisterButton({ pending }: { pending: boolean }) {
     return (
         <Button type="submit" disabled={pending} variant="primary">
             {pending ? "loading..." : "Register"}

@@ -3,7 +3,7 @@
 exports[`ContentForm renders without errors and match snapshot 1`] = `
 <div>
   <form
-    class="flex gap-4 flex-col grow h-full max-h-[60vh] w-[20vw]"
+    class="flex gap-2 flex-col grow max-h-[60vh] h-fit bg-theme-0 rounded-xl p-4 sticky top-25"
   >
     <h3
       class="text-3xl font-bold text-theme-10 text-theme-9"
@@ -104,8 +104,7 @@ exports[`ContentForm renders without errors and match snapshot 1`] = `
       />
     </div>
     <button
-      class="bg-theme-10 hover:bg-theme-9 text-2xl border-2 border-theme-10 py-3 px-7 self-end mt-auto cursor-pointer text-white font-bold py-2 px-4 rounded-lg transition duration-300 w-fit 
-     "
+      class="cursor-pointer text-white font-bold py-2 px-4 rounded-lg transition duration-300 w-fit  self-end bg-theme-10 hover:bg-theme-9 text-xl border-2 border-theme-10 py-3 px-5"
       type="submit"
     >
       Add content

@@ -3,8 +3,7 @@
 import FadeDiv from "@/components/ui/FadeDiv"
 import Heading from "@/components/ui/Heading"
 import Link from "next/link"
-import React, { useActionState, useState } from "react"
-import { useFormStatus } from "react-dom"
+import React, { startTransition, useActionState, useState } from "react"
 import login from "@/server/auth/login"
 import { useQueryClient } from "@tanstack/react-query"
 import { LoginSchema } from "@/server/auth/loginTypes"
@@ -14,7 +13,7 @@ import useValidate from "@/hooks/useValidate"
 import useDebounce from "@/hooks/useDebounce"
 
 export default function Login() {
-    const [state, action] = useActionState(login, undefined)
+    const [state, action, pending] = useActionState(login, undefined)
     const [email, setEmail] = useState("")
     const [emailErrors, setEmailErrors, validateEmail] = useValidate(LoginSchema.shape.email, email)
     const [password, setPassword] = useState("")
@@ -28,7 +27,9 @@ export default function Login() {
         if (emailErrors || passwordErrors) return
         await queryClient.invalidateQueries({ queryKey: ["session"] }) // Invalidate session query works on the cache of react query if some page is fetching the session from the api and not the db
         const formData = new FormData(e.target as HTMLFormElement)
-        action(formData)
+        startTransition(() => {
+            action(formData)
+        });
         setEmailErrors(state?.errors?.email ? [...state?.errors?.email] : null)
         setPasswordErrors(state?.errors?.password ? [...state?.errors?.password] : null)
     }
@@ -75,15 +76,13 @@ export default function Login() {
                         Sign up
                     </Link>
                 </p>
-                <LoginButton />
+                <LoginButton pending={pending} />
             </form>
         </FadeDiv>
     )
 }
 
-function LoginButton() {
-    const { pending } = useFormStatus()
-
+function LoginButton({ pending }: { pending: boolean }) {
     return (
         <Button type="submit" disabled={pending} variant="primary">
             {pending ? "loading..." : "Login"}
