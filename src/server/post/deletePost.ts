@@ -5,8 +5,16 @@ import { post_content_blocksTable, postsTable } from "@/db/schema/posts"
 import { del } from "@vercel/blob"
 import { eq, or } from "drizzle-orm"
 import { revalidatePath } from "next/cache"
+import { getCurrentSession } from "@/lib/auth/session"
 
 export default async function deletePost(postId: number) {
+    const { user, session } = await getCurrentSession()
+    if (!user || !session || user.role !== "admin") {
+        return {
+            error: "Current user either isn't logged in or doesn't have the required permissions",
+        }
+    }
+
     await db.transaction(async (tx) => {
         const [post] = await tx.select().from(postsTable).where(eq(postsTable.id, postId)).execute()
         if (!post) {
