@@ -3,23 +3,13 @@
 import { postsTable } from "@/db/schema/posts"
 import db from "@/db/db"
 import { getCurrentSession } from "@/lib/auth/session"
-import { z } from "zod"
 import { eq } from "drizzle-orm"
-
-const titleSchema = z.string().min(3, "Title must be atleast 3 characters long").max(150, "Title must be at most 150 characters long")
-const descriptionSchema = z
-    .string()
-    .min(7, "Description must be atleast 7 characters long")
-    .max(250, "Description must be at most 250 characters long")
+import { descriptionSchema, titleSchema } from "@/server/post/postTypes"
 
 export default async function createPost(title: string, description: string) {
     const { user, session } = await getCurrentSession()
     if (!user || !session || user.role !== "admin") {
-        return {
-            errors: {
-                user: "Current user either isn't logged in or doesn't have the required permissions",
-            },
-        }
+        throw new Error("You don't have the required permissions to create a post")
     }
 
     const titleParse = titleSchema.safeParse(title)
