@@ -1,10 +1,7 @@
 import FadeDiv from "@/components/ui/FadeDiv"
 import Heading from "@/components/ui/Heading"
-import db from "@/db/db"
-import { post_content_blocksTable, postsTable } from "@/db/schema/posts"
-import { eq } from "drizzle-orm"
-import { notFound } from "next/navigation"
 import Content from "@/components/Content"
+import fetchPost from "@/server/post/fetchPost"
 
 type ViewPostPageProps = {
     params: Promise<{ id: number }>
@@ -12,11 +9,7 @@ type ViewPostPageProps = {
 
 export default async function ViewPostPage({ params }: ViewPostPageProps) {
     const id = (await params).id
-    const [post] = await db.select().from(postsTable).where(eq(postsTable.id, id)).execute()
-    if (!post) {
-        notFound()
-    }
-    const contents = await db.select().from(post_content_blocksTable).where(eq(post_content_blocksTable.post_id, id)).execute()
+    const { post, contents } = await fetchPost(id)
 
     return (
         <FadeDiv className="flex flex-col gap-4 items-center">

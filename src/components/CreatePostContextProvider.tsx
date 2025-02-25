@@ -9,15 +9,19 @@ type CreatePostContextType = {
     title: string
     setTitle: Dispatch<SetStateAction<string>>
     description: string
-    setDescription: Dispatch<SetStateAction<string>>
+    setDescription: Dispatch<SetStateAction<string>>,
 }
 
 export const CreatePostContext = createContext<CreatePostContextType | null>(null)
 
-export default function CreatePostContextProvider({ children }: { children: React.ReactNode }) {
-    const [title, setTitle] = useState<string>("")
-    const [description, setDescription] = useState<string>("")
-    const [contents, setContents] = useState<Partial<PostContentBlock>[]>([])
+export default function CreatePostContextProvider({ children, value = {
+    initialTitle: "",
+    initialDescription: "",
+    initialContents: [],
+} }: { children: React.ReactNode, value?: { initialTitle: string, initialDescription: string, initialContents: Partial<PostContentBlock>[] } }) {
+    const [title, setTitle] = useState<string>(value.initialTitle)
+    const [description, setDescription] = useState<string>(value.initialDescription)
+    const [contents, setContents] = useState<Partial<PostContentBlock>[]>(value.initialContents)
 
     return (
         <CreatePostContext.Provider
