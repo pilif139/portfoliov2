@@ -8,3 +8,5 @@ export const descriptionSchema = z
     .string()
     .min(7, "Description must be atleast 7 characters long")
     .max(250, "Description must be at most 250 characters long")
+
+export type contentType = "file" | "image" | "video" | "p" | "link" | "h1" | "h2" | "h3" | "h4" | "tag"

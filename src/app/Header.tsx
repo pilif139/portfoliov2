@@ -6,7 +6,7 @@ export default function Header() {
         { name: "Home", href: "/" },
         { name: "Projects", href: "/projects" },
         { name: "About", href: "/about" },
-        { name: "Blog", href: "/blog" },
+        { name: "Posts", href: "/posts" },
         { name: "Contact", href: "/contact" },
     ]
 

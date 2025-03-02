@@ -1,7 +1,11 @@
 import { render, screen } from "@testing-library/react"
 import Content from "./Content"
 
-jest.mock("next/image", () => ({ src, alt }: { src: string; alt: string }) => <img src={src} alt={alt} />)
+// Mocking next/image with named function, (it need to be named function bcs linter will throw error of not named component)
+function imageMock({ src, alt }: { src: string; alt: string }) {
+    return <img src={src} alt={alt} />
+}
+jest.mock("next/image", () => imageMock)
 
 describe("Content component", () => {
     it("should render h1", () => {

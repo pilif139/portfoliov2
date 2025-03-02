@@ -13,6 +13,9 @@ export type FileContent = {
     content: File
 }
 
+/**
+ * @deprecated it works but it's not used in the project
+ * */
 export default async function submitFileToVercelStorage(formData: FormData) {
     const file = formData.get("file") as File
     const post_id = parseInt(formData.get("post_id") as string)

@@ -42,7 +42,7 @@ export default function CreatePostForm() {
             formData.append("content", content.content)
             await addContentToPost(post_id, formData)
         }
-        router.push(`/admin/posts/${post_id}`)
+        router.push(`/posts/${post_id}`)
     }
 
     return (

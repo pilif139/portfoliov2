@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="c5ddcfd9-0b66-48b1-a776-08909b800ef5" name="Changes" comment="edit post form and server actions">
+      <change afterPath="$PROJECT_DIR$/src/app/admin/posts/(customizable)/edit/[id]/getChangedContents.test.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/posts/page.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/projects/getGithubFile.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/projects/getGithubRepos.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/projects/page.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Card.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/Header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/Header.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/admin/posts/(customizable)/edit/[id]/EditPostForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/admin/posts/(customizable)/edit/[id]/EditPostForm.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/admin/posts/PostCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/admin/posts/PostCard.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/admin/posts/[id]/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/posts/[id]/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Content.test.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Content.test.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/server/post/submitFileToVercelStorage.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/post/submitFileToVercelStorage.ts" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 8
+}</component>
+  <component name="ProjectId" id="2sOvXDTIa3tZg5rrcgoGqZMhdfu" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Jest.getChangedContents test.returns contents that didnt change but are of type image, file or video.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs.jest.jest_package": "C:/Users/User/Desktop/programming/webdev/portfoliov2/node_modules/jest",
+    "nodejs_package_manager_path": "npm",
+    "prettierjs.PrettierConfiguration.Package": "C:\\Users\\User\\Desktop\\programming\\webdev\\portfoliov2\\node_modules\\prettier",
+    "run.code.analysis.last.selected.profile": "pProject Default",
+    "settings.editor.selected.configurable": "preferences.lookFeel",
+    "ts.external.directory.path": "C:\\Users\\User\\Desktop\\programming\\webdev\\portfoliov2\\node_modules\\typescript\\lib",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\User\Desktop\programming\webdev\portfoliov2\src\app\posts" />
+      <recent name="C:\Users\User\Desktop\programming\webdev\portfoliov2\src\app\admin\posts" />
+      <recent name="C:\Users\User\Desktop\programming\webdev\portfoliov2\src\app\admin\posts\(customizable)" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="getChangedContents test.returns contents that didnt change but are of type image, file or video" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <jest-package value="$PROJECT_DIR$/node_modules/jest" />
+      <working-dir value="$PROJECT_DIR$" />
+      <envs />
+      <scope-kind value="TEST" />
+      <test-file value="$PROJECT_DIR$/src/app/admin/posts/(customizable)/edit/[id]/getChangedContents.test.ts" />
+      <test-names>
+        <test-name value="getChangedContents test" />
+        <test-name value="returns contents that didnt change but are of type image, file or video" />
+      </test-names>
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Jest.getChangedContents test.returns contents that didnt change but are of type image, file or video" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-WS-242.23726.96" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task id="LOCAL-00001" summary="navigation component">
+      <option name="closed" value="true" />
+      <created>1738283648152</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1738283648152</updated>
+    </task>
+    <task id="LOCAL-00002" summary="tailwind migration from v3 to v4">
+      <option name="closed" value="true" />
+      <created>1738283983834</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1738283983834</updated>
+    </task>
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="c5ddcfd9-0b66-48b1-a776-08909b800ef5" name="Changes" comment="tailwind migration from v3 to v4" />
+      <created>1738339477697</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1738339477697</updated>
+      <workItem from="1738339479304" duration="421000" />
+      <workItem from="1738370417604" duration="270000" />
+      <workItem from="1738370704399" duration="137000" />
+      <workItem from="1738370852825" duration="110000" />
+      <workItem from="1738420185680" duration="364000" />
+      <workItem from="1738420569978" duration="7259000" />
+      <workItem from="1738690878106" duration="2187000" />
+      <workItem from="1738961954967" duration="3000" />
+      <workItem from="1740501282840" duration="611000" />
+      <workItem from="1740501913948" duration="224000" />
+      <workItem from="1740502150266" duration="4004000" />
+      <workItem from="1740506288441" duration="2981000" />
+      <workItem from="1740582321468" duration="3571000" />
+      <workItem from="1740672905771" duration="1160000" />
+      <workItem from="1740698482754" duration="669000" />
+      <workItem from="1740752675634" duration="5336000" />
+    </task>
+    <task id="LOCAL-00003" summary="changed --color-nord property to --color-theme">
+      <option name="closed" value="true" />
+      <created>1738420751904</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1738420751904</updated>
+    </task>
+    <task id="LOCAL-00004" summary="added jest tests">
+      <option name="closed" value="true" />
+      <created>1738423505031</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1738423505031</updated>
+    </task>
+    <task id="LOCAL-00005" summary="changed wrong type of debounce">
+      <option name="closed" value="true" />
+      <created>1738423540577</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1738423540577</updated>
+    </task>
+    <task id="LOCAL-00006" summary="added jest tests">
+      <option name="closed" value="true" />
+      <created>1738425472825</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1738425472825</updated>
+    </task>
+    <task id="LOCAL-00007" summary="refactored file previewing">
+      <option name="closed" value="true" />
+      <created>1738425605260</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1738425605260</updated>
+    </task>
+    <task id="LOCAL-00008" summary="minor changes and migration to nextjs 15">
+      <option name="closed" value="true" />
+      <created>1738426521236</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1738426521236</updated>
+    </task>
+    <task id="LOCAL-00009" summary="added e.preventDefault() so page doesnt refresh the selected content type each time">
+      <option name="closed" value="true" />
+      <created>1738426874916</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1738426874916</updated>
+    </task>
+    <task id="LOCAL-00010" summary="fixed security vulnerability in server action">
+      <option name="closed" value="true" />
+      <created>1740509025201</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1740509025201</updated>
+    </task>
+    <task id="LOCAL-00011" summary="moved files to another directory for more readability">
+      <option name="closed" value="true" />
+      <created>1740509093979</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1740509093979</updated>
+    </task>
+    <task id="LOCAL-00012" summary="moved post schemas to another file">
+      <option name="closed" value="true" />
+      <created>1740509127633</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1740509127633</updated>
+    </task>
+    <task id="LOCAL-00013" summary="moved post files to another directory">
+      <option name="closed" value="true" />
+      <created>1740509241897</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1740509241897</updated>
+    </task>
+    <task id="LOCAL-00014" summary="post card fixed tailwind class background color">
+      <option name="closed" value="true" />
+      <created>1740509286005</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1740509286005</updated>
+    </task>
+    <task id="LOCAL-00015" summary="edit post form and server actions">
+      <option name="closed" value="true" />
+      <created>1740509308042</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1740509308042</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="post creation refactor" />
+    <MESSAGE value="navigation component" />
+    <MESSAGE value="tailwind migration from v3 to v4" />
+    <MESSAGE value="changed --color-nord property to --color-theme" />
+    <MESSAGE value="changed wrong type of debounce" />
+    <MESSAGE value="added jest tests" />
+    <MESSAGE value="refactored file previewing" />
+    <MESSAGE value="minor changes and migration to nextjs 15" />
+    <MESSAGE value="added e.preventDefault() so page doesnt refresh the selected content type each time" />
+    <MESSAGE value="fixed security vulnerability in server action" />
+    <MESSAGE value="moved files to another directory for more readability" />
+    <MESSAGE value="moved post schemas to another file" />
+    <MESSAGE value="moved post files to another directory" />
+    <MESSAGE value="post card fixed tailwind class background color" />
+    <MESSAGE value="edit post form and server actions" />
+    <option name="LAST_COMMIT_MESSAGE" value="edit post form and server actions" />
+  </component>
+</project>

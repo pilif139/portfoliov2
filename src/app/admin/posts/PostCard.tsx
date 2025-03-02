@@ -34,7 +34,7 @@ export default function PostCard({ post }: PostProps) {
 
     return (
         <div className="bg-theme-2 hover:bg-theme-0 transition p-4 rounded-xl cursor-pointer w-[20vw] h-full">
-            <Link href={`/admin/posts/${post.id}`}>
+            <Link href={`/posts/${post.id}`}>
                 <div>
                     <Heading variant="3" className="text-theme-9">
                         {post.title}
@@ -43,7 +43,7 @@ export default function PostCard({ post }: PostProps) {
                 </div>
             </Link>
             <div className="mt-4 flex gap-4">
-                <Link href={`/src/app/admin/posts/(customizable)/edit/${post.id}`}>
+                <Link href={`/admin/posts/edit/${post.id}`}>
                     <Button variant="secondary" className="flex items-center gap-2 text-xl">
                         Edit <MdModeEdit size={20} />
                     </Button>

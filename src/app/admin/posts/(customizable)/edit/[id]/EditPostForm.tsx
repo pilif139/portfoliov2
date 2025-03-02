@@ -8,12 +8,13 @@ import Input from "@/components/ui/Input"
 import TextArea from "@/components/ui/TextArea"
 import useValidate from "@/hooks/useValidate"
 import useDebounce from "@/hooks/useDebounce"
-import addContentToPost from "@/server/post/addContentToPost"
 import { useRouter } from "next/navigation"
 import { titleSchema, descriptionSchema } from "@/server/post/postTypes"
 import ConvertContentsToPayload from "@/app/admin/posts/(customizable)/ConvertContentsToPayload"
 import editPost from "@/server/post/editPost"
 import { PostContentBlock } from "@/db/schema/posts"
+import getChangedContents from "./getChangedContents"
+import editPostContent from "@/server/post/editPostContent"
 
 export default function EditPostForm({ id, oldContents }: { id: number; oldContents: PostContentBlock[] }) {
     const { title, setTitle, description, setDescription, contents } = useCreatePostContext()
@@ -33,10 +34,7 @@ export default function EditPostForm({ id, oldContents }: { id: number; oldConte
             return
         }
 
-        // wont work if the content is a file or image
-        const changedContents = contents.filter((content) =>
-            oldContents.some((oldContent) => oldContent.content !== content.content || oldContent.position !== content.position)
-        )
+        const changedContents = getChangedContents(oldContents, contents)
         const contentWithConvertedFiles = ConvertContentsToPayload(changedContents, title)
 
         for (const content of contentWithConvertedFiles) {
@@ -44,9 +42,9 @@ export default function EditPostForm({ id, oldContents }: { id: number; oldConte
             formData.append("type", content.type)
             formData.append("position", content.position.toString())
             formData.append("content", content.content)
-            await addContentToPost(id, formData)
+            await editPostContent(id, formData)
         }
-        router.push(`/admin/posts/${id}`)
+        router.push(`/posts/${id}`)
     }
 
     return (

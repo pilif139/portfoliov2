@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@plugin "@tailwindcss/typography";
+
 /* gruvbox theme */
 @theme {
     --color-background: #1d2021; /* Dark Gray background */
