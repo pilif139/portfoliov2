@@ -1,12 +1,18 @@
 # Portfolio
 
-I'm using Next.js 14, TypeScript, TailwindCSS, drizzle orm.
+This project taught me how to make a fullstack app with my self-made CMS. For the first time i used third-party storage from vercel to store images.
 
 Development database is postgresql running in docker container.
 
-Auth is made with help of [lucia-auth](https://lucia-auth.com/sessions/cookies/nextjs).
+Authentication is made with help of [lucia-auth](https://lucia-auth.com/sessions/cookies/nextjs).
 
-I'm planning to deploy it on Vercel and use their file storage and postgres.
+## tech stack
+
+<p align="center">
+  <a href="https://skillicons.dev">
+    <img src="https://skillicons.dev/icons?i=nextjs,react,ts,postgres,vercel,tailwind," />
+  </a>
+</p>
 
 ## how to run
 
@@ -45,22 +51,3 @@ npx drizzle-kit studio # open drizzle studio
 │   │   ├── post - server actions for post
  configs, env etc.
 ```
-
-## TODO
-
-- [ ] Add file storage from Vercel
-- [ ] Project page
-- [ ] Blog page
-- [ ] About me page
-- [ ] Contact page
-- [ ] Refactor some components that have a lot of bloat code
-
-- **Admin panel :**
-
-- [ ] Add user management
-- [x] Create new project, blog
-- [ ] Managing content of projects and blogs
-- [x] In a create view add file upload
-- [ ] Add tags to project, blog
-- [ ] Edit project, blog
-- [x] Delete project, blog
