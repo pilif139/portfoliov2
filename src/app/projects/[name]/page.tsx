@@ -2,8 +2,8 @@ import Heading from "@/components/ui/Heading";
 import getGithubFile from "@/lib/github/getGithubFile";
 import ReactMarkdown from 'react-markdown'
 
-export default async function ProjectPage({ params }: { params: { name: string } }) {
-    const { name } = params;
+export default async function ProjectPage({ params }: { params: Promise<{ name: string }> }) {
+    const { name } = await params;
     const markdown = await getGithubFile("pilif139", name, "README.md");
 
     return (

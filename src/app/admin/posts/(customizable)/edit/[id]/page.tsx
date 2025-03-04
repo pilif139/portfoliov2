@@ -7,7 +7,7 @@ import fetchPost from "@/server/post/fetchPost"
 import EditPostForm from "./EditPostForm"
 
 export default async function EditPostPage({ params }: { params: Promise<{ id: number }> }) {
-    const id = (await params).id
+    const { id } = await params
     const { post, contents } = await fetchPost(id)
 
     return (

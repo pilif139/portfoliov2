@@ -3,12 +3,8 @@ import Heading from "@/components/ui/Heading"
 import Content from "@/components/Content"
 import fetchPost from "@/server/post/fetchPost"
 
-type ViewPostPageProps = {
-    params: Promise<{ id: number }>
-}
-
-export default async function ViewPostPage({ params }: ViewPostPageProps) {
-    const id = (await params).id
+export default async function ViewPostPage({ params }: { params: Promise<{ id: number }> }) {
+    const { id } = await params
     const { post, contents } = await fetchPost(id)
 
     return (
