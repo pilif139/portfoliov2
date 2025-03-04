@@ -8,7 +8,7 @@ Authentication is made with help of [lucia-auth](https://lucia-auth.com/sessions
 
 ## tech stack
 
-!["Tech stack"](https://skillicons.dev/icons?i=nextjs,react,ts,postgres,vercel,tailwind,)
+!["Tech stack"](https://skillicons.dev/icons?i=nextjs,react,ts,postgres,vercel,tailwind&theme=light)
 
 ## how to run
 
