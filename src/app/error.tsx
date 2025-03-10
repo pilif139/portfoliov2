@@ -1,8 +1,5 @@
-"use client"
-
 import FadeDiv from "@/components/ui/FadeDiv"
 import Heading from "@/components/ui/Heading"
-import { useEffect } from "react"
 import Button from "@/components/ui/Button"
 
 type ErrorPageProps = {
@@ -11,9 +8,7 @@ type ErrorPageProps = {
 }
 
 export default function ErrorPage({ error, reset }: ErrorPageProps) {
-    useEffect(() => {
-        console.error(error)
-    }, [error])
+    console.log(error);
 
     return (
         <FadeDiv className="m-auto text-center flex flex-col gap-4 items-center">
