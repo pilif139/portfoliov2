@@ -5,7 +5,6 @@ import Heading from "@/components/ui/Heading"
 import Link from "next/link"
 import React, { startTransition, useActionState, useState } from "react"
 import login from "@/server/auth/login"
-import { useQueryClient } from "@tanstack/react-query"
 import { LoginSchema } from "@/server/auth/loginTypes"
 import Input from "@/components/ui/Input"
 import Button from "@/components/ui/Button"
@@ -18,18 +17,16 @@ export default function Login() {
     const [emailErrors, setEmailErrors, validateEmail] = useValidate(LoginSchema.shape.email, email)
     const [password, setPassword] = useState("")
     const [passwordErrors, setPasswordErrors, validatePassword] = useValidate(LoginSchema.shape.password, password)
-    const queryClient = useQueryClient()
     const [debounce] = useDebounce()
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         await new Promise((resolve) => setTimeout(resolve, 300))
         if (emailErrors || passwordErrors) return
-        await queryClient.invalidateQueries({ queryKey: ["session"] }) // Invalidate session query works on the cache of react query if some page is fetching the session from the api and not the db
         const formData = new FormData(e.target as HTMLFormElement)
         startTransition(() => {
             action(formData)
-        });
+        })
         setEmailErrors(state?.errors?.email ? [...state?.errors?.email] : null)
         setPasswordErrors(state?.errors?.password ? [...state?.errors?.password] : null)
     }
