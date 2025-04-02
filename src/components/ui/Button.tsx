@@ -24,9 +24,10 @@ export default function Button({ children, type = "button", onClick, className, 
     return (
         <button
             type={type}
-            className={clsx(`cursor-pointer text-white font-bold py-2 px-4 rounded-lg transition duration-300 w-fit ${disabled ? "opacity-50" : ""}`,
-                className,
+            className={clsx(
+                `cursor-pointer text-white font-bold py-2 px-4 rounded-lg transition duration-300 w-fit ${disabled ? "opacity-50" : ""}`,
                 variantStyle,
+                className
             )}
             aria-disabled={disabled}
             disabled={disabled}

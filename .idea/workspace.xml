@@ -4,21 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c5ddcfd9-0b66-48b1-a776-08909b800ef5" name="Changes" comment="edit post form and server actions">
-      <change afterPath="$PROJECT_DIR$/src/app/admin/posts/(customizable)/edit/[id]/getChangedContents.test.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/posts/page.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/projects/getGithubFile.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/projects/getGithubRepos.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/projects/page.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Card.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+    <list default="true" id="c5ddcfd9-0b66-48b1-a776-08909b800ef5" name="Changes" comment="removed react query and added ky for github api handling">
+      <change afterPath="$PROJECT_DIR$/src/lib/github/getGithubRepo.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/lib/github/githubApi.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/Header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/Header.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/admin/posts/(customizable)/edit/[id]/EditPostForm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/admin/posts/(customizable)/edit/[id]/EditPostForm.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/admin/posts/PostCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/admin/posts/PostCard.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/admin/posts/[id]/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/posts/[id]/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Content.test.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Content.test.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/server/post/submitFileToVercelStorage.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/server/post/submitFileToVercelStorage.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(auth)/login/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(auth)/login/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(auth)/register/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(auth)/register/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/ReactQueryProvider.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/layout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/projects/[name]/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/projects/[name]/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ui/Button.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/Button.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/github/getGithubFile.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/github/getGithubFile.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/github/getGithubRepos.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/github/getGithubRepos.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,6 +27,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "pilif139"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/pilif139/portfoliov2.git",
+    "accountId": "7cec68b1-7a44-4485-8dc2-54b21b98ea6c"
+  }
+}]]></component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
   </component>
@@ -46,17 +57,19 @@
   "keyToString": {
     "Jest.getChangedContents test.returns contents that didnt change but are of type image, file or video.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
     "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "/home/filip/programming/portfoliov2",
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs.jest.jest_package": "C:/Users/User/Desktop/programming/webdev/portfoliov2/node_modules/jest",
     "nodejs_package_manager_path": "npm",
-    "prettierjs.PrettierConfiguration.Package": "C:\\Users\\User\\Desktop\\programming\\webdev\\portfoliov2\\node_modules\\prettier",
+    "prettierjs.PrettierConfiguration.Package": "/home/filip/programming/portfoliov2/node_modules/prettier",
     "run.code.analysis.last.selected.profile": "pProject Default",
-    "settings.editor.selected.configurable": "preferences.lookFeel",
-    "ts.external.directory.path": "C:\\Users\\User\\Desktop\\programming\\webdev\\portfoliov2\\node_modules\\typescript\\lib",
+    "settings.editor.selected.configurable": "editor.preferences.appearance",
+    "ts.external.directory.path": "/home/filip/programming/portfoliov2/node_modules/typescript/lib",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -90,7 +103,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-WS-242.23726.96" />
+        <option value="bundled-js-predefined-d6986cc7102b-1632447f56bf-JavaScript-WS-243.26053.12" />
       </set>
     </attachedChunks>
   </component>
@@ -134,6 +147,7 @@
       <workItem from="1740672905771" duration="1160000" />
       <workItem from="1740698482754" duration="669000" />
       <workItem from="1740752675634" duration="5336000" />
+      <workItem from="1743520538949" duration="6190000" />
     </task>
     <task id="LOCAL-00003" summary="changed --color-nord property to --color-theme">
       <option name="closed" value="true" />
@@ -245,6 +259,9 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName=".env" />
+  </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="post creation refactor" />
     <MESSAGE value="navigation component" />
@@ -261,6 +278,7 @@
     <MESSAGE value="moved post files to another directory" />
     <MESSAGE value="post card fixed tailwind class background color" />
     <MESSAGE value="edit post form and server actions" />
-    <option name="LAST_COMMIT_MESSAGE" value="edit post form and server actions" />
+    <MESSAGE value="removed react query and added ky for github api handling" />
+    <option name="LAST_COMMIT_MESSAGE" value="removed react query and added ky for github api handling" />
   </component>
 </project>

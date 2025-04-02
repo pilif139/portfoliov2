@@ -1,25 +1,16 @@
 import { notFound } from "next/navigation"
+import githubApi from "@/lib/github/githubApi"
 
 export default async function getGithubFile(owner: string, repo: string, path: string) {
-    try {
-        const url = `https://api.github.com/repos/${owner}/${repo}/contents/${path}`
+    const response = await githubApi.get(`repos/${owner}/${repo}/contents/${path}`)
 
-        const headers: HeadersInit = {
-            Accept: "application/vnd.github.v3.raw",
+    if (!response.ok) {
+        if (response.status === 404) {
+            return notFound()
         }
-
-        const response = await fetch(url, { headers, next: { revalidate: 3600 } })
-
-        if (!response.ok) {
-            if (response.status === 404) {
-                return notFound()
-            }
-            throw new Error(response.statusText)
-        }
-
-        return await response.text()
-    } catch (error) {
-        console.log("Error fetching github file", error)
-        throw error
+        throw new Error(response.statusText)
     }
+
+    const fileData = (await response.json()) as { content: string; encoding: BufferEncoding }
+    return Buffer.from(fileData.content, fileData.encoding).toString("utf-8")
 }
