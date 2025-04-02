@@ -1,3 +1,5 @@
+"use client";
+
 import FadeDiv from "@/components/ui/FadeDiv"
 import Heading from "@/components/ui/Heading"
 import Button from "@/components/ui/Button"

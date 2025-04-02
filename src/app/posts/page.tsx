@@ -1,16 +1,9 @@
-import { getCurrentSession } from "@/lib/auth/session"
-import Unauthorized from "@/components/Unauthorized"
 import db from "@/db/db"
 import { postsTable } from "@/db/schema/posts"
 import Link from "next/link"
 import Card from "@/components/Card"
 
 export default async function PostsPage() {
-    const { user, session } = await getCurrentSession()
-    if (!user && !session) {
-        return <Unauthorized />
-    }
-
     const posts = await db.select().from(postsTable).execute()
 
     return posts.map((post) => (
